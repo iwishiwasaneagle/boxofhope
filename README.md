@@ -1,8 +1,3 @@
-<div align="center">
-
-[![Contributors](https://img.shields.io/github/contributors/iwishiwasaneagle/CMask.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/CMask/graphs/contributors)
-</div>
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
