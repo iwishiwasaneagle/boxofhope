@@ -1,3 +1,8 @@
+<div align="center">
+
+[![Contributors](https://img.shields.io/github/contributors/iwishiwasaneagle/CMask.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/CMask/graphs/contributors)
+</div>
+
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -21,17 +26,14 @@
     <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
   </p>
 </p>
-  <div align="center">
-    [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](http://thismypc.com/)
-    [![Contributors](https://img.shields.io/github/contributors/iwishiwasaneagle/CMask.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/CMask/graphs/contributors)
-<!--     [![Forks][forks-shield]][forks-url]
-    [![Stargazers][stars-shield]][stars-url]
-    [![Issues][issues-shield]][issues-url]
-    [![MIT License][license-shield]][license-url]
- -->
-
-  </div>
-
+<div align="center">
+  
+[![Contributors](https://img.shields.io/github/contributors/iwishiwasaneagle/CMask.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/CMask/graphs/contributors)
+[![Forks](https://img.shields.io/github/forks/iwishiwasaneagle/CMask.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/CMask/network/members)
+[![Stars](https://img.shields.io/github/stars/iwishiwasaneagle/CMask.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/CMask/stargazers)
+[![Issues](https://img.shields.io/github/issues/iwishiwasaneagle/CMask.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/CMask/issues)
+[![License](https://img.shields.io/github/license/iwishiwasaneagle/CMask.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/CMask/blob/master/LICENSE.txt)
+</div>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
