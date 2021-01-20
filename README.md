@@ -1,11 +1,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/iwishiwasaneagle/CMask">
+  <a href="https://github.com/iwishiwasaneagle/boxofhope">
     <img src="images/logo.png" alt="Logo" width="256" height="161">
   </a>
 
-  <h2 align="center">CMask</h2>  
+  <h2 align="center">Box Of Hope</h2>  
   
   <p align="center">
     Event driven COVID-19 safety
@@ -20,13 +20,13 @@
     <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
   </p>
 </p>
-<div align="center">
+<div align="center">.
   
-[![Contributors](https://img.shields.io/github/contributors/iwishiwasaneagle/CMask.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/CMask/graphs/contributors)
-[![Forks](https://img.shields.io/github/forks/iwishiwasaneagle/CMask.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/CMask/network/members)
-[![Stars](https://img.shields.io/github/stars/iwishiwasaneagle/CMask.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/CMask/stargazers)
-[![Issues](https://img.shields.io/github/issues/iwishiwasaneagle/CMask.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/CMask/issues)
-[![License](https://img.shields.io/github/license/iwishiwasaneagle/CMask.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/CMask/blob/master/LICENSE.txt)
+[![Contributors](https://img.shields.io/github/contributors/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/graphs/contributors)
+[![Forks](https://img.shields.io/github/forks/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/network/members)
+[![Stars](https://img.shields.io/github/stars/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/stargazers)
+[![Issues](https://img.shields.io/github/issues/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/issues)
+[![License](https://img.shields.io/github/license/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/blob/master/LICENSE.txt)/
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -142,7 +142,7 @@ Distributed under the GPL-3.0 License. See `LICENSE` for more information.
 
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
 
-Project Link: [https://github.com/iwishiwasaneagle/CMask](https://github.com/iwishiwasaneagle/CMask)
+Project Link: [https://github.com/iwishiwasaneagle/CMask](https://github.com/iwishiwasaneagle/boxofhope)
 
 
 
