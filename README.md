@@ -1,10 +1,3 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -12,8 +5,8 @@
     <img src="images/logo.png" alt="Logo" width="256" height="161">
   </a>
 
-  <h2 align="center">CMask</h2>
-  <div align="center">  </div>
+  <h2 align="center">CMask</h2>  
+
 
   <p align="center">
     Event driven COVID-19 safety
@@ -28,7 +21,16 @@
     <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
   </p>
 </p>
+  <div align="center">
+    [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](http://thismypc.com/)
+    [![Contributors](https://img.shields.io/github/contributors/iwishiwasaneagle/CMask.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/CMask/graphs/contributors)
+<!--     [![Forks][forks-shield]][forks-url]
+    [![Stargazers][stars-shield]][stars-url]
+    [![Issues][issues-shield]][issues-url]
+    [![MIT License][license-shield]][license-url]
+ -->
 
+  </div>
 
 
 <!-- TABLE OF CONTENTS -->
