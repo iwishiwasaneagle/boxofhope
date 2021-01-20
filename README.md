@@ -9,10 +9,11 @@
 <br />
 <p align="center">
   <a href="https://github.com/iwishiwasaneagle/CMask">
-    <img src="images/logo.png" alt="Logo" width="512" height="250">
+    <img src="images/logo.png" alt="Logo" width="256" height="161">
   </a>
 
   <h2 align="center">CMask</h2>
+  <div align="center">  </div>
 
   <p align="center">
     Event driven COVID-19 safety
