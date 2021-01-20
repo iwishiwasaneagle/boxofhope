@@ -6,8 +6,7 @@
   </a>
 
   <h2 align="center">CMask</h2>  
-
-
+  
   <p align="center">
     Event driven COVID-19 safety
     <br />
@@ -52,7 +51,7 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#references">References</a></li>
   </ol>
 </details>
 
@@ -134,7 +133,7 @@ Contributions are what make the open source community such an amazing place to b
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the GPL-3.0 License. See `LICENSE` for more information.
 
 
 
@@ -147,26 +146,9 @@ Project Link: [https://github.com/iwishiwasaneagle/CMask](https://github.com/iwi
 
 
 
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
+<!-- References -->
+## References
 
 * []()
 * []()
 * []()
-
-
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/iwishiwasaneagle/CMask.svg?style=for-the-badge
-[contributors-url]: https://github.com/iwishiwasaneagle/CMask/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/iwishiwasaneagle/CMask.svg?style=for-the-badge
-[forks-url]: https://github.com/iwishiwasaneagle/CMask/network/members
-[stars-shield]: https://img.shields.io/github/stars/iwishiwasaneagle/CMask.svg?style=for-the-badge
-[stars-url]: https://github.com/iwishiwasaneagle/CMask/stargazers
-[issues-shield]: https://img.shields.io/github/issues/iwishiwasaneagle/CMask.svg?style=for-the-badge
-[issues-url]: https://github.com/iwishiwasaneagle/CMask/issues
-[license-shield]: https://img.shields.io/github/license/iwishiwasaneagle/CMask.svg?style=for-the-badge
-[license-url]: https://github.com/iwishiwasaneagle/CMask/blob/master/LICENSE.txt
