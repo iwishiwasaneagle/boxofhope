@@ -20,7 +20,7 @@
     <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
   </p>
 </p>
-<div align="center">.
+<div align="center">
   
 [![Contributors](https://img.shields.io/github/contributors/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/graphs/contributors)
 [![Forks](https://img.shields.io/github/forks/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/network/members)
