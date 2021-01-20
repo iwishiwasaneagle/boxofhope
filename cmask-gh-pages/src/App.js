@@ -7,15 +7,15 @@ function App() {
       <header className="App-header">
         <img src={logo} alt='Logo'/>
         <p>
-          Hi, welcome to CMask
+          Hi, welcome to Box Of Hope!
         </p>
         <a
           className="App-link"
-          href="https://github.com/iwishiwasaneagle/CMask"
+          href="https://github.com/iwishiwasaneagle/boxofhope"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Check this shit out!
+          Check it out!
         </a>
       </header>
     </div>

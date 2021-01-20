@@ -1,5 +1,5 @@
 {
-  "homepage": "https://iwishiwasaneagle.github.io/CMask/",
+  "homepage": "https://boxofhope.co.uk/",
   "name": "cmask-gh-pages",
   "version": "0.1.0",
   "private": true,
@@ -18,7 +18,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts ejecta",
+    "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
