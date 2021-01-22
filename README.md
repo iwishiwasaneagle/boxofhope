@@ -92,7 +92,7 @@ This is an example of how to list things you need to use the software and how to
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/iwishiwasaneagle/boxofhope.git
    ```
 2. Install NPM packages
    ```sh
@@ -113,8 +113,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a list of proposed features (and known issues).
-
+See the [open issues](https://github.com/iwishiwasaneagle/boxofhope/issues?q=is%3Aopen+is%3Aissue+label%3Afeature) for a list of proposed features (and known issues).
 
 
 <!-- CONTRIBUTING -->
@@ -140,9 +139,13 @@ Distributed under the GPL-3.0 License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Jan-Hendrik Ewers - [@jhewers](https://twitter.com/jhewers)
 
-Project Link: [https://github.com/iwishiwasaneagle/CMask](https://github.com/iwishiwasaneagle/boxofhope)
+Sarah Swinton - [@SarahESwinton](https://twitter.com/SarahESwinton)
+
+Martin Karel - [@13Darcer](https://twitter.com/13Darcer)
+
+Project Link: [https://github.com/iwishiwasaneagle/boxofhope](https://github.com/iwishiwasaneagle/boxofhope)
 
 
 
