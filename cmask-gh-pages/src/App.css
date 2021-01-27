@@ -77,3 +77,42 @@
     opacity: 1;
   }
 }
+
+.social-container {
+  display: flex;
+  padding: 25px 50px;
+}
+
+a.social {
+  margin: 0 1rem;
+  transition: transform 250ms;
+  display: inline-block;
+}
+
+a.social:hover {
+  transform: translateY(-6px);
+}
+
+a.github{
+  color: white
+}
+
+a.youtube {
+  color: #eb3223;
+}
+
+a.facebook {
+  color: #4968ad;
+}
+
+a.twitter {
+  color: #49a1eb;
+}
+
+a.instagram {
+  color: #833ab4;
+}
+
+a.linkedin {
+  color: #2867b2;
+}
