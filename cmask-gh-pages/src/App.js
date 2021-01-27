@@ -25,10 +25,10 @@ function Footer() {
       className="instagram social">
       <FontAwesomeIcon icon={faInstagram} size="2x" />
     </a>
-    {/* <a href="https://www.linkedin.com/theboxofhope"
+    <a href="https://www.linkedin.com/company/theboxofhope"
       className="linkedin social">
       <FontAwesomeIcon icon={faLinkedin} size="2x" />
-    </a> */}
+    </a>
   </div>
 }
 
