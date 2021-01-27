@@ -116,8 +116,7 @@ dist
 .pnp.*
 
 
-Makefile
-
+# CMake
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
