@@ -15,15 +15,11 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 
-# configure a header file to pass the version number only
-configure_file(boxofhopeConfig.h.in boxofhopeConfig.h)
-
-# add the executable
-add_executable(Boxofhope boxofhope.cpp)
-target_link_libraries(Boxofhope PUBLIC)
+add_subdirectory(src)
 
 # add the binary tree to the search path for include files
 # so that we will find TutorialConfig.h
 target_include_directories(Boxofhope PUBLIC
                            "${PROJECT_BINARY_DIR}"
+                           "${PROJECT_SOURCE_DIR}/src"
                           )
