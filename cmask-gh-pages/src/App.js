@@ -6,16 +6,16 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} alt='Logo'/>
-        <p>
-          Hi, welcome to Box Of Hope!
-        </p>
+        <h1>
+          Work In Progress
+        </h1>
         <a
           className="App-link"
           href="https://github.com/iwishiwasaneagle/boxofhope"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Check it out!
+          <h3>🔗 Have a gander at our source code</h3>
         </a>
       </header>
     </div>
