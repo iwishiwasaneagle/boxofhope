@@ -10,23 +10,23 @@
   <p align="center">
     Event driven COVID-19 safety
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/iwishiwasaneagle/boxofhope/wiki"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://www.boxofhope.co.uk">View Demo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/iwishiwasaneagle/boxofhope/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/iwishiwasaneagle/boxofhope/issues/new?assignees=&labels=&template=feature_request.md&title=">Request Feature</a>
   </p>
 </p>
-<div align="center">.
+<div align="center">
   
 [![Contributors](https://img.shields.io/github/contributors/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/graphs/contributors)
 [![Forks](https://img.shields.io/github/forks/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/network/members)
 [![Stars](https://img.shields.io/github/stars/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/stargazers)
 [![Issues](https://img.shields.io/github/issues/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/issues)
-[![License](https://img.shields.io/github/license/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/blob/master/LICENSE.txt)/
+[![License](https://img.shields.io/github/license/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/blob/master/LICENSE.txt)
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -92,7 +92,7 @@ This is an example of how to list things you need to use the software and how to
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/iwishiwasaneagle/boxofhope.git
    ```
 2. Install NPM packages
    ```sh
@@ -113,8 +113,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a list of proposed features (and known issues).
-
+See the [open issues](https://github.com/iwishiwasaneagle/boxofhope/issues?q=is%3Aopen+is%3Aissue+label%3Afeature) for a list of proposed features (and known issues).
 
 
 <!-- CONTRIBUTING -->
@@ -140,9 +139,13 @@ Distributed under the GPL-3.0 License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Jan-Hendrik Ewers - [@jhewers](https://twitter.com/jhewers)
 
-Project Link: [https://github.com/iwishiwasaneagle/CMask](https://github.com/iwishiwasaneagle/boxofhope)
+Sarah Swinton - [@SarahESwinton](https://twitter.com/SarahESwinton)
+
+Martin Karel - [@13Darcer](https://twitter.com/13Darcer)
+
+Project Link: [https://github.com/iwishiwasaneagle/boxofhope](https://github.com/iwishiwasaneagle/boxofhope)
 
 
 
