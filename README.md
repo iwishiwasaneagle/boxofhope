@@ -83,6 +83,8 @@ There are 3 servers as part of the [`servers`](./servers) folder: sql, io, restf
 First, the project needs to be built. Run the following to build the project.
 
 ```bash
+git clone https://github.com/iwishiwasaneagle/boxofhope
+cd serves
 cmake .
 make
 ```
@@ -98,7 +100,7 @@ To use either of the three servers, invoke the binary with `--sql-server`, `--io
 ## Usage
 
 ```bash
-$ ./build/Boxofhope
+(boxofhope/servers) $ ./build/Boxofhope
 Welcome to Boxofhope (v0.0.1)
 
 Usage:
