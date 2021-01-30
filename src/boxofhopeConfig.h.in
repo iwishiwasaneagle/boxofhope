@@ -1,0 +1,3 @@
+// the configured options and settings for Boxofhope
+#define Boxofhope_VERSION_MAJOR @Boxofhope_VERSION_MAJOR@
+#define Boxofhope_VERSION_MINOR @Boxofhope_VERSION_MINOR@
