@@ -28,6 +28,10 @@
 [![Issues](https://img.shields.io/github/issues/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/issues)
 [![License](https://img.shields.io/github/license/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/blob/master/LICENSE.txt)
 </div>
+<div align="center">
+
+![Servers](https://github.com/iwishiwasaneagle/boxofhope/workflows/Servers/badge.svg)
+</div>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
