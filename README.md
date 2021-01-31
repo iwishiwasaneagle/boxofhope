@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/iwishiwasaneagle/boxofhope">
-    <img src="images/logo.png" alt="Logo" width="256" height="161">
+    <img src="images/logo.png" alt="Logo" height="160">
   </a>
 
   <h2 align="center">Box Of Hope</h2>  
@@ -60,18 +60,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+Box of hope was created to solve the unique, and very annoying, scenario of  
 
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
+> Where's my mask? Oh I left it at home... again...
 
-
-### Built With
-
-* []()
-* []()
-* []()
+As part of a university, the creators were tasked with creating a event driven codebase that interacts with a user and low level components on a Raspberry Pi.
 
 
 
@@ -146,12 +139,3 @@ Sarah Swinton - [@SarahESwinton](https://twitter.com/SarahESwinton)
 Martin Karel - [@13Darcer](https://twitter.com/13Darcer)
 
 Project Link: [https://github.com/iwishiwasaneagle/boxofhope](https://github.com/iwishiwasaneagle/boxofhope)
-
-
-
-<!-- References -->
-## References
-
-* []()
-* []()
-* []()
