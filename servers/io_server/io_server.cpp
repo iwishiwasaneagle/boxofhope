@@ -1,6 +1,6 @@
 #include "io_server.h"
 
-int testFunction(){
-    std::cout << "Test function from io_server.cpp" << std::endl;
+int io::server_run(int argc, char* argv[]){
+    std::cerr << "Starting IO Server" << std::endl;
     return 0;
 }

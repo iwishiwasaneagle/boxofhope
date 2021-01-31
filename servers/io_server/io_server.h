@@ -3,6 +3,8 @@
 
 #include <iostream>
 
-int testFunction();
+namespace io{
+    int server_run(int argc, char* argv[]);
+}
 
 #endif
