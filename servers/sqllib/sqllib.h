@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+/// sqllib namespace for the Boxofhope sql(lite) wrapper
 namespace sqllib{
 }
 
