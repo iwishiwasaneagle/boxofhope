@@ -62,10 +62,10 @@ int main(int argc, char* argv[]){
         
     }
     return 0;
-
+}
 
 int tests(){
     std::cout << "Start of the test function" << std::endl;
     sqllib::test();
     return 0;
- }
+}
