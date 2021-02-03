@@ -1,8 +1,8 @@
 <!-- PROJECT LOGO -->
 <br />
-<p align="center">
-  <a href="https://github.com/iwishiwasaneagle/boxofhope">
-    <img src="images/logo.png" alt="Logo" height="160">
+<div align="center">
+  <a href="https://boxofhope.co.uk/docs/index.html">
+    <img src="https://raw.githubusercontent.com/iwishiwasaneagle/boxofhope/main/images/logo.png" alt="Logo" height="160">
   </a>
 
   <h2 align="center">Box Of Hope</h2>  
@@ -19,7 +19,7 @@
     ·
     <a href="https://github.com/iwishiwasaneagle/boxofhope/issues/new?assignees=&labels=&template=feature_request.md&title=">Request Feature</a>
   </p>
-</p>
+</div>
 <div align="center">
   
 [![Contributors](https://img.shields.io/github/contributors/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/graphs/contributors)
@@ -32,9 +32,10 @@
 
 ![Servers](https://github.com/iwishiwasaneagle/boxofhope/workflows/Servers/badge.svg)
 </div>
+<br />
 
 <!-- TABLE OF CONTENTS -->
-<details open="open">
+<div>
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
     <li><a href="#about-the-project">About The Project</a></li>
@@ -45,7 +46,7 @@
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
-</details>
+</div>
 
 
 
