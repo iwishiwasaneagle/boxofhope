@@ -18,12 +18,12 @@ option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 configure_file(boxofhopeConfig.h.in boxofhopeConfig.h)
 
 add_subdirectory(io_server)
-add_subdirectory(sql_server)
 add_subdirectory(restful_server)
+add_subdirectory(sqllib)
 
 add_executable(Boxofhope boxofhope.cpp)
 
-target_link_libraries(Boxofhope PUBLIC io_server sql_server restful_server)
+target_link_libraries(Boxofhope PUBLIC io_server sqllib restful_server)
 
 # add the binary tree to the search path for include files
 # so that we will find TutorialConfig.h
