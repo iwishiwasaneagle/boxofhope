@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://boxofhope.co.uk/docs/index.html">
+  <a href="https://boxofhope.co.uk/">
     <img src="https://raw.githubusercontent.com/iwishiwasaneagle/boxofhope/main/images/logo.png" alt="Logo" height="160">
   </a>
 
@@ -10,7 +10,7 @@
   <p align="center">
     Event driven COVID-19 safety
     <br />
-    <a href="https://github.com/iwishiwasaneagle/boxofhope/wiki"><strong>Explore the docs »</strong></a>
+    <a href="https://boxofhope.co.uk/docs/index.html"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://www.boxofhope.co.uk">View Demo</a>
