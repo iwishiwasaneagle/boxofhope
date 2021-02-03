@@ -10,7 +10,8 @@
 
 int tests();
 
-static void show_usage(){
+/// Print CLI usage for main
+void show_usage(){
         std::cerr << "Welcome to " << Boxofhope_PROJECT_NAME << " (v" << Boxofhope_VERSION_MAJOR << "."
                   << Boxofhope_VERSION_MINOR << "." << Boxofhope_VERSION_PATCH << ")" << std::endl << std::endl
                   << "Usage:" << std::endl
@@ -42,7 +43,6 @@ int main(int argc, char* argv[]){
         }
 
         switch (c) {
-            case 's':
             case 'r':
                 // Run the RESTful API CRUD server
                 return restful::server_run(argc, argv);                
@@ -65,9 +65,11 @@ int main(int argc, char* argv[]){
     return 0;
 }
 
-
+/*! Test function to serve as an example until the team is more up to speed with C++, Doxygen, etc.
+ * 
+ * \return Exit code
+ */
 int tests(){
     std::cout << "Start of the test function" << std::endl;
-    sqllib::test();
     return 0;
 }
