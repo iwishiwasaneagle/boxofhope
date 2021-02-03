@@ -31,6 +31,7 @@
 <div align="center">
 
 ![Servers](https://github.com/iwishiwasaneagle/boxofhope/workflows/Servers/badge.svg)
+![Docs](https://github.com/iwishiwasaneagle/boxofhope/workflows/Docs/badge.svg)
 </div>
 <br />
 
