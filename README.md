@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/iwishiwasaneagle/boxofhope">
+  <a href="https://boxofhope.co.uk/docs/index.html">
     <img src="https://raw.githubusercontent.com/iwishiwasaneagle/boxofhope/main/images/logo.png" alt="Logo" height="160">
   </a>
 
