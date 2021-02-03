@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-namespace sql{
-    int server_run(int argc, char* argv[]);
+namespace sqllib{
+    int test();
 }
 
 #endif
