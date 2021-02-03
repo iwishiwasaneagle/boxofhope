@@ -4,7 +4,6 @@
 #include <iostream>
 
 namespace sqllib{
-    int test();
 }
 
 #endif
