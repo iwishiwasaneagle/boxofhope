@@ -11,13 +11,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    steps:
+    if: github.ref != 'refs/heads/master'
+    steps:    
       - uses: actions/checkout@v2
-      
       - name: Doxygen Action
         uses: mattnotmitt/doxygen-action@v1.2.1
-
+      
+  deploy:
+    runs-on: ubunty-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Doxygen Action
+        uses: mattnotmitt/doxygen-action@v1.2.1
       - name: Deploy doxygen to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
