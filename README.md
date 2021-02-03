@@ -35,9 +35,8 @@
 <br />
 
 <!-- TABLE OF CONTENTS -->
-<div>
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
-  <ol>
+## Table of contents
+<ol>
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#usage">Usage</a></li>
@@ -45,8 +44,7 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-  </ol>
-</div>
+</ol>
 
 
 
