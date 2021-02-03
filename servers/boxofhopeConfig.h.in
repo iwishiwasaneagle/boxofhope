@@ -1,0 +1,7 @@
+// This file is used by cmake to create boxofhopConfig.h AUTOMATICALLY replacing 
+// definitions dynamically. DO NOT CREATE boxofhopConfig.h manually
+
+#define Boxofhope_VERSION_MAJOR @Boxofhope_VERSION_MAJOR@
+#define Boxofhope_VERSION_MINOR @Boxofhope_VERSION_MINOR@
+#define Boxofhope_VERSION_PATCH @Boxofhope_VERSION_PATCH@
+#define Boxofhope_PROJECT_NAME  "@CMAKE_PROJECT_NAME@"

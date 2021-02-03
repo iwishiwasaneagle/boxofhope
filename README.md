@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/iwishiwasaneagle/boxofhope">
-    <img src="images/logo.png" alt="Logo" width="256" height="161">
+    <img src="images/logo.png" alt="Logo" height="160">
   </a>
 
   <h2 align="center">Box Of Hope</h2>  
@@ -28,30 +28,22 @@
 [![Issues](https://img.shields.io/github/issues/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/issues)
 [![License](https://img.shields.io/github/license/iwishiwasaneagle/boxofhope.svg?style=for-the-badge)](https://github.com/iwishiwasaneagle/boxofhope/blob/master/LICENSE.txt)
 </div>
+<div align="center">
+
+![Servers](https://github.com/iwishiwasaneagle/boxofhope/workflows/Servers/badge.svg)
+</div>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#references">References</a></li>
   </ol>
 </details>
 
@@ -60,55 +52,47 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+Box of hope was created to solve the unique, and very annoying, scenario of  
 
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
+> Where's my mask? Oh I left it at home... again...
 
-
-### Built With
-
-* []()
-* []()
-* []()
+As part of a university, the creators were tasked with creating a event driven codebase that interacts with a user and low level components on a Raspberry Pi.
 
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
+There are 3 servers as part of the [`servers`](./servers) folder: sql, io, restful.
 
-### Prerequisites
+First, the project needs to be built. Run the following to build the project.
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+```bash
+git clone https://github.com/iwishiwasaneagle/boxofhope
+cd serves
+cmake .
+make
+```
 
-### Installation
+The `Boxofhope` binary will be located in the automatically generated `build` folder.
 
-1. Clone the repo
-   ```sh
-   git clone https://github.com/iwishiwasaneagle/boxofhope.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
+To use either of the three servers, invoke the binary with `--sql-server`, `--io-server`, `--restful-server` along with the desired server specific configurations.
+
 
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+```bash
+(boxofhope/servers) $ ./build/Boxofhope
+Welcome to Boxofhope (v0.0.1)
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
+Usage:
+   --sql-server       Start the SQL server instance
+   --restful-server   Start the RESTful server instance
+   --io-server        Start the IO server instance
+```
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -146,12 +130,3 @@ Sarah Swinton - [@SarahESwinton](https://twitter.com/SarahESwinton)
 Martin Karel - [@13Darcer](https://twitter.com/13Darcer)
 
 Project Link: [https://github.com/iwishiwasaneagle/boxofhope](https://github.com/iwishiwasaneagle/boxofhope)
-
-
-
-<!-- References -->
-## References
-
-* []()
-* []()
-* []()
