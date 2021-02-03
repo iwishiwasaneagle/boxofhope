@@ -12,14 +12,14 @@
     <br />
     <a href="https://boxofhope.co.uk/docs/index.html"><strong>Explore the docs »</strong></a>
     <br />
-    <h3 align="center">Connect with us:</h3>
-    <p align="center">
-    <a href="https://www.youtube.com/channel/UCG8txVUxQb3aCut7adeDU7A" target="blank"><img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/youtube.svg" alt="Logo" height="40" style="margin: 0 0.5em"></a>
-    <a href="https://www.facebook.com/Box-of-Hope-106011608167716" target="blank"><img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/facebook.svg" alt="Logo" height="40" style="margin: 0 0.5em"></a>
-    <a href="https://twitter.com/theboxofhope" target="blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/twitter.svg" alt="Logo" height="40" style="margin: 0 0.5em"></a>
-    <a href="https://www.instagram.com/theboxofhope/" target="blank"><img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/instagram.svg" alt="Logo" height="40" style="margin: 0 0.5em"></a>
-    <a href="https://www.linkedin.com/company/theboxofhope" target="blank"><img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/linkedin.svg" alt="Logo" height="40" style="margin: 0 0.5em"></a>
-    </p>
+    <br />
+    <a href="https://www.youtube.com/channel/UCG8txVUxQb3aCut7adeDU7A"><img height=40 src="images/youtube.svg"></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://www.facebook.com/Box-of-Hope-106011608167716"><img height=40 src="images/facebook.svg"></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://twitter.com/theboxofhope"><img height=40 src="images/twitter.svg"></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://www.instagram.com/theboxofhope"><img height=40 src="images/instagram.svg"></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://www.linkedin.com/company/theboxofhope"><img height=40 src="images/linkedin.svg"></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <br />
+    <br />
     <a href="https://www.boxofhope.co.uk">View Demo</a>
     ·
     <a href="https://github.com/iwishiwasaneagle/boxofhope/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
@@ -39,14 +39,11 @@
 
 ![Servers](https://github.com/iwishiwasaneagle/boxofhope/workflows/Servers/badge.svg)
 ![Docs](https://github.com/iwishiwasaneagle/boxofhope/workflows/Docs/badge.svg)
-
 </div>
 <br />
 
 <!-- TABLE OF CONTENTS -->
-
 ## Table of contents
-
 <ol>
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
@@ -57,18 +54,20 @@
     <li><a href="#contact">Contact</a></li>
 </ol>
 
-<!-- ABOUT THE PROJECT -->
 
+
+<!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Box of hope was created to solve the unique, and very annoying, scenario of
+Box of hope was created to solve the unique, and very annoying, scenario of  
 
 > Where's my mask? Oh I left it at home... again...
 
 As part of a university, the creators were tasked with creating a event driven codebase that interacts with a user and low level components on a Raspberry Pi.
 
-<!-- GETTING STARTED -->
 
+
+<!-- GETTING STARTED -->
 ## Getting Started
 
 There are 3 servers as part of the [`servers`](./servers) folder: sql, io, restful.
@@ -86,8 +85,10 @@ The `Boxofhope` binary will be located in the automatically generated `build` fo
 
 To use either of the three servers, invoke the binary with `--sql-server`, `--io-server`, `--restful-server` along with the desired server specific configurations.
 
-<!-- USAGE EXAMPLES -->
 
+
+
+<!-- USAGE EXAMPLES -->
 ## Usage
 
 ```bash
@@ -101,13 +102,12 @@ Usage:
 ```
 
 <!-- ROADMAP -->
-
 ## Roadmap
 
 See the [open issues](https://github.com/iwishiwasaneagle/boxofhope/issues?q=is%3Aopen+is%3Aissue+label%3Afeature) for a list of proposed features (and known issues).
 
-<!-- CONTRIBUTING -->
 
+<!-- CONTRIBUTING -->
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -118,14 +118,16 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<!-- LICENSE -->
 
+
+<!-- LICENSE -->
 ## License
 
 Distributed under the GPL-3.0 License. See `LICENSE` for more information.
 
-<!-- CONTACT -->
 
+
+<!-- CONTACT -->
 ## Contact
 
 Jan-Hendrik Ewers - [@jhewers](https://twitter.com/jhewers)
