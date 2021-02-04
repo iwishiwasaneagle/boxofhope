@@ -84,7 +84,7 @@ make
 
 The `Boxofhope` binary will be located in the automatically generated `build` folder.
 
-To use either of the three servers, invoke the binary with `--sql-server`, `--io-server`, `--restful-server` along with the desired server specific configurations.
+To use either of the two servers, invoke the binary with `--io-server`, `--restful-server` along with the desired server specific configurations. Use `-t` to run the tests.
 
 
 
@@ -97,9 +97,10 @@ To use either of the three servers, invoke the binary with `--sql-server`, `--io
 Welcome to Boxofhope (v0.0.1)
 
 Usage:
-   --sql-server       Start the SQL server instance
-   --restful-server   Start the RESTful server instance
-   --io-server        Start the IO server instance
+   -r,--restful-server   Start the RESTful server instance
+   -i,--io-server        Start the IO server instance
+   -h,--help             Print this message
+   -t                    Run tests
 ```
 
 <!-- ROADMAP -->
