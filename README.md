@@ -77,6 +77,7 @@ First, the project needs to be built. Run the following to build the project.
 ```bash
 git clone https://github.com/iwishiwasaneagle/boxofhope
 cd serves
+sudo apt-get install gcc cmake libboost-all-dev # For ubuntu, use whatever package manager your system needs.
 cmake .
 make
 ```
