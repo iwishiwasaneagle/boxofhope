@@ -13,6 +13,13 @@
     <a href="https://boxofhope.co.uk/docs/index.html"><strong>Explore the docs »</strong></a>
     <br />
     <br />
+    <a href="https://www.youtube.com/channel/UCG8txVUxQb3aCut7adeDU7A"><img height=40 src="images/youtube.svg"></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://www.facebook.com/Box-of-Hope-106011608167716"><img height=40 src="images/facebook.svg"></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://twitter.com/theboxofhope"><img height=40 src="images/twitter.svg"></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://www.instagram.com/theboxofhope"><img height=40 src="images/instagram.svg"></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://www.linkedin.com/company/theboxofhope"><img height=40 src="images/linkedin.svg"></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <br />
+    <br />
     <a href="https://www.boxofhope.co.uk">View Demo</a>
     ·
     <a href="https://github.com/iwishiwasaneagle/boxofhope/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
