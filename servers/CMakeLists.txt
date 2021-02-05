@@ -23,10 +23,17 @@ add_subdirectory(sqllib)
 
 add_executable(Boxofhope boxofhope.cpp)
 
-target_link_libraries(Boxofhope PUBLIC io_server sqllib restful_server)
 
 # add the binary tree to the search path for include files
 # so that we will find TutorialConfig.h
 target_include_directories(Boxofhope PUBLIC
                            "${PROJECT_BINARY_DIR}"
                           )
+
+# Add Boost to the project
+find_package( Boost REQUIRED COMPONENTS system thread  )
+include_directories( ${Boost_INCLUDE_DIR} )
+
+
+# LINK THEM ALLLLLL
+target_link_libraries(Boxofhope PUBLIC io_server sqllib restful_server ${Boost_LIBRARIES} )
