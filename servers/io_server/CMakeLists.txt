@@ -12,4 +12,4 @@ target_include_directories(io_server
                             $<INSTALL_INTERFACE:include>
                            )
 
-target_link_libraries(io_server PUBLIC)
+target_link_libraries(io_server PUBLIC wiringPi)
