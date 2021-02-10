@@ -2,6 +2,11 @@
 #include <string>
 #include <getopt.h>
 
+#include <cstdio> // popen, FILE, fgets, fputs
+#include <array>
+#include <boost/asio.hpp>
+#include <boost/bind/bind.hpp>
+
 #include "boxofhopeConfig.h"
 #include "io_server.h"
 #include "restful_server.h"
@@ -65,11 +70,15 @@ int main(int argc, char* argv[]){
     return 0;
 }
 
+
 /*! Test function to serve as an example until the team is more up to speed with C++, Doxygen, etc.
  * 
  * \return Exit code
  */
 int tests(){
     std::cout << "Start of the test function" << std::endl;
+
+    io::is_user_home("192.168.0.65");
+
     return 0;
 }

@@ -2,7 +2,7 @@ name: Docs
 
 on:
   push:
-    branches: [ main, dev ]
+    branches: [ dev ]
   pull_request:
     branches: [ main, dev]    
   workflow_dispatch:
@@ -15,18 +15,18 @@ jobs:
       - name: Doxygen Action
         uses: mattnotmitt/doxygen-action@v1.2.1
       
-  deploy:
-    runs-on: ubunty-latest
-    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-    steps:
-      - uses: actions/checkout@v2
-      - name: Doxygen Action
-        uses: mattnotmitt/doxygen-action@v1.2.1
-      - name: Deploy doxygen to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-          destination_dir: docs
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+#   deploy:
+#     runs-on: ubunty-latest
+#     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Doxygen Action
+#         uses: mattnotmitt/doxygen-action@v1.2.1
+#       - name: Deploy doxygen to gh-pages
+#         uses: peaceiris/actions-gh-pages@v3
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           publish_dir: ./docs
+#           destination_dir: docs
+#           user_name: 'github-actions[bot]'
+#           user_email: 'github-actions[bot]@users.noreply.github.com'
