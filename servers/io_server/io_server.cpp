@@ -50,7 +50,6 @@ void io::door_switch_interrupt(void){
         }else{
             io::isDoorOpen = false;
         }
-        std::cerr << "Is door open? " << io::isDoorOpen << std::endl;
         io::isInterruptRunning = false;
     }
 }
