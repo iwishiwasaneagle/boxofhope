@@ -1,7 +1,7 @@
 #ifndef IO_SERVER
 #define IO_SERVER
 
-#define DOOR_SWITCH_PIN_WP 14
+#define DOOR_SWITCH_PIN_WP 16
 #define UVC_LED_PIN_WP 15
 
 #include <iostream>
@@ -37,10 +37,10 @@ namespace io{
      */
     void door_switch_interrupt(void);
 
-    /**
-     * Door open or closed boolean variable. Edited by door_switch_interrupt.
-     */
-    volatile bool isDoorOpen = false;
+    volatile bool isDoorOpen = false; //< Door open or closed boolean variable. Edited by door_switch_interrupt.
+    volatile bool isInterruptRunning = false; //< Is the interrupt running? Prevents multiple interrupts from running due to bounce. 
+    const int debounceAvgCount = 10; //< The amount of times to sample the door before making a decision on the state.
+    unsigned const int debounceDelay = 20; //< The time between samples. Increase if the output flickers.
     
     /** Pings an ip address, if the ip is pingable it's deemed that the user is home
      * \param ip User's mobile phone IP address.
