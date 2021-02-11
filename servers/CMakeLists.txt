@@ -23,10 +23,32 @@ add_subdirectory(sqllib)
 
 add_executable(Boxofhope boxofhope.cpp)
 
-target_link_libraries(Boxofhope PUBLIC io_server sqllib restful_server)
-
 # add the binary tree to the search path for include files
 # so that we will find TutorialConfig.h
 target_include_directories(Boxofhope PUBLIC
                            "${PROJECT_BINARY_DIR}"
                           )
+
+# Add Boost to the project
+find_package( Boost REQUIRED COMPONENTS system thread  )
+include_directories( ${Boost_INCLUDE_DIR} )
+
+# wiringPi only works on the RPi, therefore we must mock the library and it's functions if we are to compile on any other system
+
+EXECUTE_PROCESS( COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE ARCHITECTURE )
+message( STATUS "Architecture: ${ARCHITECTURE}" )
+if( ${ARCHITECTURE} STREQUAL "aarch64" )
+    message( STATUS "Using wiringPi" )
+    find_package( wiringPi REQUIRED)
+else()
+    message( STATUS "Using wiringPi-mock" )
+    message( AUTHOR_WARNING "You are using the wiringPi-mock library. This means the program compiles as expected. However, any functionality from the original wiringPi library will not be usable." )
+    add_subdirectory( wiringPi-mock )
+    set( WIRINGPI_INCLUDE_DIRS "${PROJECT_BINARY_DIR}/wiringPi-mock" )
+    set( WIRINGPI_LIBRARIES "wiringPi" )
+endif()
+include_directories( ${WIRINGPI_INCLUDE_DIRS} )
+message( STATUS "wiringPi include location: ${WIRINGPI_INCLUDE_DIRS}" )
+
+# LINK THEM ALLLLLL
+target_link_libraries(Boxofhope PUBLIC io_server sqllib restful_server ${Boost_LIBRARIES} ${WIRINGPI_LIBRARIES})

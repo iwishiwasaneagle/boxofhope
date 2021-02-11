@@ -134,3 +134,6 @@ build
 
 # Doxygen
 docs
+
+# Mac Config File
+.DS_Store
