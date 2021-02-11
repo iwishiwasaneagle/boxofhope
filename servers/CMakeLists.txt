@@ -37,7 +37,7 @@ include_directories( ${Boost_INCLUDE_DIR} )
 
 EXECUTE_PROCESS( COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE ARCHITECTURE )
 message( STATUS "Architecture: ${ARCHITECTURE}" )
-if( ${ARCHITECTURE} STREQUAL "aarch68" )
+if( ${ARCHITECTURE} STREQUAL "aarch64" )
     message( STATUS "Using wiringPi" )
     find_package( wiringPi REQUIRED)
 else()
