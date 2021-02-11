@@ -1,8 +1,9 @@
 #include "io_nfc.h"
 
 io::NFC_Runnable::NFC_Runnable(void){
-    nfc_init(&(this->context));
+    nfc_init(&(this->context)); // Set up LibNFC context
 
+    /* LibNFC error checking whilst setting up env */
     if(this->context == NULL){
         std::cerr << "Unable to init libnfc (malloc)" << std::endl;
         exit(EXIT_FAILURE);
@@ -26,8 +27,8 @@ io::NFC_Runnable::NFC_Runnable(void){
 }
 
 io::NFC_Runnable::~NFC_Runnable(void){
-    nfc_close(this->reader);
-    nfc_exit(this->context);
+    nfc_close(this->reader); // Close reader (nfc_device)
+    nfc_exit(this->context); // Close LibNFC context (nfc_context)
 }
 
 nfc_target io::NFC_Runnable::waitForTag(void){
@@ -58,8 +59,8 @@ nfc_target io::NFC_Runnable::waitForTag(void){
 
   	}
 
+    // Result if res not negative
     if (res > 0) {
-  
   		char* tagStr;
   		str_nfc_target(&tagStr, &tag, true);
         std::cout << tagStr << std::endl;
@@ -69,8 +70,5 @@ nfc_target io::NFC_Runnable::waitForTag(void){
     } else {
       	std::cerr << "No target found." << std::endl;
     }
-	
-
-	
 }
 

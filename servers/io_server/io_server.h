@@ -11,14 +11,16 @@
 
 #include "wiringPi.h"
 
+
 #include "io_nfc.h"
 
 /** 
- * Handles the full life-cycle of the IO server.
+ * Encloses the full life-cycle of the IO server.
  * 
  * IO server namespace. Ensures that if the restful_server.h is imported, the same-named functions/class/etc. don't interact.
  */
 namespace io{
+
     /** Handles the full life-cycle of the IO server.
      *
      * \param argc Argument count
