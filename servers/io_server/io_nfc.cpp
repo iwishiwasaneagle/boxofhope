@@ -70,5 +70,8 @@ nfc_target io::NFC_Runnable::waitForTag(void){
     } else {
       	std::cerr << "No target found." << std::endl;
     }
+
+    /// Return the single nfc_target (i.e. the tag)
+    return tag;
 }
 
