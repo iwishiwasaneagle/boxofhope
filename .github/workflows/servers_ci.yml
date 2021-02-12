@@ -32,7 +32,8 @@ jobs:
       - name: Build and run servers
         working-directory: servers
         run: |
-          cmake .
+          mkdir build && cd build
+          cmake ..
           make
-          ./build/Boxofhope -h
-          ./build/Boxofhope -t
+          ./Boxofhope -h
+          ./Boxofhope -t
