@@ -75,13 +75,7 @@ There are 3 servers as part of the [`servers`](./servers) folder: sql, io, restf
 The `wiringPi` dependecy only runs on Raspberry Pi, therefore if you're building this on a non-RPi platform, please install [wiringPi-sim](https://github.com/iwishiwasaneagle/wiringPi-mock). Otherwise run `sudo apt-get install wiringPi`.
 
 ```bash
-sudo apt-get install gcc cmake libboost-all-dev # For ubuntu, use whatever package manager your system needs.
-
-# LibNFC
-curl -L https://github.com/nfc-tools/libnfc/releases/download/libnfc-1.8.0/libnfc-1.8.0.tar.bz2 -o- | tar xvfj -
-cd libnfc-1.8.0
-cmake .
-sudo make install
+sudo apt-get install gcc cmake libboost-all-dev libnfc-dev # For ubuntu, use whatever package manager your system needs.
 
 # Box of Hope
 git clone https://github.com/iwishiwasaneagle/boxofhope
