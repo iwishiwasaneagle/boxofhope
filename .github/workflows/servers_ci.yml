@@ -34,7 +34,7 @@ jobs:
           git clone https://github.com/iwishiwasaneagle/wiringPi-mock
           cd wiringPi-mock
           sudo ./install.sh
-          sudo ls /usr/lib/include/wiringPi.h
+          sudo ls /usr/local/include/wiringPi.h
           sudo ldconfig # Im at my wits ends
 
       # Build
