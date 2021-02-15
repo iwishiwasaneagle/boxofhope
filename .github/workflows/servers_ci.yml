@@ -45,4 +45,4 @@ jobs:
           cmake ..
           make
           ./Boxofhope -h
-          ./Boxofhope -t
+          sudo ./Boxofhope -t
