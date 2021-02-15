@@ -28,7 +28,7 @@ namespace io{
          		{ .nmt = NMT_FELICA, .nbr = NBR_212 },
          		{ .nmt = NMT_FELICA, .nbr = NBR_424 },
 	     		{ .nmt = NMT_JEWEL, .nbr = NBR_106 },
-	    	 	{ .nmt = NMT_ISO14443BICLASS, .nbr = NBR_106 },
+// 1.7.0 doesn't support this yet it seems	    	 	{ .nmt = NMT_ISO14443BICLASS, .nbr = NBR_106 },
   			}; //< desired modulations 
 	        const size_t szModulations = 6;	//< size of nmModulations
         public:
