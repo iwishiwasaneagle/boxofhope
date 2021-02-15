@@ -31,17 +31,16 @@ target_include_directories(Boxofhope PUBLIC
 
 # Add libnfc to the project
 find_package( LibNFC REQUIRED )
-message ( STATUS "LibNFC version: ${LIBNFC_VERSION_STRING} ")
 include_directories( ${LIBNFC_INCLUDE_DIR} )
+message ( STATUS "LibNFC version: ${LIBNFC_VERSION_STRING} ")
 
 # Add Boost to the project
 find_package( Boost REQUIRED COMPONENTS system thread  )
 include_directories( ${Boost_INCLUDE_DIR} )
 
-# wiringPi only works on the RPi, therefore we must mock the library and it's functions if we are to compile on any other system
+# Add wiringPi to the project 
 find_package(wiringPi REQUIRED)
 include_directories( ${WIRINGPI_INCLUDE_DIRS} )
-message( STATUS "wiringPi include location: ${WIRINGPI_INCLUDE_DIRS}" )
 
 # LINK THEM ALLLLLL
 target_link_libraries(Boxofhope PUBLIC io_server sqllib restful_server ${Boost_LIBRARIES} ${WIRINGPI_LIBRARIES} ${LIBNFC_LIBRARIES} )
