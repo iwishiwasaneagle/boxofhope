@@ -42,6 +42,7 @@ include_directories( ${Boost_INCLUDE_DIR} )
 find_library( WIRINGPI_LIBRARIES wiringPi )
 find_path( WIRINGPI_INLCUDE_DIRS wiringPi )
 include_directories( ${WIRINGPI_INCLUDE_DIRS} )
+message(STATUS "wiringPi: lib:${WIRINGPI_LIBRARIES}, incl:${WIRINGPI_INLUDE__DIRS}")
 
 # LINK THEM ALLLLLL
 target_link_libraries(Boxofhope PUBLIC io_server sqllib restful_server ${Boost_LIBRARIES} ${WIRINGPI_LIBRARIES} ${LIBNFC_LIBRARIES} )
