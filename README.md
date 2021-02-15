@@ -72,7 +72,7 @@ As part of a university, the creators were tasked with creating a event driven c
 
 There are 3 servers as part of the [`servers`](./servers) folder: sql, io, restful.
 
-First, the project needs to be built. Run the following to build the project.
+The `wiringPi` dependecy only runs on Raspberry Pi, therefore if you're building this on a non-RPi platform, please install [wiringPi-sim](https://github.com/iwishiwasaneagle/wiringPi-mock). Otherwise run `sudo apt-get install wiringPi`.
 
 ```bash
 sudo apt-get install gcc cmake libboost-all-dev # For ubuntu, use whatever package manager your system needs.
