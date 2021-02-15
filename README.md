@@ -77,6 +77,13 @@ The `wiringPi` dependecy only runs on Raspberry Pi, therefore if you're building
 ```bash
 sudo apt-get install gcc cmake libboost-all-dev # For ubuntu, use whatever package manager your system needs.
 
+# LibNFC
+curl -L https://github.com/nfc-tools/libnfc/releases/download/libnfc-1.8.0/libnfc-1.8.0.tar.bz2 -o- | tar xvfj -
+cd libnfc-1.8.0
+cmake .
+sudo make install
+
+# Box of Hope
 git clone https://github.com/iwishiwasaneagle/boxofhope
 mkdir servers/build
 cd serves/build
