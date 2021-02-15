@@ -1,8 +1,8 @@
-#ifndef IO_SERVER
-#define IO_SERVER
+#ifndef IO_SERVER_H
+#define IO_SERVER_H
 
-#define DOOR_SWITCH_PIN_WP 16
-#define UVC_LED_PIN_WP 15
+#define DOOR_SWITCH_PIN_WP 16 //< Physical pin (indexed by wiringPi ID) for door switch
+#define UVC_LED_PIN_WP 15 //< Physical pin (indexed by wiringPi ID) for UV led
 
 #include <iostream>
 #include <string>
@@ -11,12 +11,16 @@
 
 #include "wiringPi.h"
 
-    /** 
-     * Handles the full life-cycle of the IO server.
-     * 
-     * IO server namespace. Ensures that if the restful_server.h is imported, the same-named functions/class/etc. don't interact.
-     */
+
+#include "io_nfc.h"
+
+/** 
+ * Encloses the full life-cycle of the IO server.
+ * 
+ * IO server namespace. Ensures that if the restful_server.h is imported, the same-named functions/class/etc. don't interact.
+ */
 namespace io{
+
     /** Handles the full life-cycle of the IO server.
      *
      * \param argc Argument count

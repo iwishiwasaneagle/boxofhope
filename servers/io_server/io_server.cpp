@@ -2,7 +2,6 @@
 
 int io::server_run(int argc, char* argv[]){
     std::cerr << "Starting IO Server" << std::endl;
-    
 
     if(io::setup_io()>0){
         std::cerr << "io::setup_io() exited with a non-zero exit code."<< std::endl;
@@ -36,7 +35,9 @@ int io::setup_io(void){
 
 void io::door_switch_interrupt(void){
     if(!io::isInterruptRunning){
-    io::isInterruptRunning = true;
+    
+        io::isInterruptRunning = true;
+    
         /// Debounce the switch by checking average input 
         /// -> low = 0, high = 1, so we need avg inp > 0.5 to consider door closed
         int count = 0;
