@@ -34,6 +34,14 @@ jobs:
           git clone https://github.com/iwishiwasaneagle/wiringPi-mock
           cd wiringPi-mock
           sudo ./install.sh
+          
+       # libNFC
+      - name: LibNFC
+        run: | 
+          curl -L https://github.com/nfc-tools/libnfc/releases/download/libnfc-1.8.0/libnfc-1.8.0.tar.bz2 -o- | tar xvfj -
+          cd libnfc-1.8.0
+          cmake .
+          sudo make install
 
       # Build
       - name: Build and run servers
