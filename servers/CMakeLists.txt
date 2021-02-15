@@ -9,9 +9,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # control where the static and shared libraries are built so that on windows
 # we don't need to tinker with the path to run the executable
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/build")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/build")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/build")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/")
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 
@@ -39,18 +39,7 @@ find_package( Boost REQUIRED COMPONENTS system thread  )
 include_directories( ${Boost_INCLUDE_DIR} )
 
 # wiringPi only works on the RPi, therefore we must mock the library and it's functions if we are to compile on any other system
-EXECUTE_PROCESS( COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE ARCHITECTURE )
-message( STATUS "Architecture: ${ARCHITECTURE}" )
-if( ${ARCHITECTURE} STREQUAL "aarch64" )
-    message( STATUS "Using wiringPi" )
-    find_package(wiringPi REQUIRED)
-else()
-    message( STATUS "Using wiringPi-mock" )
-    message( AUTHOR_WARNING "You are using the wiringPi-mock library. This means the program compiles as expected. However, any functionality from the original wiringPi library will not be usable." )
-    add_subdirectory( wiringPi-mock )
-    set( WIRINGPI_INCLUDE_DIRS "${PROJECT_BINARY_DIR}/wiringPi-mock" )
-    set( WIRINGPI_LIBRARIES "wiringPi" )
-endif()
+find_package(wiringPi REQUIRED)
 include_directories( ${WIRINGPI_INCLUDE_DIRS} )
 message( STATUS "wiringPi include location: ${WIRINGPI_INCLUDE_DIRS}" )
 
