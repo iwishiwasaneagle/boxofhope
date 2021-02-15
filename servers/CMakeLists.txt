@@ -30,9 +30,9 @@ target_include_directories(Boxofhope PUBLIC
                           )
 
 # Add libnfc to the project
-find_package( LibNFC REQUIRED )
+find_library( LIBNFC_LIBRARIES nfc )
+find_path( LIBNFC_INCLUDE_DIR nfc )
 include_directories( ${LIBNFC_INCLUDE_DIR} )
-message ( STATUS "LibNFC version: ${LIBNFC_VERSION_STRING} ")
 
 # Add Boost to the project
 find_package( Boost REQUIRED COMPONENTS system thread  )
