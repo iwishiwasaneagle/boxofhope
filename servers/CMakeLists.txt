@@ -39,7 +39,8 @@ find_package( Boost REQUIRED COMPONENTS system thread  )
 include_directories( ${Boost_INCLUDE_DIR} )
 
 # Add wiringPi to the project 
-find_package(wiringPi REQUIRED)
+find_library( WIRINGPI_LIBRARIES wiringPi )
+find_path( WIRINGPI_INLCUDE_DIRS wiringPi )
 include_directories( ${WIRINGPI_INCLUDE_DIRS} )
 
 # LINK THEM ALLLLLL
