@@ -28,6 +28,13 @@ jobs:
       - name: Install dependecies
         run: sudo apt-get install cmake gcc libboost-all-dev
 
+      # wiringPi not available on non-rpi distributions
+      - name: wiringPi-mock
+        run: | 
+          git clone https://github.com/iwishiwasaneagle/wiringPi-mock
+          cd wiringPi-mock
+          sudo ./install.sh
+
       # Build
       - name: Build and run servers
         working-directory: servers
