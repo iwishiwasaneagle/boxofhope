@@ -12,22 +12,6 @@ project(
 set(GENERATED_HEADERS ${PROJECT_BINARY_DIR}/generated_headers)
 configure_file(config/mainConfig.h.in "${GENERATED_HEADERS}/mainConfig.h")
 
-# Only do these if this is the main project, and not if it is included through add_subdirectory
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-  # Let's ensure -std=c++xx instead of -std=g++xx
-  set(CMAKE_CXX_EXTENSIONS OFF)
-
-  # Let's nicely support folders in IDEs
-  set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
-  add_executable(io_server apps/app.cpp)
-  target_compile_features(io_server PRIVATE cxx_std_17)
-
-  include_directories(${GENERATED_HEADERS})
-
-  target_link_libraries(io_server PRIVATE ioserver ${Boost_LIBRARIES} ${WIRINGPI_LIBRARIES} ${LIBNFC_LIBRARIES})
-endif()
-
 # Add libnfc to the project
 find_library( LIBNFC_LIBRARIES nfc )
 find_path( LIBNFC_INCLUDE_DIR nfc )
@@ -49,3 +33,19 @@ add_subdirectory(src)
 
 # The executable code is here
 add_subdirectory(apps)
+
+# Only do these if this is the main project, and not if it is included through add_subdirectory
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+  # Let's ensure -std=c++xx instead of -std=g++xx
+  set(CMAKE_CXX_EXTENSIONS OFF)
+
+  # Let's nicely support folders in IDEs
+  set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+  add_executable(io_server apps/app.cpp)
+  target_compile_features(io_server PRIVATE cxx_std_17)
+
+  include_directories(${GENERATED_HEADERS})
+
+  target_link_libraries(io_server PRIVATE ioserver ${Boost_LIBRARIES} ${WIRINGPI_LIBRARIES} ${LIBNFC_LIBRARIES})
+endif()
