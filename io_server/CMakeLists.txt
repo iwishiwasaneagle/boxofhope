@@ -32,6 +32,7 @@ endif()
 find_library( LIBNFC_LIBRARIES nfc )
 find_path( LIBNFC_INCLUDE_DIR nfc )
 include_directories( ${LIBNFC_INCLUDE_DIR} )
+message( STATUS "LibNFC: ${LIBNFC_INCLUDE_DIR}" )
 
 # Add Boost to the project
 find_package( Boost REQUIRED COMPONENTS system thread  )
