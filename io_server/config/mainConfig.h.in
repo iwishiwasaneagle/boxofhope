@@ -1,0 +1,7 @@
+// This file is used by cmake to create boxofhopConfig.h AUTOMATICALLY replacing 
+// definitions dynamically. DO NOT CREATE boxofhopConfig.h manually
+
+#define IO_server_VERSION_MAJOR @IO_server_VERSION_MAJOR@
+#define IO_server_VERSION_MINOR @IO_server_VERSION_MINOR@
+#define IO_server_VERSION_PATCH @IO_server_VERSION_PATCH@
+#define IO_server_PROJECT_NAME  "@CMAKE_PROJECT_NAME@"
