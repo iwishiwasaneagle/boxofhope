@@ -77,8 +77,11 @@ int main(int argc, char* argv[]){
  */
 int tests(){
     std::cout << "Start of the test function" << std::endl;
+    
+    io::NFC_Runnable nfc_runnable = io::NFC_Runnable();
+    nfc_runnable.waitForTag();
 
-    io::is_user_home("192.168.0.65");
+    io::is_user_home("127.0.0.1");
 
     return 0;
 }
