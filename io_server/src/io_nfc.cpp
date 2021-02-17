@@ -1,4 +1,4 @@
-#include "io_nfc.h"
+#include "io_server/io_nfc.h"
 
 io::NFC_Runnable::NFC_Runnable(void){
     nfc_init(&(this->context)); // Set up LibNFC context
