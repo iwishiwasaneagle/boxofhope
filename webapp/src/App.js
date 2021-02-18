@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import PushNotificationCard from "./pushNotifications/PushNotificationCard";
+import PushNotificationCard from "./components/pushNotifications/PushNotificationCard";
 
 function App() {
   return (
