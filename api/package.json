@@ -1,7 +1,7 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "",
+  "description": "boxofhope API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+ssh://git@github.com/iwishiwasaneagle/boxofhope.git"
   },
-  "author": "",
+  "author": "Sarah Swinton",
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/iwishiwasaneagle/boxofhope/issues"
