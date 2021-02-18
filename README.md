@@ -70,38 +70,38 @@ As part of a university, the creators were tasked with creating a event driven c
 <!-- GETTING STARTED -->
 ## Getting Started
 
-There are 3 servers as part of the [`servers`](./servers) folder: sql, io, restful.
+There are 3 components to this project - `api`, `webapp`, and `io_server`.
+
+### `io_server`
+
+This is the C++ embedded program that actively runs on the Raspberry Pi. This system controls the door switch, NFC reader, etc.
+
+More documentation about `io_server` can be found [here](./io_server)
+
+**To build `io_server`:**
 
 The `wiringPi` dependecy only runs on Raspberry Pi, therefore if you're building this on a non-RPi platform, please install [wiringPi-sim](https://github.com/iwishiwasaneagle/wiringPi-mock). Otherwise run `sudo apt-get install wiringPi`.
 
 ```bash
 sudo apt-get install gcc cmake libboost-all-dev libnfc-dev # For ubuntu, use whatever package manager your system needs.
 
-# Box of Hope
+# io_server
 git clone https://github.com/iwishiwasaneagle/boxofhope
-mkdir servers/build
-cd serves/build
-cmake ..
-make
+cd io_server
+cmake -S . -B build
+cmake --build build
 ```
 
-The `Boxofhope` binary will be located in the automatically generated `build` folder.
-
-To use either of the two servers, invoke the binary with `--io-server`, `--restful-server` along with the desired server specific configurations. Use `-t` to run the tests.
-
-
-
+The `io_server` binary will be located in the automatically generated `build` folder.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
 ```bash
-(boxofhope/servers) $ ./build/Boxofhope
-Welcome to Boxofhope (v0.0.1)
+(boxofhope/io_server) $ ./build/io_server
+Welcome to io_server (v0.0.1)
 
 Usage:
-   -r,--restful-server   Start the RESTful server instance
-   -i,--io-server        Start the IO server instance
    -h,--help             Print this message
    -t                    Run tests
 ```
