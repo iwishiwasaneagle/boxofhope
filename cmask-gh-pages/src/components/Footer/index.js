@@ -42,7 +42,7 @@ const Footer = ({ t }) => {
                     `Do you have any question regarding the project? Feel free to reach out.`
                   )}
                 </S.Para>
-                <a href="mailto:l.qqbadze@gmail.com">
+                <a href="https://github.com/iwishiwasaneagle/boxofhope/discussions">
                   <S.Chat>{t(`Let's Chat`)}</S.Chat>
                 </a>
               </Col>
@@ -69,9 +69,10 @@ const Footer = ({ t }) => {
               <Col lg={10} md={10} sm={12} xs={24}>
                 <S.Empty />
                 <S.Language>{t("ADDRESS")}</S.Language>
-                <S.Para>Rancho Santa Margarita</S.Para>
-                <S.Para>2131 Elk Street</S.Para>
-                <S.Para>California</S.Para>
+                <S.Para>University of Glasgow</S.Para>
+                <S.Para>1 University Ave</S.Para>
+                <S.Para>Glasgow</S.Para>
+                <S.Para>G12 8QQ</S.Para>
               </Col>
               <Col lg={8} md={8} sm={12} xs={24}>
                 <S.Title>{t("Company")}</S.Title>
@@ -124,25 +125,25 @@ const Footer = ({ t }) => {
               </S.NavLink>
               <S.FooterContainer>
                 <SocialLink
-                  href="https://github.com/Adrinlol/create-react-app-adrinlol"
+                  href="https://github.com/iwishiwasaneagle/boxofhope"
                   src="github.svg"
                 />
                 <SocialLink
-                  href="https://twitter.com/Adrinlolx"
+                  href="https://twitter.com/theboxofhope"
                   src="twitter.svg"
                 />
                 <SocialLink
-                  href="https://www.linkedin.com/in/lasha-kakabadze/"
+                  href="https://www.linkedin.com/company/theboxofhope"
                   src="linkedin.svg"
                 />
                 <SocialLink
-                  href="https://github.com/Adrinlol/"
+                  href="https://raw.githubusercontent.com/iwishiwasaneagle/boxofhope/main/images/instagram.svg"
                   src="instagram.svg"
                 />
-                <SocialLink
+                {/* <SocialLink
                   href="https://medium.com/@lashakakabadze/"
                   src="medium.svg"
-                />
+                /> */}
               </S.FooterContainer>
             </Row>
           </Container>
