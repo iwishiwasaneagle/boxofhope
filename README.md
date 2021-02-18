@@ -49,8 +49,8 @@
     <li><a href="#getting-started">Getting Started</a></li>
       <ul>
       <li><a href="#io_server">io_server</a</li>
-      <li><a href="#webapp">webapp</a</li>
-      <li><a href="#api">api</a</li>
+      <li><a href="#webapp">REACT Webapp</a</li>
+      <li><a href="#api">RESTful API</a</li>
       </ul>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
