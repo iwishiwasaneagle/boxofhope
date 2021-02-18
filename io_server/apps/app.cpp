@@ -19,7 +19,6 @@ void show_usage(){
                   << "Usage:" << std::endl
                   << "   -h,--help             Print this message" << std::endl
                   << "   -t                    Run tests" << std::endl;
-                  << "   --url                 Set the RESTful server URL" << std::endl
 
 }
 
@@ -27,8 +26,7 @@ int main(int argc, char* argv[]){
     int c;
     while(1){
         static struct option long_options[] = {
-            {"help", no_argument, 0, 'h'},
-            {"url", 
+            {"help", no_argument, 0, 'h'}
         };
         
         // Store option index
