@@ -39,7 +39,7 @@ int io::setup_io(void){
 }
 
 void io::door_switch_interrupt(void){
-    if(isInterruptRunning == NULL){
+    if(isInterruptRunning){
         isInterruptRunning = false;
     }
 
