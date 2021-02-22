@@ -19,11 +19,3 @@ exports.update_sanitation_time = function(req, res){
         res.json(setting);
     });
 };
-
-exports.read_current_mask_count = function(req, res){
-    Settings.find({}, function(err,setting){
-        if (err)
-            res.send(err);
-        res.json(setting);
-    });
-};
