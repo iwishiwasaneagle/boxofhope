@@ -4,7 +4,7 @@
 var mongoose = require('mongoose'),
 Settings = mongoose.model('Settings');
 
-exports.read_current_sanitation_time = function(req, res){
+exports.read_current_sterilisation_time = function(req, res){
     Settings.find({}, function(err,setting){
         if (err)
             res.send(err);
@@ -12,7 +12,7 @@ exports.read_current_sanitation_time = function(req, res){
     });
 };
 
-exports.update_sanitation_time = function(req, res){
+exports.update_sterilisation_time = function(req, res){
     Settings.findOneAndUpdate({}, req.body, {new:true}, function(err,setting){
         if (err)
             res.send(err);
