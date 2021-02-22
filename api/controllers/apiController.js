@@ -3,8 +3,8 @@
 //placeholder 
 var mongoose = require('mongoose'),
   State = mongoose.model('State');
-  Settings = mongoose.model('Settings');
-  Masks = mongoose.model('Masks');
+  //Settings = mongoose.model('Settings');
+  //Masks = mongoose.model('Masks');
 
 
 exports.update_uvc_state = function(req, res){
@@ -24,6 +24,13 @@ exports.read_uvc_last = function(req, res){
     });
 };
 
+exports.read_mask_present = function(req, res){
+    State.find({}, function(err,task){
+        if (err)
+            res.send(err);
+        res.json(task);
+    });
+};
 
 exports.update_mask_present = function(req, res){
     State.findOneAndUpdate({}, req.body, {new:true}, function(err,state){

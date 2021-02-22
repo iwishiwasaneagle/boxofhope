@@ -22,13 +22,13 @@ module.exports = function(app) {
     app.route('/state/UserHome')
         .put(state.update_user_home);
 
-    app.route('/settings/sanitation_time')
-        .get(settings.read_current_sanitation_time)
-        .put(settings.update_sanitation_time);
+    // app.route('/settings/sanitation_time')
+    //     .get(settings.read_current_sanitation_time)
+    //     .put(settings.update_sanitation_time);
 
-    app.route('/settings/mask_count')
-        .get(settings.read_current_mask_count);
+    // app.route('/settings/mask_count')
+    //     .get(settings.read_current_mask_count);
 
-    app.route('/mask/registerNew')
-        .put(mask.registerNew);
+    // app.route('/mask/registerNew')
+    //     .put(mask.registerNew);
 }

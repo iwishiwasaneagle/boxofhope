@@ -60,5 +60,5 @@ var MaskSchema = new Schema({
       }
 });
 
-
-module.exports = mongoose.model('State', StateSchema, 'Settings', SettingsSchema, "Masks", MaskSchema);
+module.exports = mongoose.model('State', StateSchema);
+//module.exports = mongoose.model('State', StateSchema, 'Settings', SettingsSchema, 'Masks', MaskSchema);
