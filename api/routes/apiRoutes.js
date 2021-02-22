@@ -32,6 +32,8 @@ module.exports = function(app) {
     app.route('/mask/register-new')
         .post(mask.register_new_mask);
 
-    app.route('/mask/delete-mask')
-        .put(mask.delete_mask);        
+    app.route('/mask/:maskId')
+        .get(mask.read_mask)
+        .put(mask.update_mask)
+        .delete(mask.delete_mask);        
 }

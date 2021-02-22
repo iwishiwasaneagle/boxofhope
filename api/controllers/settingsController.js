@@ -1,8 +1,8 @@
 'use strict' 
 
 // Controller for settings 
-var mongoose = require('mongoose')
-  Settings = mongoose.model('Settings');
+var mongoose = require('mongoose'),
+Settings = mongoose.model('Settings');
 
 exports.read_current_sanitation_time = function(req, res){
     Settings.find({}, function(err,setting){
