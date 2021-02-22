@@ -22,9 +22,9 @@ module.exports = function(app) {
     app.route('/state/user-home')
         .put(state.update_user_home);
 
-    app.route('/settings/sanitation-time')
-        .get(settings.read_current_sanitation_time)
-        .put(settings.update_sanitation_time);
+    app.route('/settings/sterilisation-time')
+        .get(settings.read_current_sterilisation_time)
+        .put(settings.update_sterilisation_time);
 
     app.route('/mask/mask-count')
         .get(mask.read_mask_count);

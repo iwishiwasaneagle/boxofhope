@@ -3,7 +3,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema; 
 
 var StateSchema = new Schema ({
-    // Placeholder schema 
     name: {
         type: String,
         required: 'Kindly enter the name of the task'
