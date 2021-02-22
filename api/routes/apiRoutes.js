@@ -1,8 +1,8 @@
 'use strict';
 module.exports = function(app) {
-    var state = require('../controllers/apiController');
-    var settings = require('../controllers/apiController');
-    var mask = require('../controllers/apiController');
+    var state = require('../controllers/stateController');
+    var settings = require('../controllers/settingsController');
+    var mask = require('../controllers/maskController');
 
     // API Routes
     app.route('/state/UVC')
@@ -11,24 +11,27 @@ module.exports = function(app) {
     app.route('/state/UVC/last')
         .get(state.read_uvc_last);
 
-    app.route('/state/presentMask')
+    app.route('/state/present-mask')
         .get(state.read_mask_present)
         .put(state.update_mask_present);
 
-    app.route('/state/doorSwitch')
+    app.route('/state/door-switch')
         .get(state.read_switch_open_close)
         .put(state.update_switch_open_close);
 
-    app.route('/state/UserHome')
+    app.route('/state/user-home')
         .put(state.update_user_home);
 
-    // app.route('/settings/sanitation_time')
-    //     .get(settings.read_current_sanitation_time)
-    //     .put(settings.update_sanitation_time);
+    app.route('/settings/sanitation-time')
+        .get(settings.read_current_sanitation_time)
+        .put(settings.update_sanitation_time);
 
-    // app.route('/settings/mask_count')
-    //     .get(settings.read_current_mask_count);
+    app.route('/mask/mask-count')
+        .get(mask.read_mask_count);
 
-    // app.route('/mask/registerNew')
-    //     .put(mask.registerNew);
+    app.route('/mask/register-new')
+        .post(mask.register_new_mask);
+
+    app.route('/mask/delete-mask')
+        .put(mask.delete_mask);        
 }
