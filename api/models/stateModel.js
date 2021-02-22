@@ -3,20 +3,35 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema; 
 
 var StateSchema = new Schema ({
-    name: {
-        type: String,
-        required: 'Kindly enter the name of the task'
-      },
-      Created_date: {
-        type: Date,
-        default: Date.now
-      },
-      status: {
+      uvc_status: {
         type: [{
           type: String,
-          enum: ['pending', 'ongoing', 'completed']
+          enum: ['On', 'Off']
         }],
-        default: ['pending']
+        default: ['Off']
+      },
+      uvc_most_recent: {
+        type: NumberInt,
+      },
+      door_status: {
+        type: [{
+          type: String,
+          enum: ['Open', 'Closed']
+        }],
+        default: ['Open']
+      },
+      mask_status: {
+        type: [{
+          type: String,
+          enum: ['Mask Present', 'No Mask Present']
+        }],
+        default: ['No Mask Present']
+      },
+      user_status: {
+        type: [{
+          type: String,
+          enum: ['User Home', 'User Not Home']
+        }]
       }
 });
 
