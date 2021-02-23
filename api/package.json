@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "express-swagger-generator": "^1.1.17",
     "mongoose": "^5.11.17"
   }
 }
