@@ -3,6 +3,7 @@ module.exports = function(app) {
     var state = require('../controllers/stateController');
     var settings = require('../controllers/settingsController');
     var mask = require('../controllers/maskController');
+    var notification = require('../controllers/notificationsController');
 
     // API Routes
     app.route('/state/UVC')
@@ -36,4 +37,23 @@ module.exports = function(app) {
         .get(mask.read_mask)
         .put(mask.update_mask)
         .delete(mask.delete_mask);        
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /notification/register-new
+    * @group notification - Operations about notification subscriptions
+    * @param {string} endpoint - PushNotification endpoint
+    * @param {string} key.auth - Auth key
+    * @param {string} key.p256dh - p256dh key
+    * @returns {object} 200 - TODO
+    * @returns {Error}  default - Unexpected error
+    */
+    app.route('/notification/register-new')
+        .post(notification.register_new_notification_data);
+
+    app.route('/notification/:id')
+        .get(notification.read_notification_data)
+        .delete(notification.delete_notification_data);
+
 }
+
