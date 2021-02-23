@@ -33,16 +33,16 @@ io::NFC_Runnable::~NFC_Runnable(void){
 
 nfc_target io::NFC_Runnable::waitForTag(void){
     nfc_target tag;
-
 	std::cout << "NFC device will poll during " 
 		<< (unsigned long) this->pollCount * this->szModulations * this->pollPeriod * 150 
 		<< " ms ("
-		<< this->pollCount
+		<< (unsigned long) this->pollCount
 		<<" pollings of "
 		<< (unsigned long) this->pollPeriod * 150
-		<< " ms for %" 
+		<< " ms for " 
 		<< this->szModulations
 		<<  " modulations)" << std::endl;
+
 	int res = 0;
 	if ((res = nfc_initiator_poll_target(
 						this->reader, 
