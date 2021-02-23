@@ -13,6 +13,7 @@
 
 
 #include "io_nfc.h"
+#include "io_config.h"
 
 /** 
  * Encloses the full life-cycle of the IO server.

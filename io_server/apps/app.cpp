@@ -6,6 +6,7 @@
 #include <array>
 #include <boost/asio.hpp>
 #include <boost/bind/bind.hpp>
+#include <fstream>
 
 #include <mainConfig.h>
 #include <io_server/io_server.h>
@@ -18,7 +19,9 @@ void show_usage(){
                   << IO_server_VERSION_MINOR << "." << IO_server_VERSION_PATCH << ")" << std::endl << std::endl
                   << "Usage:" << std::endl
                   << "   -h,--help             Print this message" << std::endl
-                  << "   -t                    Run tests" << std::endl;
+                  << "   -t                    Run tests" << std::endl
+                  << "   -r                    Run io_server" << std::endl
+                  << "   -c <PATH>             Config file" << std::endl;
 
 }
 
@@ -33,7 +36,7 @@ int main(int argc, char* argv[]){
         int option_index = 0;
 
         // Parse options. Note the flags are the same as bash getopts (probably not a coincidence)
-        c = getopt_long(argc,argv, "ht", long_options, &option_index);
+        c = getopt_long(argc,argv, "htrc:", long_options, &option_index);
 
         // Detect the end of the options
         if (c== -1){
@@ -47,9 +50,12 @@ int main(int argc, char* argv[]){
                 // Help message
                 show_usage();
                 return 0;
-            default:
+            case 'r':
                 // Run the embedded I/O server
-                return io::server_run(argc, argv);                
+                return io::server_run(argc,argv);                
+            default:
+                show_usage();
+                return 1;
         }
         
     }
@@ -63,6 +69,10 @@ int main(int argc, char* argv[]){
  */
 int tests(){
     std::cout << "Start of the test function" << std::endl;
+
+
+    io::Config conf = io::Config("{\"user\":{\"ip\":\"192.168.0.42\"}}");
+    std::cout << conf.config.dump() << std::endl;
     
     io::NFC_Runnable nfc_runnable = io::NFC_Runnable();
     nfc_target tag = nfc_runnable.waitForTag();
