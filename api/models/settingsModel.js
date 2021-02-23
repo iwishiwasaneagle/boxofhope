@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var SettingsSchema = new Schema ({
     sterilisation_time: {
-        type: NumberInt,
+        type: Number,
       }
 });
 

@@ -11,7 +11,7 @@ var StateSchema = new Schema ({
         default: ['Off']
       },
       uvc_most_recent: {
-        type: NumberInt,
+        type: Number,
       },
       door_status: {
         type: [{
