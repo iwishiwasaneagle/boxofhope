@@ -2,18 +2,18 @@
 
 // Controller for masks 
 var mongoose = require('mongoose'),
-Mask = mongoose.model('Masks');
+Mask = mongoose.model('Mask');
 
 exports.read_mask_count = function(req, res) {
-    Mask.find({}, function(err, task) {
+    Mask.find({}, function(err, mask) {
       if (err)
         res.send(err);
-      res.json(task);
+      res.json(mask);
     });
   };
 
 exports.register_new_mask = function(req, res) {
-    var new_mask = new Masks(req.body);
+    var new_mask = new Mask(req.body);
     new_mask.save(function(err, mask) {
         if (err)
         res.send(err);
@@ -22,7 +22,7 @@ exports.register_new_mask = function(req, res) {
 };
 
 exports.read_mask = function(req, res) {
-  Task.findById(req.params.maskId, function(err, mask) {
+  Mask.findById(req.params.maskId, function(err, mask) {
     if (err)
       res.send(err);
     res.json(mask);
@@ -30,7 +30,7 @@ exports.read_mask = function(req, res) {
 };
 
 exports.update_mask = function(req, res) {
-  Task.findOneAndUpdate({_id: req.params.maskId}, req.body, {new: true}, function(err, mask) {
+  Mask.findOneAndUpdate({_id: req.params.maskId}, req.body, {new: true}, function(err, mask) {
     if (err)
       res.send(err);
     res.json(mask);
