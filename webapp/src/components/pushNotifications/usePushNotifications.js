@@ -73,7 +73,16 @@ export default function usePushNotifications() {
         .then(function (subscrition) {
           console.debug("Subscription: " + JSON.stringify(subscrition));
           setUserSubscription(subscrition);
-          setLoading(false);
+
+          const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(subscrition)
+          }
+
+          fetch('http://localhost:8080/notification/register-new', requestOptions)
+            .then(response => {console.log(response);setLoading(false);})
+            .catch(err => {setError(err);console.error(err);setLoading(false);})
         })
         .catch(err => {
           console.error("Couldn't create the notification subscription", err, "name:", err.name, "message:", err.message, "code:", err.code);
