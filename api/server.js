@@ -37,7 +37,7 @@ mongoose.Promise = global.Promise;
 var mongoDbConnectionString = 'mongodb://'+mongo_url+'/'+db;
 mongoose.connect(mongoDbConnectionString); 
 
-app.use(cors);
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
