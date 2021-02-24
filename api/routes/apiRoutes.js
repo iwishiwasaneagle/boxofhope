@@ -156,7 +156,29 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
+    * @route GET /mask/:maskId
+    * @group mask - Operations about mask data 
+    * @param {string} endpoint - PushNotification endpoint
+    * @param {string} key.auth - Auth key
+    * @param {string} key.p256dh - p256dh key
+    * @returns {object} 200 - TODO
+    * @returns {Error}  default - Unexpected error
+    */
+
+    /**
+    * This function comment is parsed by doctrine
     * @route PUT /mask/:maskId
+    * @group mask - Operations about mask data 
+    * @param {string} endpoint - PushNotification endpoint
+    * @param {string} key.auth - Auth key
+    * @param {string} key.p256dh - p256dh key
+    * @returns {object} 200 - TODO
+    * @returns {Error}  default - Unexpected error
+    */
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route DELETE /mask/:maskId
     * @group mask - Operations about mask data 
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
@@ -187,7 +209,18 @@ module.exports = function(app) {
     /**
     * This function comment is parsed by doctrine
     * @route PUT /notification/:id
-    * @group state - Operations about system states
+    * @group notification - Operations about notification subscriptions
+    * @param {string} endpoint - PushNotification endpoint
+    * @param {string} key.auth - Auth key
+    * @param {string} key.p256dh - p256dh key
+    * @returns {object} 200 - TODO
+    * @returns {Error}  default - Unexpected error
+    */
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route DELETE /notification/:id
+    * @group notification - Operations about notification subscriptions
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
     * @param {string} key.p256dh - p256dh key
