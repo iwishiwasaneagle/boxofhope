@@ -103,7 +103,7 @@ module.exports = function(app) {
     /**
     * This function comment is parsed by doctrine
     * @route GET /settings/sterilisation-time
-    * @group state - Operations about system states
+    * @group settings - Operations about system settings
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
     * @param {string} key.p256dh - p256dh key
@@ -114,7 +114,7 @@ module.exports = function(app) {
     /**
     * This function comment is parsed by doctrine
     * @route PUT /settings/sterilisation-time
-    * @group state - Operations about system states
+    * @group settings - Operations about system settings
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
     * @param {string} key.p256dh - p256dh key
@@ -129,7 +129,7 @@ module.exports = function(app) {
     /**
     * This function comment is parsed by doctrine
     * @route GET /mask/mask-count
-    * @group state - Operations about system states
+    * @group mask - Operations about mask data 
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
     * @param {string} key.p256dh - p256dh key
@@ -143,7 +143,7 @@ module.exports = function(app) {
     /**
     * This function comment is parsed by doctrine
     * @route POST /mask/register-new
-    * @group state - Operations about system states
+    * @group mask - Operations about mask data 
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
     * @param {string} key.p256dh - p256dh key
@@ -157,7 +157,7 @@ module.exports = function(app) {
     /**
     * This function comment is parsed by doctrine
     * @route PUT /mask/:maskId
-    * @group state - Operations about system states
+    * @group mask - Operations about mask data 
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
     * @param {string} key.p256dh - p256dh key
