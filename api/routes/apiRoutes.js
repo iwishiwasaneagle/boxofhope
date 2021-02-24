@@ -5,7 +5,18 @@ module.exports = function(app) {
     var mask = require('../controllers/maskController');
     var notification = require('../controllers/notificationsController');
 
-    // API Routes
+    // API Routes with Swagger Documentation 
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route PUT /state/UVC
+    * @group state - Operations about system states
+    * @param {string} endpoint - PushNotification endpoint
+    * @param {string} key.auth - Auth key
+    * @param {string} key.p256dh - p256dh key
+    * @returns {object} 200 - TODO
+    * @returns {Error}  default - Unexpected error
+    */
     app.route('/state/UVC')
         .put(state.update_uvc_state);
 

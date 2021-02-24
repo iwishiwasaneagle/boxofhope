@@ -23,6 +23,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-swagger-generator": "^1.1.17",
-    "mongoose": "^5.11.17"
+    "mongoose": "^5.11.17",
+    "swagger-jsdoc": "^7.0.0-rc.2"
   }
 }
