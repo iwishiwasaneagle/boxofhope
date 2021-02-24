@@ -36,11 +36,12 @@ jobs:
           sudo ./install.sh
           sudo ldconfig # Im at my wits ends
 
-      # Build
+      # Build and run tests
       - name: Build and run io_server
         working-directory: io_server
         run: |
-          mkdir build && cd build
-          cmake ..
-          make
-          ./io_server -h
+          cmake -S . -B build -DMAKE_TESTING=1
+          cmake --build build
+          cmake --build build --target check
+          ./build/io_server -h
+
