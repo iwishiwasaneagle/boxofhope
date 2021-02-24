@@ -1,6 +1,6 @@
 #include <nlohmann/json.hpp>
-#include <iostream>
 #include <fstream> 
+#include <iostream>
 
 /// <a href="https://github.com/nlohmann/json"> nlohmann's json library </a> which is automatically pulled into the project by CMake.
 using json = nlohmann::json;
@@ -24,7 +24,7 @@ namespace io{
              * \param file Input file 
              *
              */
-            Config(std::ifstream file);
+            Config(std::ifstream &file);
             
             /**
              * \brief Constructor taking a json std::string as an input.

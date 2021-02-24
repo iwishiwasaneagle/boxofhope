@@ -1,5 +1,5 @@
 # Set library name
-set(LIBNAME "ioserver")
+set(LIBNAME "libioserver")
 
 # Optionally glob, but only for CMake 3.12 or later:
 file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${IO_server_SOURCE_DIR}/include/**/*.h")
@@ -25,7 +25,6 @@ target_link_libraries(${LIBNAME} PRIVATE wiringPi nfc nlohmann_json::nlohmann_js
 target_compile_features(${LIBNAME} PUBLIC cxx_std_11)
 
 # IDEs should put the headers in a nice place
-message(STATUS "Found: ${HEADER_LIST}" )
 source_group(
     TREE "${PROJECT_SOURCE_DIR}/include"
     PREFIX "Header Files"
