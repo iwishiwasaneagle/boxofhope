@@ -22,7 +22,7 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/UVC
+    * @route GET /state/UVC/last
     * @group state - Operations about system states
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
@@ -36,7 +36,18 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/UVC
+    * @route GET /state/present-mask
+    * @group state - Operations about system states
+    * @param {string} endpoint - PushNotification endpoint
+    * @param {string} key.auth - Auth key
+    * @param {string} key.p256dh - p256dh key
+    * @returns {object} 200 - TODO
+    * @returns {Error}  default - Unexpected error
+    */
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route PUT /state/present-mask
     * @group state - Operations about system states
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
@@ -51,7 +62,18 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/UVC
+    * @route GET /state/door-switch
+    * @group state - Operations about system states
+    * @param {string} endpoint - PushNotification endpoint
+    * @param {string} key.auth - Auth key
+    * @param {string} key.p256dh - p256dh key
+    * @returns {object} 200 - TODO
+    * @returns {Error}  default - Unexpected error
+    */
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route PUT /state/door-switch
     * @group state - Operations about system states
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
@@ -66,7 +88,7 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/UVC
+    * @route PUT /state/user-home
     * @group state - Operations about system states
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
@@ -80,7 +102,18 @@ module.exports = function(app) {
     
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/UVC
+    * @route GET /settings/sterilisation-time
+    * @group state - Operations about system states
+    * @param {string} endpoint - PushNotification endpoint
+    * @param {string} key.auth - Auth key
+    * @param {string} key.p256dh - p256dh key
+    * @returns {object} 200 - TODO
+    * @returns {Error}  default - Unexpected error
+    */
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route PUT /settings/sterilisation-time
     * @group state - Operations about system states
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
@@ -95,7 +128,7 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/UVC
+    * @route GET /mask/mask-count
     * @group state - Operations about system states
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
@@ -109,7 +142,7 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/UVC
+    * @route POST /mask/register-new
     * @group state - Operations about system states
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
@@ -123,7 +156,7 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/UVC
+    * @route PUT /mask/:maskId
     * @group state - Operations about system states
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
@@ -153,7 +186,7 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/UVC
+    * @route PUT /notification/:id
     * @group state - Operations about system states
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
