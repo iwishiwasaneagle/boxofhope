@@ -60,3 +60,22 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
   target_link_libraries(io_server PRIVATE ioserver ${Boost_LIBRARIES} ${WIRINGPI_LIBRARIES} ${LIBNFC_LIBRARIES} nlohmann_json::nlohmann_json)
 endif()
+
+
+SET(MAKE_TESTING OFF CACHE BOOL "Make testing")
+if(MAKE_TESTING)
+    # Enable testing
+    enable_testing()
+
+    # Add test dir
+    add_subdirectory(test)
+    if (CMAKE_CONFIGURATION_TYPES)
+        add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} 
+            --force-new-ctest-process --output-on-failure -vv
+            --build-config "$<CONFIGURATION>")
+    else()
+        add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} 
+            --force-new-ctest-process --output-on-failure -vv)
+    endif()
+endif()
+
