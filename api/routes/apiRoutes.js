@@ -130,7 +130,7 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route GET /mask/mask-count
     * @group mask - Operations about mask data 
-    * @param {Date} registered_date - Date of mask registration
+    * @param {Date} registered_date - Date of mask registration.
     * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
     * @param {Date} last_check_in - Most recent mask check-in date.
     * @returns {object} mask 
@@ -144,7 +144,7 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route POST /mask/register-new
     * @group mask - Operations about mask data 
-    * @param {Date} registered_date - Date of mask registration
+    * @param {Date} registered_date - Date of mask registration.
     * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
     * @param {Date} last_check_in - Most recent mask check-in date.
     * @returns {object} mask 
@@ -158,7 +158,7 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route GET /mask/:maskId
     * @group mask - Operations about mask data 
-    * @param {Date} registered_date - Date of mask registration
+    * @param {Date} registered_date - Date of mask registration.
     * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
     * @param {Date} last_check_in - Most recent mask check-in date.
     * @returns {object} mask 
@@ -169,7 +169,7 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route PUT /mask/:maskId
     * @group mask - Operations about mask data 
-    * @param {Date} registered_date - Date of mask registration
+    * @param {Date} registered_date - Date of mask registration.
     * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
     * @param {Date} last_check_in - Most recent mask check-in date.
     * @returns {object} mask 
@@ -180,7 +180,7 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route DELETE /mask/:maskId
     * @group mask - Operations about mask data 
-    * @param {Date} registered_date - Date of mask registration
+    * @param {Date} registered_date - Date of mask registration.
     * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
     * @param {Date} last_check_in - Most recent mask check-in date.
     * @returns {object} mask 
