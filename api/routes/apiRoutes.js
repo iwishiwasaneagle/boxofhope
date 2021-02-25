@@ -104,10 +104,8 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route GET /settings/sterilisation-time
     * @group settings - Operations about system settings
-    * @param {string} endpoint - PushNotification endpoint
-    * @param {string} key.auth - Auth key
-    * @param {string} key.p256dh - p256dh key
-    * @returns {object} 200 - TODO
+    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. 
+    * @returns {object} setting
     * @returns {Error}  default - Unexpected error
     */
 
@@ -115,10 +113,8 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route PUT /settings/sterilisation-time
     * @group settings - Operations about system settings
-    * @param {string} endpoint - PushNotification endpoint
-    * @param {string} key.auth - Auth key
-    * @param {string} key.p256dh - p256dh key
-    * @returns {object} 200 - TODO
+    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. 
+    * @returns {object} setting
     * @returns {Error}  default - Unexpected error
     */
 
