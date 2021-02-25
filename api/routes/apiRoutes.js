@@ -11,10 +11,12 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route PUT /state/UVC
     * @group state - Operations about system states
-    * @param {string} endpoint - PushNotification endpoint
-    * @param {string} key.auth - Auth key
-    * @param {string} key.p256dh - p256dh key
-    * @returns {object} 200 - TODO
+    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
+    * @param {Number} uvc_most_recent - Logs most recent use of UVC
+    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
+    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @returns {object} state
     * @returns {Error}  default - Unexpected error
     */
     app.route('/state/UVC')
@@ -24,10 +26,12 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route GET /state/UVC/last
     * @group state - Operations about system states
-    * @param {string} endpoint - PushNotification endpoint
-    * @param {string} key.auth - Auth key
-    * @param {string} key.p256dh - p256dh key
-    * @returns {object} 200 - TODO
+    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
+    * @param {Number} uvc_most_recent - Logs most recent use of UVC
+    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
+    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @returns {object} state
     * @returns {Error}  default - Unexpected error
     */
 
@@ -38,10 +42,12 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route GET /state/present-mask
     * @group state - Operations about system states
-    * @param {string} endpoint - PushNotification endpoint
-    * @param {string} key.auth - Auth key
-    * @param {string} key.p256dh - p256dh key
-    * @returns {object} 200 - TODO
+    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
+    * @param {Number} uvc_most_recent - Logs most recent use of UVC
+    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
+    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @returns {object} state
     * @returns {Error}  default - Unexpected error
     */
 
@@ -49,10 +55,12 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route PUT /state/present-mask
     * @group state - Operations about system states
-    * @param {string} endpoint - PushNotification endpoint
-    * @param {string} key.auth - Auth key
-    * @param {string} key.p256dh - p256dh key
-    * @returns {object} 200 - TODO
+    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
+    * @param {Number} uvc_most_recent - Logs most recent use of UVC
+    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
+    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @returns {object} state
     * @returns {Error}  default - Unexpected error
     */
 
@@ -64,10 +72,12 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route GET /state/door-switch
     * @group state - Operations about system states
-    * @param {string} endpoint - PushNotification endpoint
-    * @param {string} key.auth - Auth key
-    * @param {string} key.p256dh - p256dh key
-    * @returns {object} 200 - TODO
+    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
+    * @param {Number} uvc_most_recent - Logs most recent use of UVC
+    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
+    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @returns {object} state
     * @returns {Error}  default - Unexpected error
     */
 
@@ -75,10 +85,12 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route PUT /state/door-switch
     * @group state - Operations about system states
-    * @param {string} endpoint - PushNotification endpoint
-    * @param {string} key.auth - Auth key
-    * @param {string} key.p256dh - p256dh key
-    * @returns {object} 200 - TODO
+    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
+    * @param {Number} uvc_most_recent - Logs most recent use of UVC
+    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
+    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @returns {object} state
     * @returns {Error}  default - Unexpected error
     */
 
@@ -90,10 +102,12 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route PUT /state/user-home
     * @group state - Operations about system states
-    * @param {string} endpoint - PushNotification endpoint
-    * @param {string} key.auth - Auth key
-    * @param {string} key.p256dh - p256dh key
-    * @returns {object} 200 - TODO
+    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
+    * @param {Number} uvc_most_recent - Logs most recent use of UVC
+    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
+    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @returns {object} state
     * @returns {Error}  default - Unexpected error
     */
 
