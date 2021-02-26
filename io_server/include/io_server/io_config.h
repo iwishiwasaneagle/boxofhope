@@ -1,3 +1,6 @@
+#ifndef IO_CONFIG_H
+#define IO_CONFIG_H
+
 #include <nlohmann/json.hpp>
 #include <fstream> 
 #include <iostream>
@@ -12,9 +15,6 @@ using json = nlohmann::json;
  * IO server namespace. Ensures that if the restful_server.h is imported, the same-named functions/class/etc. don't interact.
  */
 namespace io{
-
-;
-
     class Config{
             std::string api_port = "";
             std::string api_url  = "";
@@ -95,3 +95,4 @@ namespace io{
 
 }
 
+#endif
