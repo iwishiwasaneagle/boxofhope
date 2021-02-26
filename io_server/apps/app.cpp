@@ -7,6 +7,7 @@
 #include <boost/asio.hpp>
 #include <boost/bind/bind.hpp>
 #include <fstream>
+#include <stdlib.h>
 
 #include <mainConfig.h>
 #include <io_server/io_server.h>
@@ -80,10 +81,25 @@ int tests(){
     std::cout << "api_url value: " << api_url.value << std::endl;
     std::cout << "api_port value: " << api_port.value << std::endl;
     
-    io::NFC_Runnable nfc_runnable = io::NFC_Runnable();
-    nfc_target tag = nfc_runnable.waitForTag();
+    // io::NFC_Runnable nfc_runnable = io::NFC_Runnable();
+    // nfc_target tag = nfc_runnable.waitForTag();
 
-    io::is_user_home("127.0.0.1");
+    io::IsUserHome_Runnable isUserHome_runnable(1);
+
+    isUserHome_runnable.start();
+    
+    for(int i=0;i<10;i++){
+        std::cout << "This is running in the main thread! (" << boost::this_thread::get_id() << ")" << std::endl;
+        sleep(1);
+    }
+
+    std::cout << "Stopping IsUserHome runnable from main thread. (" << boost::this_thread::get_id() << ")" << std::endl;
+    isUserHome_runnable.stop();
+
+    for(int i=0;i<5;i++){
+        std::cout << "This is running in the main thread! (" << boost::this_thread::get_id() << ")" << std::endl;
+        sleep(1);
+    }
 
     return 0;
 }
