@@ -13,6 +13,9 @@ UML_LOOK = YES
 CALL_GRAPH = YES
 CALLER_GRAPH = YES
 
+# Show private member
+EXTRACT_PRIVATE = YES
+
 # Only html, no latex (default is both)
 GENERATE_LATEX = NO
 GENERATE_HTML = YES
