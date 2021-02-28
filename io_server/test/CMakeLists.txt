@@ -16,11 +16,6 @@ else()
     target_link_libraries(io_server_tests ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${LIBRARIES_LIST})
 endif()
 
-set(ADDITIONAL_TESTING_FILES 
-    io_config.json
-    )
-configure_file(${ADDITIONAL_TESTING_FILES} "${PROJECT_BINARY_DIR}/test" COPYONLY)
-
 
 # Add all Boost io_server_testss to CTest
 add_definitions(-DBOOST_TEST_DYN_LINK)

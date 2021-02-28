@@ -71,16 +71,6 @@ int main(int argc, char* argv[]){
 int tests(){
     std::cout << "Start of the test function" << std::endl;
 
-
-    io::Config config = io::Config();
-    config.set_api_url("www.google.com");
-    config.set_api_port("6969");
-    io::Config::ConfigReturn api_url = config.get_api_url();
-    io::Config::ConfigReturn api_port = config.get_api_port();
-
-    std::cout << "api_url value: " << api_url.value << std::endl;
-    std::cout << "api_port value: " << api_port.value << std::endl;
-    
     // io::NFC_Runnable nfc_runnable = io::NFC_Runnable();
     // nfc_target tag = nfc_runnable.waitForTag();
 

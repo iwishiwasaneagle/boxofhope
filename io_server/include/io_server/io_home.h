@@ -8,8 +8,6 @@
 
 #include <iostream>
 
-#include <io_server/io_config.h>
-
 namespace io{
     class IsUserHome_Runnable{
         private:

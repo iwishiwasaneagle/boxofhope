@@ -11,9 +11,7 @@
 
 #include "wiringPi.h"
 
-
 #include "io_nfc.h"
-#include "io_config.h"
 #include "io_home.h"
 
 /** 
