@@ -13,15 +13,19 @@ int io::server_run(int argc, char* argv[]){
     }
 
 
+    io::IsUserHome_Runnable userHome(20);
+    userHome.start();
+
     std::time_t now_time;
     std::chrono::time_point<std::chrono::system_clock> now_timer;
     while(1){
         now_timer = std::chrono::system_clock::now();
         now_time = std::chrono::system_clock::to_time_t(now_timer);
-        std::cerr << "io_server heartbeat at " << std::ctime(&now_time)  << std::endl;
+        std::cerr << "\033[47;30;1mio_server heartbeat\033[;0m - " << std::ctime(&now_time);
         delay(10000);
     }
-
+    
+    userHome.stop();
     return 0;
 }
 

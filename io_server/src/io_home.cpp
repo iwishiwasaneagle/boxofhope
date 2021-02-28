@@ -62,6 +62,7 @@ void io::IsUserHome_Runnable::thread_runner(void){
         ));
 
     try{
+        callback();
         io_context.run();
     }catch(boost::thread_interrupted&){ //< Catch the boost thread interrupt
         std::cout << "Interrupted thread " << boost::this_thread::get_id() << std::endl;
