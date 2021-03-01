@@ -11,8 +11,8 @@
 
 #include "wiringPi.h"
 
-
 #include "io_nfc.h"
+#include "io_home.h"
 
 /** 
  * Encloses the full life-cycle of the IO server.
@@ -73,7 +73,7 @@ namespace io{
 	 }
      \endcode
      **/
-    int is_user_home(std::string ip);
+    // int is_user_home(std::string ip);
 }
 
 #endif
