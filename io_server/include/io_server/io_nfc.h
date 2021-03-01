@@ -22,7 +22,7 @@ namespace io{
 
 		    const uint8_t pollCount = 20; //< specifies the number of polling (0x01 – 0xFE: 1 up to 254 polling, 0xFF: Endless polling) 
 		    const uint8_t pollPeriod = 2; //< indicates the polling period in units of 150 ms (0x01 – 0x0F: 150ms – 2.25s) 
-		    const nfc_modulation nmModulations[6] = {
+		    const nfc_modulation nmModulations[5] = {
          		{ .nmt = NMT_ISO14443A, .nbr = NBR_106 },
          		{ .nmt = NMT_ISO14443B, .nbr = NBR_106 },
          		{ .nmt = NMT_FELICA, .nbr = NBR_212 },
@@ -30,7 +30,7 @@ namespace io{
 	     		{ .nmt = NMT_JEWEL, .nbr = NBR_106 },
 // 1.7.0 doesn't support this yet it seems	    	 	{ .nmt = NMT_ISO14443BICLASS, .nbr = NBR_106 },
   			}; //< desired modulations 
-	        const size_t szModulations = 6;	//< size of nmModulations
+	        const size_t szModulations = 5;	//< size of nmModulations
         public:
             NFC_Runnable(void); //< Constructor. Set up LibNFC.
             ~NFC_Runnable(void); //< Destructor. Tear down LibNFC as per documentation.
