@@ -241,6 +241,16 @@ module.exports = function(app) {
     app.route('/notification/:id')
         .get(notification.read_notification_data)
         .delete(notification.delete_notification_data);
+    
+    /**
+    * This function comment is parsed by doctrine
+    * @route POST /notification/send/:id
+    * @group notification - Operations about notification subscriptions
+    * @returns {object} 200 - TODO
+    * @returns {Error}  default - Unexpected error
+    */
+    app.route('/notification/send/:id')
+        .post(notification.send_notification);
 
 }
 
