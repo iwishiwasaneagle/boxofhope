@@ -7,10 +7,12 @@ namespace io{
 
     class LCD_Runnable{
         private:
+
+            int address; 
             
         public:
-            LCD_Runnable(void);
-            ~LCD_Runnable(void);
+            void LCD_Runnable();
+            void ~LCD_Runnable();
     };
 }
 
