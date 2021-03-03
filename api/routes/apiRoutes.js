@@ -16,7 +16,7 @@ module.exports = function(app) {
     * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
     * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @returns {object} state
+    * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
     app.route('/state/UVC')
@@ -31,7 +31,7 @@ module.exports = function(app) {
     * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
     * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @returns {object} state
+    * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
 
@@ -60,7 +60,7 @@ module.exports = function(app) {
     * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
     * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @returns {object} state
+    * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
 
@@ -90,7 +90,7 @@ module.exports = function(app) {
     * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
     * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @returns {object} state
+    * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
 
@@ -128,7 +128,7 @@ module.exports = function(app) {
     * @route PUT /settings/sterilisation-time
     * @group settings - Operations about system settings
     * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. 
-    * @returns {object} setting
+    * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
 
@@ -143,7 +143,7 @@ module.exports = function(app) {
     * @param {Date} registered_date - Date of mask registration.
     * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
     * @param {Date} last_check_in - Most recent mask check-in date.
-    * @returns {object} mask 
+    * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
 
@@ -182,7 +182,7 @@ module.exports = function(app) {
     * @param {Date} registered_date - Date of mask registration.
     * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
     * @param {Date} last_check_in - Most recent mask check-in date.
-    * @returns {object} mask 
+    * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
 
