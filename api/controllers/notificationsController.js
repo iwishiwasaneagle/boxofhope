@@ -2,15 +2,33 @@
 
 // Controller for notifications 
 var mongoose = require('mongoose'),
-Notification = mongoose.model('Notification');
+    webpush = require('web-push'),
+    hash = require('object-hash'),
+    Notification = mongoose.model('Notification');
+
 
 exports.register_new_notification_data = function(req, res) {
-    var new_notification = new Notification(req.body);
-    new_notification.save(function(err, notification) {
-        if (err)
-            res.send(err);
-        res.json(notification);
-    });
+    const data = req.body;
+    // Check for no body
+    if(data && Object.keys(data).length > 0){
+        data['_id'] = hash(data.keys.auth);
+        var new_notification = new Notification(data);
+        new_notification.save(function(err, notification) {
+            if (err){
+                switch(err.code){
+                    case 11000:
+                        res.status(400).send("Duplicate subscription with id: " + data._id);
+                        break;
+                    default:
+                        res.status(400).send("Error: MongoDB status code " + err.code);
+                }
+            }
+            res.json(notification);
+        });
+    }
+    else{
+        res.status(400).send("No data");
+    }
 };
 
 exports.read_notification_data = function(req, res) {

@@ -3,6 +3,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema; 
 
 var NotificationSchema = new Schema ({
+    _id: {
+        type:String,
+        required: true
+    },
     endpoint:{
         type: String,
         required: true,
