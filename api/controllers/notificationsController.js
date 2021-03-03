@@ -11,7 +11,7 @@ exports.register_new_notification_data = function(req, res) {
     const data = req.body;
     // Check for no body
     if(data && Object.keys(data).length > 0){
-        data['_id'] = hash(data.keys.auth);
+        data['_id'] = hash(data.endpoint);
         var new_notification = new Notification(data);
         new_notification.save(function(err, notification) {
             if (err){
@@ -23,7 +23,8 @@ exports.register_new_notification_data = function(req, res) {
                         res.status(400).send("Error: MongoDB status code " + err.code);
                 }
             }
-            res.json(notification.toClient());
+            console.log(notification)
+            res.json(new_notification.toClient());
         });
     }
     else{
@@ -50,7 +51,7 @@ exports.read_notification_data = function(req, res) {
 
 exports.delete_notification_data = function(req, res) {
     Notification.deleteOne({
-      _id: req.params.notificationId
+      _id: req.params.id
     }, function(err, notification) {
       if (err)
         res.send(err);

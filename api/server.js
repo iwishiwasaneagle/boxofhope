@@ -36,6 +36,7 @@ var logger = function(req,res,next){
     console.log("Call to ", req.baseUrl + req.path);
     console.log("   Body:   ", req.body);
     console.log("   Params: ", req.params);
+    console.log("   Method: ", req.method);
     next();
 };
 
