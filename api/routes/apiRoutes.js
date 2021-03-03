@@ -157,7 +157,7 @@ module.exports = function(app) {
     * @param {Date} registered_date - Date of mask registration.
     * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
     * @param {Date} last_check_in - Most recent mask check-in date.
-    * @returns {object} mask 
+    * @returns {object} 201 - Created 
     * @returns {Error}  default - Unexpected error
     */
 
@@ -234,7 +234,7 @@ module.exports = function(app) {
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
     * @param {string} key.p256dh - p256dh key
-    * @returns {object} 200 - TODO
+    * @returns {object} 204 - No Content
     * @returns {Error}  default - Unexpected error
     */
 
