@@ -31,6 +31,15 @@ let options = {
 };
 expressSwagger(options)
 
+// logger handler
+var logger = function(req,res,next){
+    console.log("Call to ", req.baseUrl + req.path);
+    console.log("   Body:   ", req.body);
+    console.log("   Params: ", req.params);
+    next();
+};
+
+
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
 
@@ -40,7 +49,7 @@ mongoose.connect(mongoDbConnectionString);
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use(logger);
 
 var routes = require('./routes/apiRoutes'); //importing route
 routes(app); //register the route

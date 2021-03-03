@@ -23,7 +23,7 @@ exports.register_new_notification_data = function(req, res) {
                         res.status(400).send("Error: MongoDB status code " + err.code);
                 }
             }
-            res.json(notification);
+            res.json(notification.toClient());
         });
     }
     else{
@@ -32,10 +32,19 @@ exports.register_new_notification_data = function(req, res) {
 };
 
 exports.read_notification_data = function(req, res) {
-  Notification.findById(req.params.notificationId, function(err, notification) {
-    if (err)
-      res.send(err);
-    res.json(notification);
+    Notification.findById(
+      req.params.id, 
+      function(err, notification) {
+          if (err){
+              res.send(err);
+          }
+          if(notification && Object.keys(notification).length>0)
+          {
+            res.json(notification.toClient());
+          }else{
+            res.status(404).send(req.params.id+ " not found");
+          }
+
   });
 };
 
@@ -61,19 +70,27 @@ exports.send_notification = function(req,res){
             "BN6BhZ2mBQ-oiR78XnNrizLWotzej3iL-TTaTn5egHMmBfqJpdrmbUiIjjy_PsHgacuh3i17Hpgx7LuWwQL9Dvg",
             "A93a0xUMa4PeoXMZkA8b7iA4vmIkh9-I7AN85DH5G1o"
         );
-
+        console.log("hi");
         const pushSub = {endpoint:notification.endpoint,
             keys:notification.keys            
         };
         console.log(pushSub);
 
         webpush.sendNotification(pushSub, JSON.stringify({
-            url: "http://www.google.com",
-            text: "Hi there",
-            image: "https://spyna.it/icons/favicon.ico",
+            url: "http://www.boxofhope.co.uk",
+            text: "This is a test notification!",
             tag: "wow",
-            title: "Martin SMelzz"
+            title: "Test test test"
          })).then(
             ()=>res.send("OK")
         );
+    })};
+
+exports.get_latest_id = function(req,res){
+    Notification.find({}, '_id').sort({"createdAt":-1}).limit(1).exec(function(err, notification){
+        if(err){
+            res.send(err);    
+        }
+
+        res.json({id:notification[0]._id});
     })};

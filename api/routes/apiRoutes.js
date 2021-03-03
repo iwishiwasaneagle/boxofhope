@@ -204,7 +204,7 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
-    * @route GET /notification/register-new
+    * @route POST /notification/register-new
     * @group notification - Operations about notification subscriptions
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
@@ -218,18 +218,19 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /notification/:id
+    * @route GET /notification/id/:id
     * @group notification - Operations about notification subscriptions
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
     * @param {string} key.p256dh - p256dh key
     * @returns {object} 200 - OK
+    * @returns {Error}  404 - id not found
     * @returns {Error}  default - Unexpected error
     */
 
     /**
     * This function comment is parsed by doctrine
-    * @route DELETE /notification/:id
+    * @route DELETE /notification/id/:id
     * @group notification - Operations about notification subscriptions
     * @param {string} endpoint - PushNotification endpoint
     * @param {string} key.auth - Auth key
@@ -238,7 +239,7 @@ module.exports = function(app) {
     * @returns {Error}  default - Unexpected error
     */
 
-    app.route('/notification/:id')
+    app.route('/notification/id/:id')
         .get(notification.read_notification_data)
         .delete(notification.delete_notification_data);
     
@@ -251,6 +252,16 @@ module.exports = function(app) {
     */
     app.route('/notification/send/:id')
         .post(notification.send_notification);
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /notification/latest
+    * @group notification - Operations about notification subscriptions
+    * @returns {object} 200 - TODO
+    * @returns {Error}  default - Unexpected error
+    */
+    app.route('/notification/latest')
+        .get(notification.get_latest_id);
 
 }
 
