@@ -58,4 +58,4 @@ exports.send_notification = function(req,res){
          })).then(
             ()=>res.send("OK")
         );
-    });
+    })};
