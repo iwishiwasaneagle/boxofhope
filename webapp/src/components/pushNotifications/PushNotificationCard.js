@@ -23,15 +23,14 @@ function NotificationCard(){
   } = usePushNotifications();
 
     const isConsentGranted = userConsent === "granted";
-    const isUserSubscribed = JSON.stringify(userSubscription, null,0).length>2;
-
+    const isUserSubscribed = JSON.stringify(userSubscription, null,0).length>4;
     return (<Card>
         <Card.Title>Notifications </Card.Title>
         <Card.Body>
             <Card.Text>
             Are you subscribed to push notifications? {userSubscription ? "Yes" : "No"}
             </Card.Text>
-            {!isUserSubscribed ? 
+            {!userSubscription ? 
                 <Button onClick={onClickAskForPermsAndSusbribeToPushNotification}>Subscribe</Button>
                 :
                 <Button onClick={onClickUnsubscribeUser}>Unsubscribe</Button>

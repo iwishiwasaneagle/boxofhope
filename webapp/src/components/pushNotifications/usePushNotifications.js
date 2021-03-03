@@ -9,14 +9,16 @@ import {
   unsubscribeUser
 } from "./push-notifications";
 
+import hash from 'object-hash';
 
 const pushNotificationSupported = isPushNotificationSupported();
 
 export default function usePushNotifications() {
-  const [userConsent, setSuserConsent] = useState(Notification.permission);
+  const [userConsent, setUserConsent] = useState(Notification.permission);
   //to manage the user consent: Notification.permission is a JavaScript native function that return the current state of the permission
   //We initialize the userConsent with that value
-  const [userSubscription, setUserSubscription] = useState({});
+  const [userSubscription, setUserSubscription] = useState("");
+
   //to manage the push server subscription
   const [error, setError] = useState(null);
   //to manage errors
@@ -38,12 +40,18 @@ export default function usePushNotifications() {
   useEffect(() => {
     setLoading(true);
     setError(false);
-    const getExixtingSubscription = async () => {
+    const getExistingSubscription = async () => {
       const existingSubscription = await getUserSubscription();
-      setUserSubscription(existingSubscription);
+      if(!existingSubscription){
+        console.log("fuck me");
+        setUserSubscription("");
+      }else{
+        console.log("useEffect ",hash(existingSubscription.endpoint));
+        setUserSubscription(hash(existingSubscription.endpoint));
+      }
       setLoading(false);
     };
-    getExixtingSubscription();
+    getExistingSubscription();
   }, []);
   //Retrieve if there is any push notification subscription for the registered service worker
   // this use effect runs only in the first render
@@ -56,7 +64,7 @@ export default function usePushNotifications() {
     setLoading(true);
     setError(false);
     askUserPermission().then(consent => {
-      setSuserConsent(consent);
+      setUserConsent(consent);
       console.debug("Notification access: " + consent);
       if (consent !== "granted") {
         setError({
@@ -67,46 +75,66 @@ export default function usePushNotifications() {
       }
       setLoading(false);
     })
-    .then(() => {
-      console.debug("Subscribing to notifications");
-      createNotificationSubscription()
-        .then(function (subscrition) {
-          console.debug("Subscription: " + JSON.stringify(subscrition));
-          setUserSubscription(subscrition);
+      .then(() => {
+        console.debug("Subscribing to notifications");
+        createNotificationSubscription()
+          .then(function (subscription) {
+            console.debug("Subscription: " + JSON.stringify(subscription));
+            //setUserSubscription(subscription);
 
-          const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(subscrition)
-          }
+            const requestOptions = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(subscription)
+            }
 
-          fetch('http://localhost:8080/notification/register-new', requestOptions)
-            .then(response => {console.log(response);setLoading(false);})
-            .catch(err => {setError(err);console.error(err);setLoading(false);})
-        })
-        .catch(err => {
-          console.error("Couldn't create the notification subscription", err, "name:", err.name, "message:", err.message, "code:", err.code);
-          setError(err);
-          setLoading(false);
-        });
-    }).catch(err => {
-      console.error("Unexpected error", err, "name:", err.name, "message:", err.message, "code:", err.code);
-      setError(err);
-      setLoading(false);
-    });
+            fetch('http://jheraspi.local:3000/notification/register-new', requestOptions)
+              .then(response => response.json()).then(response => { 
+                console.log("Response body: ",response.id); 
+                setLoading(false); 
+                setUserSubscription(response.id); 
+              })
+              .catch(err => { setError(err); console.error(err); setLoading(false); })
+          })
+          .catch(err => {
+            console.error("Couldn't create the notification subscription", err, "name:", err.name, "message:", err.message, "code:", err.code);
+            setError(err);
+            setLoading(false);
+          });
+      }).catch(err => {
+        console.error("Unexpected error", err, "name:", err.name, "message:", err.message, "code:", err.code);
+        setError(err);
+        setLoading(false);
+      });
   };
 
   const onClickUnsubscribeUser = () => {
     setLoading(true);
     setError(false);
-    unsubscribeUser().then(()=>{
-      setUserSubscription({});
-      setLoading(false);
-    }).catch(err=>{      
-      console.error("Unexpected error", err, "name:", err.name, "message:", err.message, "code:", err.code);
-      setError(err);
-      setLoading(false);
-    })
+
+    const requestOptions = {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' }
+    }
+
+    console.log("Unsubscribing id: ",userSubscription);
+    fetch('http://jheraspi.local:3000/notification/id/'+userSubscription, requestOptions)
+      .catch(err => { setError(err); console.error(err); setLoading(false); })
+      .then(response => response.json())
+      .then(res=>{
+        console.log("Unsubscribe message: ", res.message);
+      })
+      .then(() => {
+        unsubscribeUser().then(() => {
+          setUserSubscription("");
+          setLoading(false);
+        })
+        .catch(err => {
+          console.error("Unexpected error", err, "name:", err.name, "message:", err.message, "code:", err.code);
+          setError(err);
+          setLoading(false);
+        })
+      })
   };
 
   /**
