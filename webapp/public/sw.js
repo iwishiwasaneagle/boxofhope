@@ -10,8 +10,8 @@ function receivePushNotification(event) {
     vibrate: [200, 100, 200],
     tag: tag,
     image: image,
-    badge: "https://spyna.it/icons/favicon.ico",
-    actions: [{ action: "Detail", title: "View", icon: "https://via.placeholder.com/128/ff0000" }]
+    badge: "https://raw.githubusercontent.com/iwishiwasaneagle/boxofhope/727450f52530bccb12662ee6d208488c465d8637/cmask-gh-pages/public/img/icons/logo192.png",
+    actions: [{ action: "Detail", title: "View", icon: "https://raw.githubusercontent.com/iwishiwasaneagle/boxofhope/727450f52530bccb12662ee6d208488c465d8637/cmask-gh-pages/public/img/icons/logo192.png" }]
   };
   event.waitUntil(self.registration.showNotification(title, options));
 }
