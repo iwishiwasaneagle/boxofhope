@@ -10,8 +10,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./cmask-gh-pages/
 
     strategy:
       matrix:
@@ -24,14 +22,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: |
+    - name: Install and build
+      working-directory: ./cmask-gh-pages/
+      run: |
         npm install
         npm run build
-    - name: Deploy doxygen to gh-pages
+    - name: Deploy webapp to gh-pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
+        publish_dir: ./cmask-gh-pages/build
         destination_dir: ./
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
