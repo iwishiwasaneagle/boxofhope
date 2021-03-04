@@ -2,6 +2,9 @@
 #define IO_LCD_H
 
 #include "wiringPi.h"
+#include "wiringPiI2C.h"
+#include "stdlib.h"
+#include "stdio.h"
 
 namespace io{
 
@@ -9,6 +12,9 @@ namespace io{
         private:
 
             #define I2C_address;
+            
+        public:
+
             #define LCD_CHAR;
             #define LCD_CMD;
 
@@ -17,8 +23,6 @@ namespace io{
 
             #define LCD_backlight;
             #define LCD_enable; 
-            
-        public:
 
             void lcd_byte(int bits, int mode);
             void lcd_toggle_enable(int bits);
