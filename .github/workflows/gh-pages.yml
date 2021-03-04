@@ -36,3 +36,6 @@ jobs:
         destination_dir: ./
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
+        cname: boxofhope.co.uk
+        enable_jekyll: false
+        keep_files: true
