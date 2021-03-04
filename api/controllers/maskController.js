@@ -19,6 +19,7 @@ exports.register_new_mask = function(req, res) {
         res.send(err);
         res.json(mask);
     });
+    res.status(201);
 };
 
 exports.read_mask = function(req, res) {
