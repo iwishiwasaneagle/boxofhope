@@ -1,4 +1,4 @@
-import { Button, Card, Alert, Row, Col, Table } from 'react-bootstrap';
+import { Button, Card, Alert, Row, Col, Table, Modal } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 
 import API from '../../util/api';
@@ -7,14 +7,13 @@ import './maskCard.css';
 
 function MasksCard() {
     const [masks, setMasks] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState([]);
 
     useEffect(() => {
-        setLoading(true);
-        API.mask.getAll().then(res => { setMasks(res); setLoading(false) }
-        ).catch(err => console.error(err));
+        API.mask.getAll()
+            .then(res => setMasks(res))
+            .catch(err => console.error(err));
     }, [])
-
 
     const get_state_badge = (id, status) => {
         console.log(id, status);
@@ -55,14 +54,23 @@ function MasksCard() {
                                     <td>{ind}</td>
                                     <td>{mask._id}</td>
                                     <td>{get_state_badge(mask._id, mask.status[0])}</td>
-                                    <td><Button disabled={loading === mask._id} onClick={
+                                    <td><Button disabled={loading.includes(mask._id)} onClick={
                                         () => {
-                                            setLoading(mask._id);
+                                            setLoading(old=>[...old,mask._id]);
                                             API.mask.delete(mask._id).then(() =>
                                                 API.mask.getAll()
-                                                    .then(res => { setMasks(res); setLoading("") })
+                                                    .then(res => { 
+                                                        setMasks(res); 
+                                                        setLoading(old => {
+                                                            const ind = old.indexOf(mask._id);
+                                                            if(ind>-1){
+                                                                old.splice(ind,1);
+                                                            }
+                                                            return old;
+                                                        }); 
+                                                    })
                                                     .catch(err => console.error(err)));
-                                        }}>{loading === mask._id ? "Loading..." : "Delete"}</Button>
+                                        }}>{loading.includes(mask._id) ? "Loading..." : "Delete"}</Button>
                                     </td>
                                 </tr>
                             </tbody>
