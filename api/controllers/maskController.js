@@ -10,6 +10,7 @@ exports.read_mask_count = function(req, res) {
         res.send(err);
       res.json(mask);
     });
+    res.status(200);
   };
 
 exports.register_new_mask = function(req, res) {
@@ -28,6 +29,7 @@ exports.read_mask = function(req, res) {
       res.send(err);
     res.json(mask);
   });
+  res.status(200);
 };
 
 exports.update_mask = function(req, res) {
@@ -36,6 +38,7 @@ exports.update_mask = function(req, res) {
       res.send(err);
     res.json(mask);
   });
+  res.status(200);
 };
 
 exports.delete_mask = function(req, res) {
@@ -46,5 +49,6 @@ exports.delete_mask = function(req, res) {
         res.send(err);
       res.json({ message: 'Mask successfully deleted' });
     });
+    res.status(204);
   };
      
