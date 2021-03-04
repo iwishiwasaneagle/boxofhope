@@ -8,9 +8,24 @@ namespace io{
     class LCD_Runnable{
         private:
 
-            int address; 
+            #define I2C_address;
+            #define LCD_CHAR;
+            #define LCD_CMD;
+
+            #define line_1;
+            #define line_2;
+
+            #define LCD_backlight;
+            #define LCD_enable; 
             
         public:
+
+            void lcd_byte(int bits, int mode);
+            void lcd_toggle_enable(int bits);
+            void lcd_init();
+            void lcd_write(const char *s, int line);
+            void lcd_clear();
+
             void LCD_Runnable();
             void ~LCD_Runnable();
     };
