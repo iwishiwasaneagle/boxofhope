@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Servers
+name: IO Server 
 
 # Controls when the action will run. 
 on:
@@ -36,11 +36,12 @@ jobs:
           sudo ./install.sh
           sudo ldconfig # Im at my wits ends
 
-      # Build
-      - name: Build and run servers
-        working-directory: servers
+      # Build and run tests
+      - name: Build and run io_server
+        working-directory: io_server
         run: |
-          mkdir build && cd build
-          cmake ..
-          make
-          ./Boxofhope -h
+          cmake -S . -B build -DMAKE_TESTING=1
+          cmake --build build
+          cmake --build build --target check
+          ./build/io_server -h
+
