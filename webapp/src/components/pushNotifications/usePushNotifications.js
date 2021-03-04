@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 
+import API from '../../util/api';
+import Storage from '../../util/storage';
+
 import {
   isPushNotificationSupported,
   askUserPermission,
@@ -18,7 +21,6 @@ export default function usePushNotifications() {
   //to manage the user consent: Notification.permission is a JavaScript native function that return the current state of the permission
   //We initialize the userConsent with that value
   const [userSubscription, setUserSubscription] = useState("");
-
   //to manage the push server subscription
   const [error, setError] = useState(null);
   //to manage errors
@@ -40,17 +42,24 @@ export default function usePushNotifications() {
   useEffect(() => {
     setLoading(true);
     setError(false);
+
     const getExistingSubscription = async () => {
-      const existingSubscription = await getUserSubscription();
-      if(!existingSubscription){
-        console.log("fuck me");
+      const existingSubscriptionId = Storage.getItem("sub_id");
+      const existingSubscriptionPush = await getUserSubscription();
+
+      if(existingSubscriptionPush && existingSubscriptionId.length==null){
+        unsubscribeUser();
+      }
+
+      console.log("Existing subscription: ", existingSubscriptionId, existingSubscriptionPush!=null);
+      if(!existingSubscriptionId){
         setUserSubscription("");
       }else{
-        console.log("useEffect ",hash(existingSubscription.endpoint));
-        setUserSubscription(hash(existingSubscription.endpoint));
+        setUserSubscription(existingSubscriptionId);
       }
       setLoading(false);
     };
+
     getExistingSubscription();
   }, []);
   //Retrieve if there is any push notification subscription for the registered service worker
@@ -77,24 +86,19 @@ export default function usePushNotifications() {
     })
       .then(() => {
         console.debug("Subscribing to notifications");
-        createNotificationSubscription()
-          .then(function (subscription) {
-            console.debug("Subscription: " + JSON.stringify(subscription));
-            //setUserSubscription(subscription);
+        createNotificationSubscription().then(function (subscription) {
+            console.debug("Subscription: " + JSON.stringify(subscription));           
 
-            const requestOptions = {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(subscription)
-            }
-
-            fetch('http://jheraspi.local:3000/notification/register-new', requestOptions)
-              .then(response => response.json()).then(response => { 
-                console.log("Response body: ",response.id); 
-                setLoading(false); 
-                setUserSubscription(response.id); 
-              })
-              .catch(err => { setError(err); console.error(err); setLoading(false); })
+            API.subscription.save(subscription).then(res=>{
+              Storage.setItem("sub_id", res.id);
+              setUserSubscription(res.id);
+              setLoading(false);
+            })
+            .catch(err =>{
+               console.error("Couldn't create the notification subscription", err, "name:", err.name, "message:", err.message, "code:", err.code);
+              setError(err);
+              setLoading(false);
+            });           
           })
           .catch(err => {
             console.error("Couldn't create the notification subscription", err, "name:", err.name, "message:", err.message, "code:", err.code);
@@ -112,17 +116,14 @@ export default function usePushNotifications() {
     setLoading(true);
     setError(false);
 
-    const requestOptions = {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
-    }
-
-    console.log("Unsubscribing id: ",userSubscription);
-    fetch('http://jheraspi.local:3000/notification/id/'+userSubscription, requestOptions)
-      .catch(err => { setError(err); console.error(err); setLoading(false); })
-      .then(response => response.json())
+    API.subscription.delete(userSubscription)    
+      .catch(err => { 
+        setError(err); 
+        console.error(err); 
+        setLoading(false); 
+      })
       .then(res=>{
-        console.log("Unsubscribe message: ", res.message);
+        console.log("Unsubscribe message: ", res);
       })
       .then(() => {
         unsubscribeUser().then(() => {
