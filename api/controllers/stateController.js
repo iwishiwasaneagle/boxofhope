@@ -10,6 +10,7 @@ exports.update_uvc_state = function(req, res){
             res.send(err);
         res.json(state);
     });
+    res.status(200);
 };
 
 exports.read_uvc_last = function(req, res){
@@ -18,6 +19,7 @@ exports.read_uvc_last = function(req, res){
             res.send(err);
         res.json(state);
     });
+    res.status(200);
 };
 
 exports.read_mask_present = function(req, res){
@@ -26,6 +28,7 @@ exports.read_mask_present = function(req, res){
             res.send(err);
         res.json(state);
     });
+    res.status(200);
 };
 
 exports.update_mask_present = function(req, res){
@@ -34,6 +37,7 @@ exports.update_mask_present = function(req, res){
             res.send(err);
         res.json(state);
     });
+    res.status(200);
 };
 
 exports.read_uvc_last = function(req, res){
@@ -42,6 +46,7 @@ exports.read_uvc_last = function(req, res){
             res.send(err);
         res.json(state);
     });
+    res.status(200);
 };
 
 exports.read_switch_open_close = function(req, res){
@@ -50,6 +55,7 @@ exports.read_switch_open_close = function(req, res){
             res.send(err);
         res.json(state);
     });
+    res.status(200);
 };
 
 
@@ -59,6 +65,7 @@ exports.update_switch_open_close = function(req, res){
             res.send(err);
         res.json(state);
     });
+    res.status(200);
 };
 
 exports.update_user_home = function(req, res){
@@ -67,5 +74,6 @@ exports.update_user_home = function(req, res){
             res.send(err);
         res.json(state);
     });
+    res.status(200);
 };
 
