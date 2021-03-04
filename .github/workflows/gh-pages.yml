@@ -26,7 +26,7 @@ jobs:
     - name: Install and build
       working-directory: ./cmask-gh-pages/
       run: |
-        npm install
+        npm ci 
         npm run build
     - name: Deploy webapp to gh-pages
       uses: peaceiris/actions-gh-pages@v3
