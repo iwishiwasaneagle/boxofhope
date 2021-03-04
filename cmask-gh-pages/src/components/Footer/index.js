@@ -46,50 +46,14 @@ const Footer = ({ t }) => {
                   <S.Chat>{t(`Let's Chat`)}</S.Chat>
                 </a>
               </Col>
-              <Col lg={8} md={8} sm={12} xs={24}>
-                <S.Title>{t("Policy")}</S.Title>
-                <S.Large to="/" left="true">
-                  {t("Application Security")}
-                </S.Large>
-                <S.Large left="true" to="/">
-                  {t("Software Principles")}
-                </S.Large>
-              </Col>
-              <Col lg={6} md={6} sm={12} xs={24}>
-                <S.Empty />
-                <S.Large left="true" to="/">
-                  {t("Support Center")}
-                </S.Large>
-                <S.Large left="true" to="/">
-                  {t("Customer Support")}
-                </S.Large>
-              </Col>
-            </Row>
-            <Row type="flex" justify="space-between">
               <Col lg={10} md={10} sm={12} xs={24}>
-                <S.Empty />
                 <S.Language>{t("ADDRESS")}</S.Language>
                 <S.Para>University of Glasgow</S.Para>
                 <S.Para>1 University Ave</S.Para>
                 <S.Para>Glasgow</S.Para>
                 <S.Para>G12 8QQ</S.Para>
               </Col>
-              <Col lg={8} md={8} sm={12} xs={24}>
-                <S.Title>{t("Company")}</S.Title>
-                <S.Large left="true" to="/">
-                  {t("About")}
-                </S.Large>
-                <S.Large left="true" to="/">
-                  {t("Blog")}
-                </S.Large>
-                <S.Large left="true" to="/">
-                  {t("Press")}
-                </S.Large>
-                <S.Large left="true" to="/">
-                  {t("Careers & Culture")}
-                </S.Large>
-              </Col>
-              <Col lg={6} md={6} sm={12} xs={24}>
+              <Col lg={4} md={4} sm={10} xs={20}>
                 <S.Select>
                   <S.Label htmlFor="select-lang">{t("Language")}</S.Label>
                   <S.LangSelect
@@ -140,10 +104,6 @@ const Footer = ({ t }) => {
                   href="https://raw.githubusercontent.com/iwishiwasaneagle/boxofhope/main/images/instagram.svg"
                   src="instagram.svg"
                 />
-                {/* <SocialLink
-                  href="https://medium.com/@lashakakabadze/"
-                  src="medium.svg"
-                /> */}
               </S.FooterContainer>
             </Row>
           </Container>

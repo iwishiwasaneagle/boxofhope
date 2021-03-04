@@ -42,10 +42,10 @@ const Header = ({ t }) => {
         </S.CustomNavLinkSmall>
         <S.CustomNavLinkSmall
           style={{ width: "180px" }}
-          onClick={() => scrollTo("contact")}
+          onClick={() => window.open("https://github.com/iwishiwasaneagle/boxofhope")}
         >
           <S.Span>
-            <Button>{t("Contact")}</Button>
+            <Button>{t("Source Code")}</Button>
           </S.Span>
         </S.CustomNavLinkSmall>
       </Fragment>
