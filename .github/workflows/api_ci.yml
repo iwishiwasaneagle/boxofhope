@@ -25,5 +25,5 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
-          collection: api/BoxOfHopeAPI_Test.postman_collection.json
+          collection: api/BoxOfHopeAPI.postman_collection.json
           environment: api/InitialTestEnvironment.postman_environment.json
