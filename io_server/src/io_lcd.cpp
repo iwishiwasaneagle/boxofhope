@@ -28,8 +28,8 @@
 
 /**
  * \brief Function for sending bytes of data
- * \param 'bits' Data (bits)
- * \param 'mode' LCD mode (1 = data; 0 = command)
+ * \param bits Data (bits)
+ * \param mode LCD mode (1 = data; 0 = command)
 */
 void io::LCD_Runnable::lcd_byte(int bits, int mode) {
   //Send byte to data pins
@@ -39,27 +39,28 @@ void io::LCD_Runnable::lcd_byte(int bits, int mode) {
   int bits_low;
 
   // uses the two half byte writes to LCD
-  bits_high = mode | (bits & 0xF0) | LCD_BACKLIGHT ;
-  bits_low = mode | ((bits << 4) & 0xF0) | LCD_BACKLIGHT ;
+  bits_high = mode | (bits & 0xF0) | LCD_backlight ;
+  bits_low = mode | ((bits << 4) & 0xF0) | LCD_backlight ;
 
   // High bits
   wiringPiI2CReadReg8(fd, bits_high);
-  lcd_toggle_enable(bits_high);
+  io::LCD_Runnable::lcd_toggle_enable(bits_high);
 
   // Low bits
   wiringPiI2CReadReg8(fd, bits_low);
-  lcd_toggle_enable(bits_low);
+  io::LCD_Runnable::lcd_toggle_enable(bits_low);
 }
 
 /**
  * \brief LCD toggle enable function
+ * \param bits Data (bits)
 */
 void io::LCD_Runnable::lcd_toggle_enable(int bits) {
     // Toggle enable pin on LCD display
     delayMicroseconds(500);
-    wiringPiI2CReadReg8(fd, (bits | ENABLE));
+    wiringPiI2CReadReg8(fd, (bits | LCD_enable));
     delayMicroseconds(500);
-    wiringPiI2CReadReg8(fd, (bits & ~ENABLE));
+    wiringPiI2CReadReg8(fd, (bits & ~LCD_enable));
     delayMicroseconds(500);
 }
 
@@ -77,7 +78,11 @@ void io::LCD_Runnable::lcd_init() {
   delayMicroseconds(500);
 }
 
-// Writing to the LCD
+/**
+ * \brief Writing characters to the LCD
+ * \param *s Pointer to a given character
+ * \param line Line number (line_1 = 0x80 or line_2 = 0xC0)
+*/
 void io::LCD_Runnable::lcd_write(const char *s, int line) {
 
     // choose line (cursor position)
