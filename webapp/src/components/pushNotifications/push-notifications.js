@@ -1,4 +1,4 @@
-const pushServerPublicKey = "BIN2Jc5Vmkmy-S3AUrcMlpKxJpLeVRAfu9WBqUbJ70SJOCWGCGXKY-Xzyh7HDr6KbRDGYHjqZ06OcS3BjD7uAm8";
+const pushServerPublicKey = "BN6BhZ2mBQ-oiR78XnNrizLWotzej3iL-TTaTn5egHMmBfqJpdrmbUiIjjy_PsHgacuh3i17Hpgx7LuWwQL9Dvg";
 
 /**
  * checks if Push notification and service workers are supported by your browser
@@ -15,31 +15,25 @@ async function askUserPermission() {
 }
 
 /**
- * shows a notification
- */
-function sendNotification() {
-  const img = "/images/jason-leung-HM6TMmevbZQ-unsplash.jpg";
-  const text = "Take a look at this brand new t-shirt!";
-  const title = "New Product Available";
-  const options = {
-    body: text,
-    icon: "/images/jason-leung-HM6TMmevbZQ-unsplash.jpg",
-    vibrate: [200, 100, 200],
-    tag: "new-product",
-    image: img,
-    badge: "https://spyna.it/icons/android-icon-192x192.png",
-    actions: [{ action: "Detail", title: "View", icon: "https://via.placeholder.com/128/ff0000" }]
-  };
-  navigator.serviceWorker.ready.then(function(serviceWorker) {
-    serviceWorker.showNotification(title, options);
-  });
-}
-
-/**
  *
  */
 function registerServiceWorker() {
   return navigator.serviceWorker.register("/sw.js");
+}
+
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/-/g, '+')
+    .replace(/_/g, '/');
+ 
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+ 
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
 }
 
 /**
@@ -53,14 +47,14 @@ async function createNotificationSubscription() {
   // subscribe and return the subscription
   return await serviceWorker.pushManager.subscribe({
     userVisibleOnly: true,
-    applicationServerKey: pushServerPublicKey
+    applicationServerKey: urlBase64ToUint8Array(pushServerPublicKey)
   });
 }
 
 /**
  * returns the subscription if present or nothing
  */
-function getUserSubscription() {
+async function getUserSubscription() {
   //wait for service worker installation to be ready, and then
   return navigator.serviceWorker.ready
     .then(function(serviceWorker) {
@@ -71,20 +65,18 @@ function getUserSubscription() {
     });
 }
 
-function unsubscribeUser(){
+async function unsubscribeUser(){
   return getUserSubscription().then(pushSubscription=>{
     pushSubscription?.unsubscribe().then(success=>{
       return true;
     })
   });
-
 }
 
 export {
   isPushNotificationSupported,
   askUserPermission,
   registerServiceWorker,
-  sendNotification,
   createNotificationSubscription,
   getUserSubscription,
   unsubscribeUser
