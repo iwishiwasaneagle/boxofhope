@@ -10,6 +10,7 @@ exports.read_current_sterilisation_time = function(req, res){
             res.send(err);
         res.json(setting);
     });
+    res.status(200);
 };
 
 exports.update_sterilisation_time = function(req, res){
@@ -18,4 +19,5 @@ exports.update_sterilisation_time = function(req, res){
             res.send(err);
         res.json(setting);
     });
+    res.status(200);
 };
