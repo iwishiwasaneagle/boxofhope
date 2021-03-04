@@ -80,9 +80,9 @@ There are 3 components to this project - `api`, `webapp`, and `io_server`.
 
 ### `api`
 
-This is the RESTful API that...
+The RESTful API handles HTTP requests, allowing communication between the server and the client. Four schemas are contained within the API: `masks`, `states`, `settings` and `notifications`. This API requires no authentication.
 
-More documentation about the `api` can be found [here](./api).
+More documentation on the `api` can be found [here](./api).
 
 ### `io_server`
 
