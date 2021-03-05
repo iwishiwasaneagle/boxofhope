@@ -25,11 +25,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Use Node.js 12.0
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.0
-
       - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.3.0
         with:
@@ -37,5 +32,5 @@ jobs:
 
       - run: |
           cd api
-          node server.js & 
+          npm run start & 
           newman run BoxOfHopeAPI.postman_collection.json
