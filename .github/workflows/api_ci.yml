@@ -37,6 +37,6 @@ jobs:
 
       - run: |
           cd api
-          npm install &
+          npm install
           npm run start & 
           newman run BoxOfHopeAPI.postman_collection.json
