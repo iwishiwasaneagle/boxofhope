@@ -24,7 +24,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - uses: matt-ball/newman-action@v0.2.4
+      - name: Newman Action
+        uses: matt-ball/newman-action@v0.2.4
         with:
           collection: api/BoxOfHopeAPI.postman_collection.json
           environment: api/InitialTestEnvironment.postman_environment.json
