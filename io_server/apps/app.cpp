@@ -11,6 +11,7 @@
 
 #include <mainConfig.h>
 #include <io_server/io_server.h>
+#include <utils/api.h>
 
 int tests();
 
@@ -70,6 +71,8 @@ int main(int argc, char* argv[]){
  */
 int tests(){
     std::cout << "Start of the test function" << std::endl;
+
+    std::cout << API::HomeState::update(false).dump(4) << std::endl;
 
     // io::NFC_Runnable nfc_runnable = io::NFC_Runnable();
     // nfc_target tag = nfc_runnable.waitForTag();

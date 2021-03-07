@@ -28,6 +28,10 @@ message( STATUS "LibNFC: ${LIBNFC_INCLUDE_DIR}" )
 find_package( Boost REQUIRED COMPONENTS system thread unit_test_framework )
 include_directories( ${Boost_INCLUDE_DIR} )
 
+# Add cURL to the project
+find_package( CURL REQUIRED )
+include_directories( ${CURL_INCLUDE_DIR} )
+
 # Add nlohmann_json::nlohmann_json
 include(FetchContent)
 FetchContent_Declare(json
@@ -40,7 +44,7 @@ if(NOT json_POPULATED)
 endif()
 
 # List of libraries
-set(LIBRARIES_LIST libioserver ${Boost_LIBRARIES} ${WIRINGPI_LIBRARIES} ${LIBNFC_LIBRARIES} nlohmann_json::nlohmann_json)
+set(LIBRARIES_LIST libioserver ${Boost_LIBRARIES} ${WIRINGPI_LIBRARIES} ${LIBNFC_LIBRARIES} nlohmann_json::nlohmann_json ${CURL_LIBRARIES} )
 
 # The compiled library code is here
 add_subdirectory(src)
