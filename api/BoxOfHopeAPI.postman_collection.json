@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "b7d961b1-85b2-4303-8268-751107f44fe6",
-		"name": "APITests",
+		"_postman_id": "b65baf3d-f41b-47fc-a1a2-355a3c9456ab",
+		"name": "BoxOfHopeAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -90,6 +90,88 @@
 			"response": []
 		},
 		{
+			"name": "Update Mask Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"PUT function works\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.last_check_in).to.equal('2021-02-20T11:00:00.000Z');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "last_check_in",
+							"value": "2021-02-20T11:00:00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/mask/{{currentId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mask",
+						"{{currentId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Number of Masks ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"GET function works\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(Object.keys(jsonData).length).to.equal(1);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/mask/mask-count",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mask",
+						"mask-count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete Mask",
 			"event": [
 				{
@@ -117,6 +199,40 @@
 					"path": [
 						"mask",
 						"{{currentId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check All Masks are Deleted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"GET function works\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(Object.keys(jsonData).length).to.equal(0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/mask/mask-count",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mask",
+						"mask-count"
 					]
 				}
 			},
