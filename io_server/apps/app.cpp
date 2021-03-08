@@ -72,7 +72,10 @@ int main(int argc, char* argv[]){
 int tests(){
     std::cout << "Start of the test function" << std::endl;
 
-    std::cout << API::HomeState::update(false).dump(4) << std::endl;
+    io::UVC_Runnable uvc(20);
+    uvc.start();
+    uvc.attach();
+    uvc.stop();
 
     // io::NFC_Runnable nfc_runnable = io::NFC_Runnable();
     // nfc_target tag = nfc_runnable.waitForTag();

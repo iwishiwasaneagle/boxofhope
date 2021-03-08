@@ -35,10 +35,10 @@ int io::setup_io(void){
     /// WiringPi setup function
     wiringPiSetup();
     
-    pinMode(DOOR_SWITCH_PIN_WP,INPUT);
+ //   pinMode(DOOR_SWITCH_PIN_WP,INPUT);
 
     /// Setup door switch ISR on both rising and falling edge
-    wiringPiISR(DOOR_SWITCH_PIN_WP, INT_EDGE_BOTH, &io::door_switch_interrupt);
+//    wiringPiISR(DOOR_SWITCH_PIN_WP, INT_EDGE_BOTH, &io::door_switch_interrupt);
 
     return 0;
 }

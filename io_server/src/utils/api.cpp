@@ -19,8 +19,8 @@ json API::operation(std::string method, std::string url, std::string port, std::
 	std::string responseBuffer;
 	std::string headerBuffer;
 	if(curl) {
-      curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
-      curl_easy_setopt(curl, CURLOPT_HEADER, 1);
+      //curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
+      //curl_easy_setopt(curl, CURLOPT_HEADER, 1);
 	  curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, method.c_str());
         
       // TODO Make this a CLI flag 

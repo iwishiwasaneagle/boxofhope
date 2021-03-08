@@ -12,6 +12,7 @@ add_library(${LIBNAME}
     io_home.cpp 
     io_door.cpp 
     io_nfc.cpp
+    io_uvc.cpp
     utils/api.cpp
     )
 

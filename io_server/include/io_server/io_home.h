@@ -8,6 +8,8 @@
 
 #include <iostream>
 
+#include "utils/api.h"
+
 namespace io{
     class IsUserHome_Runnable{
         private:

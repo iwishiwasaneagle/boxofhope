@@ -1,6 +1,5 @@
 #include "io_server/io_home.h"
 
-
 bool io::IsUserHome_Runnable::isUserHome(std::string ip){
     std::array<char, 128> buffer;
 	std::string cmd = "ping -c1 ";
@@ -17,12 +16,16 @@ bool io::IsUserHome_Runnable::isUserHome(std::string ip){
     int returnCode = pclose(f); //< returns 0 on success, 256 on error
 
     std::cout << "\033[1;44mIsUserHome_Runnable heartbeat\033[0m - IP " << ip;
+    bool home = false;
     if(returnCode==0){
         std::cout << " \033[1;32mwas\033[0m found" << std::endl;
-        return true;
+    }else{
+        std::cout << " \033[1;31mwasn't\033[0m found" << std::endl;
     }
-    std::cout << " \033[1;31mwasn't\033[0m found" << std::endl;
-    return false;
+
+    API::HomeState::update(home);
+
+    return home;
 }
 
 io::IsUserHome_Runnable::IsUserHome_Runnable(int interval_s):           
