@@ -36,12 +36,12 @@ jobs:
           mongodb-version: 4.0
 
       - name: npm install
-          run: |
-            cd api
-            npm install
-            
-        - name: Start Server and Run Tests
-          run: |
-            cd api
-            npm run start & 
-            newman run BoxOfHopeAPI.postman_collection.json
+        run: |
+          cd api
+          npm install
+
+      - name: Start Server and Run Tests
+        run: |
+          cd api
+          npm run start & 
+          newman run BoxOfHopeAPI.postman_collection.json
