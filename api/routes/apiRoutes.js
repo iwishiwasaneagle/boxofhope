@@ -91,12 +91,21 @@ module.exports = function(app) {
 
     app.route('/state/user-home')
         .put(state.update_user_home);
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route POST /settings/sterilisation-time
+    * @group settings - Operations about system settings
+    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. (Default 90 seconds.)
+    * @returns {object} 201 - Created 
+    * @returns {Error}  default - Unexpected error
+    */
     
     /**
     * This function comment is parsed by doctrine
     * @route GET /settings/sterilisation-time
     * @group settings - Operations about system settings
-    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. 
+    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. (Default 90 seconds.)
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
@@ -105,12 +114,13 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route PUT /settings/sterilisation-time
     * @group settings - Operations about system settings
-    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. 
+    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. (Default 90 seconds.)
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
 
     app.route('/settings/sterilisation-time')
+        .post(settings.set_sterilisation_time)
         .get(settings.read_current_sterilisation_time)
         .put(settings.update_sterilisation_time);
 
