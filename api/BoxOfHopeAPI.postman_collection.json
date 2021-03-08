@@ -16,7 +16,7 @@
 							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
 							"});\r",
 							"\r",
-							"pm.globals.set(\"currentId\", pm.response.json()._id);"
+							"pm.globals.set(\"maskId\", pm.response.json()._id);"
 						],
 						"type": "text/javascript"
 					}
@@ -59,7 +59,6 @@
 						"exec": [
 							"pm.test(\"GET function works\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
-							"    // pm.expect(pm.globals.get(\"variable_key\")).to.equal(\"hi\");\r",
 							"    pm.expect(jsonData).to.not.equal(null);\r",
 							"});\r",
 							"\r",
@@ -75,7 +74,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/mask/{{currentId}}",
+					"raw": "http://localhost:3000/mask/{{maskId}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -83,7 +82,7 @@
 					"port": "3000",
 					"path": [
 						"mask",
-						"{{currentId}}"
+						"{{maskId}}"
 					]
 				}
 			},
@@ -123,7 +122,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/mask/{{currentId}}",
+					"raw": "http://localhost:3000/mask/{{maskId}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -131,7 +130,7 @@
 					"port": "3000",
 					"path": [
 						"mask",
-						"{{currentId}}"
+						"{{maskId}}"
 					]
 				}
 			},
@@ -190,7 +189,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/mask/{{currentId}}",
+					"raw": "http://localhost:3000/mask/{{maskId}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -198,7 +197,7 @@
 					"port": "3000",
 					"path": [
 						"mask",
-						"{{currentId}}"
+						"{{maskId}}"
 					]
 				}
 			},
@@ -233,6 +232,174 @@
 					"path": [
 						"mask",
 						"mask-count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Settings",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request - new settings added.\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"settingsId\", pm.response.json()._id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "sterilisation_time",
+							"value": "90",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/settings/sterilisation-time",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"settings",
+						"sterilisation-time"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Sterilisation Time Setting",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"GET function works\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.sterilisation_time).to.equal(90);",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/settings/sterilisation-time/{{settingsId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"settings",
+						"sterilisation-time",
+						"{{settingsId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Sterilisation Time Setting",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"PUT function works\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.sterilisation_time).to.equal(120);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "sterilisation_time",
+							"value": "120",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/settings/sterilisation-time/{{settingsId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"settings",
+						"sterilisation-time",
+						"{{settingsId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Settings",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204 - mask successfully deleted\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/settings/sterilisation-time/{{settingsId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"settings",
+						"sterilisation-time",
+						"{{settingsId}}"
 					]
 				}
 			},
