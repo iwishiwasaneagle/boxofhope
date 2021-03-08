@@ -1,20 +1,22 @@
 {
 	"info": {
-		"_postman_id": "843f01a4-29ba-47a3-ab4c-a0a79828a4f0",
-		"name": "BoxOfHopeAPI",
+		"_postman_id": "b7d961b1-85b2-4303-8268-751107f44fe6",
+		"name": "APITests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://localhost:3000/mask/register-new",
+			"name": "Add New Mask",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"  pm.response.to.have.status(201);",
-							"});"
+							"pm.test(\"Successful POST request - new mask added to database\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"currentId\", pm.response.json()._id);"
 						],
 						"type": "text/javascript"
 					}
@@ -23,6 +25,16 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "last_check_in",
+							"value": "2021-03-08T11:00:00",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
 					"raw": "http://localhost:3000/mask/register-new",
 					"protocol": "http",
@@ -33,33 +45,26 @@
 					"path": [
 						"mask",
 						"register-new"
-					],
-					"query": [
-						{
-							"key": "status",
-							"value": "Checked Out",
-							"disabled": true
-						},
-						{
-							"key": "last_check_in",
-							"value": "20/02/2021",
-							"disabled": true
-						}
 					]
-				},
-				"description": "Tests validity of POST return code (201) when registering a new mask. "
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:3000/mask/mask-count",
+			"name": "Attempt to Get Mask",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"  pm.response.to.have.status(200);",
+							"pm.test(\"GET function works\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    // pm.expect(pm.globals.get(\"variable_key\")).to.equal(\"hi\");\r",
+							"    pm.expect(jsonData).to.not.equal(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -70,7 +75,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/mask/mask-count",
+					"raw": "http://localhost:3000/mask/{{currentId}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -78,99 +83,21 @@
 					"port": "3000",
 					"path": [
 						"mask",
-						"mask-count"
-					],
-					"query": [
-						{
-							"key": "status",
-							"value": "Checked Out",
-							"disabled": true
-						},
-						{
-							"key": "last_check_in",
-							"value": "20/02/2021",
-							"disabled": true
-						}
+						"{{currentId}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:3000/mask/:maskId",
+			"name": "Delete Mask",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"  pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/mask/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"mask",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/mask/:maskId",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"  pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/mask/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"mask",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/mask/:maskId",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 204\", function () {",
-							"  pm.response.to.have.status(204);",
+							"pm.test(\"Status code is 204 - mask successfully deleted\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -181,7 +108,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/mask/1",
+					"raw": "http://localhost:3000/mask/{{currentId}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -189,7 +116,7 @@
 					"port": "3000",
 					"path": [
 						"mask",
-						"1"
+						"{{currentId}}"
 					]
 				}
 			},
