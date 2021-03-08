@@ -14,8 +14,9 @@ exports.set_sterilisation_time = function(req, res) {
     });
     res.status(201);
 };
+
 exports.read_current_sterilisation_time = function(req, res){
-    Settings.find({}, function(err,setting){
+    Settings.findById(req.params.settingsId, function(err, setting) {
         if (err)
             res.status(404).send('Bad Request: Cannot read current sterilisation time.');
         res.json(setting);
@@ -24,15 +25,15 @@ exports.read_current_sterilisation_time = function(req, res){
 };
  
 exports.update_sterilisation_time = function(req, res){
-    Settings.findOneAndUpdate({}, req.body, {new:true}, function(err,setting){
+    Settings.findOneAndUpdate({_id: req.params.settingsId}, req.body, {new: true}, function(err, setting) {
         if (err)
-            res.status(404).send('Cannot update sterilisation time');
+            res.status(404).send('Cannot update sterilisation time.');
         res.json(setting);
     });
     res.status(200);
 };
 
-exports.delete_mask = function(req, res) {
+exports.delete_sterilisation_time = function(req, res) {
     Settings.remove({
       _id: req.params.settingsId
     }, function(err, setting) {
@@ -40,7 +41,7 @@ exports.delete_mask = function(req, res) {
         // res.send(err);
         res.status(404).send('Bad Request: Cannot delete settings data.');
       } else {
-        res.json({ message: 'Settings successfully deleted' });
+        res.json({ message: 'Settings successfully deleted.' });
       }
     });
     res.status(204);

@@ -121,6 +121,8 @@ module.exports = function(app) {
 
     app.route('/settings/sterilisation-time')
         .post(settings.set_sterilisation_time)
+
+    app.route('/settings/sterilisation-time/:settingsId')
         .get(settings.read_current_sterilisation_time)
         .put(settings.update_sterilisation_time)
         .delete(settings.delete_sterilisation_time);
