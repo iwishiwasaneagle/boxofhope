@@ -76,6 +76,8 @@ void io::LCD_Runnable::lcd_init() {
   io::LCD_Runnable::lcd_byte(0x28, LCD_CMD); // Data length, number of lines, font size
   io::LCD_Runnable::lcd_byte(0x01, LCD_CMD); // Clear display
   delayMicroseconds(500);
+
+  fd = wiringPiI2CSetup(I2C_address);
 }
 
 /**
@@ -119,5 +121,8 @@ io::LCD_Runnable::LCD_Runnable(void){
  * 
  */
 io::LCD_Runnable::~LCD_Runnable(void){
+
+    // clear the LCD
+    io::LCD_Runnable::lcd_clear();
 
 }

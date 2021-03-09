@@ -12,17 +12,18 @@ namespace io{
         private:
 
             #define I2C_address;
+            int fd;
             
         public:
 
-            #define LCD_CHAR;
-            #define LCD_CMD;
+            #define LCD_CHAR
+            #define LCD_CMD
 
-            #define line_1;
-            #define line_2;
+            #define line_1
+            #define line_2
 
-            #define LCD_backlight;
-            #define LCD_enable; 
+            #define LCD_backlight
+            #define LCD_enable
 
             void lcd_byte(int bits, int mode);
             void lcd_toggle_enable(int bits);
