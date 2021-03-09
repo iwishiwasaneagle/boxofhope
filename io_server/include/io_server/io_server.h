@@ -1,8 +1,8 @@
 #ifndef IO_SERVER_H
 #define IO_SERVER_H
 
-#define DOOR_SWITCH_PIN_WP 16 //< Physical pin (indexed by wiringPi ID) for door switch
-#define UVC_LED_PIN_WP 15 //< Physical pin (indexed by wiringPi ID) for UV led
+#define DOOR_SWITCH_PIN_WP 1 //< Physical pin (indexed by wiringPi ID) for door switch
+#define UVC_LED_PIN_WP 2 //< Physical pin (indexed by wiringPi ID) for UV led
 
 #include <iostream>
 #include <string>

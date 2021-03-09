@@ -5,6 +5,7 @@
 #include <ostream>
 #include <istream>
 #include <iostream>
+#include <stdexcept>
 #include <curl/curl.h>
 
 #include <nlohmann/json.hpp>
@@ -75,11 +76,23 @@ class API{
          * \return ::json object holding the request message 
          */
         static json operation(std::string method, std::string url, std::string port, std::string endpoint);
+        
+        /**
+         * \brief Template struct to allow a consistent API interface to be made. All states are single value, and therefore T can be bool, int, etc.
+         *
+         */
+        template<class T>
+        struct State{
+                virtual json update(T state){throw std::runtime_error("static json update(bool state) is not implemeted yet.");};
+                virtual json set(T state){throw std::runtime_error("static json set(bool state) is not implemeted yet.");};
+                virtual json get(void){throw std::runtime_error("static json get(bool state) is not implemeted yet.");};
+        
+        };
     public:
         /**
-         * \brief Static class to access the /state/user-home endpoint
+         * \brief Class to access the /state/user-home endpoint
          */
-        class HomeState {
+        class HomeState: public State<bool> {
 			public:
                 /**
                  * \brief Update the state
@@ -88,7 +101,7 @@ class API{
                  *
                  * \return ::json object with message data
                  */
-	            static json update(bool isUserHome);        
+	            json update(bool isUserHome);        
                 /**
                  * \brief Set the initial state
                  *
@@ -96,35 +109,69 @@ class API{
                  *
                  * \return ::json object with message data
                  */
-                static json set(bool isUserHome);
-        };
-        /**
-         * \brief Static class to access the /state/present-mask endpoint
-         */
-        class MaskState {
-			public:
-                /**
-                 * \brief Update the state
-                 *
-                 * \param isMaskPresent Is mask present?
-                 *
-                 * \return ::json object with message data
-                 */
-	            static json update(bool isMaskPresent);        
-                /**
-                 * \brief Set the initial state
-                 *
-                 * \param isMaskPresent Is mask present?
-                 *
-                 * \return ::json object with message data
-                 */
-                static json set(bool isMaskPresent);
+                json set(bool isUserHome);
                 /**
                  * \brief Get the state
                  *
                  * \return ::json object with message data
                  */
-                static json get(void);
+                json get(void);
+        };
+        /**
+         * \brief Class to access the /state/present-mask endpoint
+         */
+        class MaskState: public State<bool> {
+			public:
+                /**
+                 * \brief Update the state
+                 *
+                 * \param isMaskPresent Is mask present?
+                 *
+                 * \return ::json object with message data
+                 */
+	            json update(bool isMaskPresent);        
+                /**
+                 * \brief Set the initial state
+                 *
+                 * \param isMaskPresent Is mask present?
+                 *
+                 * \return ::json object with message data
+                 */
+                json set(bool isMaskPresent);
+                /**
+                 * \brief Get the state
+                 *
+                 * \return ::json object with message data
+                 */
+                json get(void);
+        };
+        /**
+         * \brief Class to access the /state/uvc endpoint
+         */
+        class UVCState: public State<int> {
+			public:
+                /**
+                 * \brief Update the state
+                 *
+                 * \param sterilizationTime End time of sterilization.
+                 *
+                 * \return ::json object with message data
+                 */
+	            json update(int sterilizationTime);        
+                /**
+                 * \brief Set the initial state
+                 *
+                 * \param sterilizationtime End time of sterilization.
+                 *
+                 * \return ::json object with message data
+                 */
+                json set(int sterilizationTime);
+                /**
+                 * \brief Get the last sterilization time.
+                 *
+                 * \return ::json object with message data
+                 */
+                json get(void);
         };
 };
 #endif

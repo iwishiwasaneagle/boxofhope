@@ -23,7 +23,7 @@ bool io::IsUserHome_Runnable::isUserHome(std::string ip){
         std::cout << " \033[1;31mwasn't\033[0m found" << std::endl;
     }
 
-    API::HomeState::update(home);
+    API::HomeState().update(home);
 
     return home;
 }

@@ -1,5 +1,8 @@
 #include "utils/api.h"
 
+/*================*/
+/*=== Core API ===*/
+/*================*/
 
 size_t API::cUrlWriteCallback(void *contents, size_t size, size_t nmemb, void *userp){ 
     ((std::string*)userp)->append((char*)contents, size * nmemb);
@@ -54,6 +57,10 @@ json API::operation(std::string method, std::string url, std::string port, std::
     return json::parse(responseBuffer);
 }
 
+/*============*/
+/*=== Home ===*/
+/*============*/
+
 json API::HomeState::set(bool isUserHome){
     return API::HomeState::update(isUserHome);
 }
@@ -73,6 +80,14 @@ json API::HomeState::update(bool isUserHome){
     
     return API::operation("PUT",API_URL, API_PORT, "/state/user-home", payload);
 }
+
+json API::HomeState::get(void){
+    return API::operation("GET",API_URL, API_PORT, "/state/user-home");
+}
+
+/*============*/
+/*=== Mask ===*/
+/*============*/
 
 json API::MaskState::set(bool isMaskPresent){
     return API::MaskState::update(isMaskPresent);
@@ -96,4 +111,24 @@ json API::MaskState::update(bool isMaskPresent){
 
 json API::MaskState::get(void){
     return API::operation("GET",API_URL, API_PORT, "/state/present-mask");
+}
+
+
+/*===========*/
+/*=== UVC ===*/
+/*===========*/
+
+json API::UVCState::set(int sterilizationTime){
+    return API::UVCState::update(sterilizationTime);
+}
+
+json API::UVCState::update(int sterilizationTime){
+    json payload;
+    payload["mask_status"] = std::to_string(sterilizationTime);
+    
+    return API::operation("PUT",API_URL, API_PORT, "/state/UVC", payload);
+}
+
+json API::UVCState::get(void){
+    return API::operation("GET",API_URL, API_PORT, "/state/UVC/last");
 }
