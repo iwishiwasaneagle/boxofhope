@@ -9,6 +9,7 @@ var express = require('express'),
   Settings = require('./models/settingsModel'), //created model loading here
   Mask = require('./models/maskModel'), //created model loading here
   Notification = require('./models/notificationModel'), //created notification loading here
+  UserHome = require('./models/userHomeModel'), //created userHome loading here
   bodyParser = require('body-parser');
 
 const expressSwagger = require('express-swagger-generator')(app);
