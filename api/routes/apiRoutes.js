@@ -4,6 +4,7 @@ module.exports = function(app) {
     var settings = require('../controllers/settingsController');
     var mask = require('../controllers/maskController');
     var notification = require('../controllers/notificationsController');
+    var userHome = require('../controllers/userHomeController');
 
     // API Routes with Swagger Documentation 
 
@@ -82,15 +83,51 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/user-home
+    * @route POST /userHome/user-home
+    * @group userHome - Operations about user home status 
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Date} status_time - Time at which user status is logged. 
+    * @returns {object} 201 - Created 
+    * @returns {Error}  default - Unexpected error
+    */
+    
+    app.route('/userHome/user-status')
+        .post(userHome.set_user_home);  
+    
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /userHome/user-home
     * @group state - Operations about system states
     * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Date} status_time - Time at which user status is logged. 
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
 
-    app.route('/state/user-home')
-        .put(state.update_user_home);
+    /**
+    * This function comment is parsed by doctrine
+    * @route PUT /userHome/user-home
+    * @group state - Operations about system states
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Date} status_time - Time at which user status is logged. 
+    * @returns {object} 200 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+    
+    /**
+    * This function comment is parsed by doctrine
+    * @route DELETE /userHome/user-home
+    * @group state - Operations about system states
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Number} status_time - Time at which user status is logged. 
+    * @returns {object} 204 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+    app.route('/userHome/user-status/:userHomeId')
+        .get(userHome.read_user_home)
+        .put(userHome.update_user_home)
+        .delete(userHome.delete_user_home);
 
     /**
     * This function comment is parsed by doctrine
@@ -100,7 +137,10 @@ module.exports = function(app) {
     * @returns {object} 201 - Created 
     * @returns {Error}  default - Unexpected error
     */
-    
+
+    app.route('/settings/sterilisation-time')
+        .post(settings.set_sterilisation_time);
+
     /**
     * This function comment is parsed by doctrine
     * @route GET /settings/sterilisation-time
@@ -119,8 +159,14 @@ module.exports = function(app) {
     * @returns {Error}  default - Unexpected error
     */
 
-    app.route('/settings/sterilisation-time')
-        .post(settings.set_sterilisation_time)
+    /**
+    * This function comment is parsed by doctrine
+    * @route DELETE /settings/sterilisation-time
+    * @group settings - Operations about system settings
+    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. (Default 90 seconds.)
+    * @returns {object} 204 - OK
+    * @returns {Error}  default - Unexpected error
+    */
 
     app.route('/settings/sterilisation-time/:settingsId')
         .get(settings.read_current_sterilisation_time)

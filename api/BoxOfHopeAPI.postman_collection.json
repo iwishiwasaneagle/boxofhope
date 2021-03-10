@@ -404,6 +404,178 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Add New User_Home Entry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check POST request - new user home entry added to database\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"userHomeId\", pm.response.json()._id);\r",
+							"\r",
+							"pm.test(\"Value is in valid list\", () => {\r",
+							"  pm.expect(pm.response.json().user_status[0])\r",
+							"    .to.be.oneOf([\"User Home\",\"User Not Home\"]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "user_status",
+							"value": "User Home",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/userHome/user-status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userHome",
+						"user-status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attempt to Get User_Home Entry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check GET function works\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.equal(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/userHome/user-status/{{userHomeId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userHome",
+						"user-status",
+						"{{userHomeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User_Home Entry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"PUT function works\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.user_status[0]).to.equal('User Not Home');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "user_status",
+							"value": "User Not Home",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/userHome/user-status/{{userHomeId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userHome",
+						"user-status",
+						"{{userHomeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User_Home Entry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204 - User Home entry successfully deleted\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/userHome/user-status/{{userHomeId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userHome",
+						"user-status",
+						"{{userHomeId}}"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

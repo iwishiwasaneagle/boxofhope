@@ -59,13 +59,3 @@ exports.update_switch_open_close = function(req, res){
     });
     res.status(200);
 };
-
-exports.update_user_home = function(req, res){
-    State.findOneAndUpdate({}, req.body, {new:true}, function(err,state){
-        if (err)
-            res.status(404).send('Bad Request: Cannot update user_home state.');
-        res.json(state);
-    });
-    res.status(200);
-};
-
