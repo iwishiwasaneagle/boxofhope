@@ -4,6 +4,7 @@ module.exports = function(app) {
     var settings = require('../controllers/settingsController');
     var mask = require('../controllers/maskController');
     var notification = require('../controllers/notificationsController');
+    var userHome = require('../controllers/userHomeController');
 
     // API Routes with Swagger Documentation 
 
@@ -82,15 +83,47 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/user-home
+    * @route POST /userHome/user-home
+    * @group userHome - Operations about user home status 
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @returns {object} 201 - Created 
+    * @returns {Error}  default - Unexpected error
+    */
+    
+    app.route('/userHome/user-home')
+        .post(userHome.set_user_home);  
+    
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /userHome/user-home
     * @group state - Operations about system states
     * @param {String} user_status - ['User Home', 'User Not Home']
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
 
-    app.route('/state/user-home')
-        .put(state.update_user_home);
+    /**
+    * This function comment is parsed by doctrine
+    * @route PUT /userHome/user-home
+    * @group state - Operations about system states
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @returns {object} 200 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+    
+    /**
+    * This function comment is parsed by doctrine
+    * @route DELETE /userHome/user-home
+    * @group state - Operations about system states
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @returns {object} 204 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+    app.route('/userHome/user-home/:userHomeId')
+        .get(userHome.read_user_home)
+        .put(userHome.update_user_home)
+        .delete(userHome.delte_user_home);
 
     /**
     * This function comment is parsed by doctrine
