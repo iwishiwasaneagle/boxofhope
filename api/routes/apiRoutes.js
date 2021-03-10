@@ -91,7 +91,7 @@ module.exports = function(app) {
     * @returns {Error}  default - Unexpected error
     */
     
-    app.route('/userHome/user-home')
+    app.route('/userHome/user-status')
         .post(userHome.set_user_home);  
     
     /**
@@ -124,7 +124,7 @@ module.exports = function(app) {
     * @returns {Error}  default - Unexpected error
     */
 
-    app.route('/userHome/user-home/:userHomeId')
+    app.route('/userHome/user-status/:userHomeId')
         .get(userHome.read_user_home)
         .put(userHome.update_user_home)
         .delete(userHome.delete_user_home);
