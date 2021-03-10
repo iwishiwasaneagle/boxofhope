@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 userHome = mongoose.model('UserHome');
 
 exports.set_user_home = function(req, res) {
-    var new_user_home = new UserHome(req.body);
+    var new_user_home = new userHome(req.body);
     new_user_home.save(function(err, userHome) {
         if (err) {
           res.status(404).send('Bad Request: Cannot set userHome status.');
@@ -33,7 +33,7 @@ exports.update_user_home = function(req, res){
     res.status(200);
 };
 
-exports.delete_userHome = function(req, res) {
+exports.delete_user_home = function(req, res) {
     userHome.remove({
       _id: req.params.userHomeId
     }, function(err, userHome) {

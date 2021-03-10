@@ -123,7 +123,7 @@ module.exports = function(app) {
     app.route('/userHome/user-home/:userHomeId')
         .get(userHome.read_user_home)
         .put(userHome.update_user_home)
-        .delete(userHome.delte_user_home);
+        .delete(userHome.delete_user_home);
 
     /**
     * This function comment is parsed by doctrine
@@ -135,7 +135,7 @@ module.exports = function(app) {
     */
 
     app.route('/settings/sterilisation-time')
-        .post(settings.set_sterilisation_time)
+        .post(settings.set_sterilisation_time);
 
     /**
     * This function comment is parsed by doctrine

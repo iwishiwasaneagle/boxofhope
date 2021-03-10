@@ -15,4 +15,4 @@ var userHomeSchema = new Schema ({
     }
 });
 
-module.exports = mongoose.model('userHome', userHomeSchema);
+module.exports = mongoose.model('UserHome', userHomeSchema);
