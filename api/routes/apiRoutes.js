@@ -133,7 +133,10 @@ module.exports = function(app) {
     * @returns {object} 201 - Created 
     * @returns {Error}  default - Unexpected error
     */
-    
+
+    app.route('/settings/sterilisation-time')
+        .post(settings.set_sterilisation_time)
+
     /**
     * This function comment is parsed by doctrine
     * @route GET /settings/sterilisation-time
@@ -152,8 +155,14 @@ module.exports = function(app) {
     * @returns {Error}  default - Unexpected error
     */
 
-    app.route('/settings/sterilisation-time')
-        .post(settings.set_sterilisation_time)
+    /**
+    * This function comment is parsed by doctrine
+    * @route DELETE /settings/sterilisation-time
+    * @group settings - Operations about system settings
+    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. (Default 90 seconds.)
+    * @returns {object} 204 - OK
+    * @returns {Error}  default - Unexpected error
+    */
 
     app.route('/settings/sterilisation-time/:settingsId')
         .get(settings.read_current_sterilisation_time)
