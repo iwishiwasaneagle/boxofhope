@@ -86,6 +86,7 @@ module.exports = function(app) {
     * @route POST /userHome/user-home
     * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Date} status_time - Time at which user status is logged. 
     * @returns {object} 201 - Created 
     * @returns {Error}  default - Unexpected error
     */
@@ -98,6 +99,7 @@ module.exports = function(app) {
     * @route GET /userHome/user-home
     * @group state - Operations about system states
     * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Date} status_time - Time at which user status is logged. 
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
@@ -107,6 +109,7 @@ module.exports = function(app) {
     * @route PUT /userHome/user-home
     * @group state - Operations about system states
     * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Date} status_time - Time at which user status is logged. 
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
@@ -116,6 +119,7 @@ module.exports = function(app) {
     * @route DELETE /userHome/user-home
     * @group state - Operations about system states
     * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Number} status_time - Time at which user status is logged. 
     * @returns {object} 204 - OK
     * @returns {Error}  default - Unexpected error
     */

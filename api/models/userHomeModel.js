@@ -12,7 +12,11 @@ var userHomeSchema = new Schema ({
         type: String,
         enum: ['User Home', 'User Not Home']
       }]
-    }
+    },
+    status_date: {
+      type: Date,
+      default: Date.now
+  },
 });
 
 module.exports = mongoose.model('UserHome', userHomeSchema);
