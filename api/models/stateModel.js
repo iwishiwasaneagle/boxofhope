@@ -26,12 +26,6 @@ var StateSchema = new Schema ({
           enum: ['Mask Present', 'No Mask Present']
         }],
         default: ['No Mask Present']
-      },
-      user_status: {
-        type: [{
-          type: String,
-          enum: ['User Home', 'User Not Home']
-        }]
       }
 });
 
