@@ -25,7 +25,8 @@ exports.register_new_notification_data = function(req, res) {
             }
             console.log(notification)
             res.json(new_notification.toClient());
-        });
+        }); 
+        res.status(201);
     }
     else{
         res.status(400).send("No data");
@@ -47,6 +48,7 @@ exports.read_notification_data = function(req, res) {
           }
 
   });
+  res.status(200);
 };
 
 exports.delete_notification_data = function(req, res) {
@@ -57,6 +59,7 @@ exports.delete_notification_data = function(req, res) {
         res.status(404).send('Bad Request: Cannot delete notification data.');
       res.json({ message: 'notification successfully deleted', _id: req.params.notificationId  });
     });
+    res.status(204);
   };
      
 exports.send_notification = function(req,res){
@@ -85,6 +88,7 @@ exports.send_notification = function(req,res){
          })).then(
             ()=>res.send("OK")
         );
+        res.status(201);
     })};
 
 exports.get_latest_id = function(req,res){
