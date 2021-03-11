@@ -54,7 +54,7 @@ int main(int argc, char* argv[]){
                 return 0;
             case 'r':
                 // Run the embedded I/O server
-                return io::server_run(argc,argv);                
+                return io::IO_Server().run();                
             default:
                 show_usage();
                 return 1;
