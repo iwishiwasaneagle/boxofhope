@@ -10,76 +10,65 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/UVC
+    * @route POST /state/register-new
     * @group state - Operations about system states
-    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
-    * @param {Number} uvc_most_recent - Logs most recent use of UVC
-    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
-    * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
+    * @param {String} keyword - ['uvc', 'door', 'mask']
+    * @param {String} state - ['on', 'off', 'open', 'close']
+    * @param {Date} createdAt - Logs data entry time. Default: Date.now
+    * @returns {object} 201 - Created
+    * @returns {Error}  404 - Bad Request: Cannot register status.
     */
-    app.route('/state/UVC')
-        .put(state.update_uvc_state);
+
+    app.route('/state/register-new')
+        .post(state.register_status);  
 
     /**
     * This function comment is parsed by doctrine
-    * @route GET /state/UVC/last
+    * @route GET /state/uvc/latest
     * @group state - Operations about system states
-    * @param {Number} uvc_most_recent - Logs most recent use of UVC
+    * @param {String} keyword - 'uvc'
     * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
+    * @returns {Error}  404 - Bad Request: Cannot register status.
     */
 
-    app.route('/state/UVC/last')
-        .get(state.read_uvc_last);
+    app.route('/state/uvc/latest')
+        .get((req,res)=>state.get_latest_status(req,res,'uvc'));
 
     /**
     * This function comment is parsed by doctrine
-    * @route GET /state/present-mask
+    * @route GET /state/door/latest
     * @group state - Operations about system states
-    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
-    * @param {Number} uvc_most_recent - Logs most recent use of UVC
-    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
-    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
-    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {String} keyword - 'door'
     * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
+    * @returns {Error}  404 - Bad Request: Cannot register status.
     */
+
+    app.route('/state/door/latest')
+        .get((res,req)=>state.get_latest_status(res,req,'door'));
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/present-mask
+    * @route GET /state/mask/latest
     * @group state - Operations about system states
-    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
+    * @param {String} keyword - 'mask'
     * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
+    * @returns {Error}  404 - Bad Request: Cannot register status.
     */
 
-    app.route('/state/present-mask')
-        .get(state.read_mask_present)
-        .put(state.update_mask_present);
+    app.route('/state/mask/latest')
+        .get((res,req)=>state.get_latest_status(res,req,'mask'));
 
     /**
     * This function comment is parsed by doctrine
-    * @route GET /state/door-switch
+    * @route DELETE /state/:statusId
     * @group state - Operations about system states
-    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
-    * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
+    * @param {String} keyword - ['uvc', 'door', 'mask']
+    * @returns {object} 204 - Deleted
+    * @returns {Error}  404 - Bad Request: Cannot register status.
     */
 
-    /**
-    * This function comment is parsed by doctrine
-    * @route PUT /state/door-switch
-    * @group state - Operations about system states
-    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
-    * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
-    */
-
-    app.route('/state/door-switch')
-        .get(state.read_switch_open_close)
-        .put(state.update_switch_open_close);
+    app.route('/state/:statusId')
+        .delete(state.delete_status);
 
     /**
     * This function comment is parsed by doctrine
