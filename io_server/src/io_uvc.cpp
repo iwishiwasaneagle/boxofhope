@@ -10,6 +10,9 @@ io::UVC_Runnable::~UVC_Runnable(void) { this->stop(); }
 void io::UVC_Runnable::led(bool state) { digitalWrite(UVC_LED_PIN_WP, state); }
 
 void io::UVC_Runnable::runnable(void) {
+
+    std::cout<<"\033[1;46;30mio::UVC_Runnable\033[0m\t Starting sanitization process"<<std::endl;
+    
     int remaining_time_ms = this->time_s * 1000;
     int t0, t1, ret;
     bool door_state;
@@ -29,7 +32,7 @@ void io::UVC_Runnable::runnable(void) {
     // (obviously).
     do {
         while (!(door_state = io::Door_Helper::door_state())) {
-            io::Door_Helper::blocking_wait_for_door(-1);
+            io::Door_Helper::blocking_wait_for_door(10000);
         }
 
         this->led(true);
@@ -49,10 +52,15 @@ void io::UVC_Runnable::runnable(void) {
         // thread.interrupt() is called this throws a boost::thread_interrupted
         // error which is caught by UVC_Runnable::thread_runner.
         boost::this_thread::interruption_point();
+        
+        if(remaining_time_ms>0)
+            std::cout<<"\033[1;46;30mio::UVC_Runnable\033[0m\t Pausing sanitization process (door state:"<<(door_state?"open":"closed")<<")" <<std::endl;
 
         // If the door is openend, and the sterilization time has not
         // been met the LED turns back on when the door closes.
     } while (remaining_time_ms > 0);
+    
+    std::cout<<"\033[1;46;30mio::UVC_Runnable\033[0m\t Sanitization process completed after " << (int)(millis()-t0)/1000 << "s" <<std::endl;
 }
 
 void io::UVC_Runnable::thread_runner(void) {

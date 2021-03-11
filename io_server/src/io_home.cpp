@@ -15,7 +15,7 @@ bool io::IsUserHome_Runnable::isUserHome(std::string ip){
     }
     int returnCode = pclose(f); //< returns 0 on success, 256 on error
 
-    std::cout << "\033[1;44mIsUserHome_Runnable heartbeat\033[0m - IP " << ip;
+    std::cout << "\033[1;44mIsUserHome_Runnable heartbeat\033[0m\tIP " << ip;
     bool home = false;
     if(returnCode==0){
         std::cout << " \033[1;32mwas\033[0m found" << std::endl;
@@ -23,7 +23,7 @@ bool io::IsUserHome_Runnable::isUserHome(std::string ip){
         std::cout << " \033[1;31mwasn't\033[0m found" << std::endl;
     }
 
-    API::HomeState().update(home);
+    //API::HomeState().update(home);
 
     return home;
 }

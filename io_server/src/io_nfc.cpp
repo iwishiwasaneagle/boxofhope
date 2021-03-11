@@ -5,16 +5,16 @@ io::NFC_Runnable::NFC_Runnable(void){
 
     /* LibNFC error checking whilst setting up env */
     if(this->context == NULL){
-        std::cerr << "Unable to init libnfc (malloc)" << std::endl;
+        std::cerr << "\033[1;42;30mio::NFC_Runnable\033[0m\tUnable to init libnfc (malloc)" << std::endl;
         exit(EXIT_FAILURE);
     }
 
-    std::cout << "libnfc version: " << nfc_version() << std::endl;
+    std::cout << "\033[1;42;30mio::NFC_Runnable\033[0m\tlibnfc version: " << nfc_version() << std::endl;
     
     this->reader = nfc_open(this->context, NULL);
 
     if(this->reader==NULL){
-        std::cerr << "ERROR: Unable to open NFC device." << std::endl;
+        std::cerr << "\033[1;42;30mio::NFC_Runnable\033[0m\tERROR: Unable to open NFC device." << std::endl;
         exit(EXIT_FAILURE);
     }
 
@@ -23,7 +23,7 @@ io::NFC_Runnable::NFC_Runnable(void){
         exit(EXIT_FAILURE);
     }
 
-    std::cout << "NFC Reader " << nfc_device_get_name(this->reader) << " opened" << std::endl;
+    std::cout << "\033[1;42;30mio::NFC_Runnable\033[0m\tNFC Reader " << nfc_device_get_name(this->reader) << " opened" << std::endl;
 }
 
 io::NFC_Runnable::~NFC_Runnable(void){
@@ -33,7 +33,7 @@ io::NFC_Runnable::~NFC_Runnable(void){
 
 nfc_target io::NFC_Runnable::waitForTag(void){
     nfc_target tag;
-	std::cout << "NFC device will poll during " 
+	std::cout << "\033[1;42;30mio::NFC_Runnable\033[0m\tDevice will poll during " 
 		<< (unsigned long) this->pollCount * this->szModulations * this->pollPeriod * 150 
 		<< " ms ("
 		<< (unsigned long) this->pollCount
@@ -63,15 +63,15 @@ nfc_target io::NFC_Runnable::waitForTag(void){
     if (res > 0) {
   		char* tagStr;
   		str_nfc_target(&tagStr, &tag, true);
-        std::cout << tagStr << std::endl;
-  		while (0 == nfc_initiator_target_is_present(this->reader, NULL)) {}
-      	nfc_perror(this->reader, "nfc_initiator_target_is_present");
-      	std::cout<< "done." << std::endl;
+        // std::cout << tagStr << std::endl;
+  		
+		  //while (0 == nfc_initiator_target_is_present(this->reader, NULL)) {}
+    	
+		/// Return the single nfc_target (i.e. the tag)
+   		return tag;
     } else {
-      	std::cerr << "No target found." << std::endl;
+		throw std::runtime_error("No target found");
     }
 
-    /// Return the single nfc_target (i.e. the tag)
-    return tag;
 }
 
