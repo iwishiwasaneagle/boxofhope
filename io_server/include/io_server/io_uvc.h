@@ -6,6 +6,11 @@
 #include "io_server/io_server.h"
 #include "utils/api.h"
 
+#include <boost/asio.hpp>
+#include <boost/function.hpp>
+#include <boost/bind/bind.hpp>
+#include <boost/thread.hpp>
+
 namespace io {
 class UVC_Runnable {
   private:
