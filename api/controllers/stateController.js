@@ -32,7 +32,8 @@ exports.read_mask_present = function(req, res){
 };
 
 exports.update_mask_present = function(req, res){
-    State.findOneAndUpdate({}, req.body, {new:true}, function(err,state){
+    const state = new State(req.body);
+    state.save(function(err,state){
         if (err)
             res.status(404).send('Bad Request: Cannot update present mask.');
         res.json(state);

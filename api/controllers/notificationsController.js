@@ -23,7 +23,7 @@ exports.register_new_notification_data = function(req, res) {
                         res.status(400).send("Error: MongoDB status code " + err.code);
                 }
             }
-            console.log(notification)
+            console.log(notification);
             res.json(new_notification.toClient());
         });
     }
@@ -34,7 +34,7 @@ exports.register_new_notification_data = function(req, res) {
 
 exports.read_notification_data = function(req, res) {
     Notification.findById(
-      req.params.id, 
+      req.params.id,
       function(err, notification) {
           if (err){
             res.status(404).send('Bad Request: Cannot read notification data.');
@@ -65,5 +65,5 @@ exports.send_notification = function(req,res){
     };
 
 exports.get_latest_id = function(req,res){
-    notificationsRunners.get_latest().then((ret)=>res.status(200).send(ret)).catch((err)=>res.status(4040).send(err));
+    notificationsRunners.get_latest().then((ret)=>res.status(200).send(ret)).catch((err)=>res.status(404).send(err));
 };

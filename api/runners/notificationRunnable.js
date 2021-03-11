@@ -2,7 +2,7 @@ var mongoose=require('mongoose'),Notification = mongoose.model('Notification');
 var webpush = require('web-push');
 
 exports.get_latest = () => {
-   return Notification.find({}, '_id').sort({"createdAt":-1}).then(function(notification){
+   return Notification.find({}, '_id').sort({"createdAt":-1}).limit(1).then(function(notification){
         console.log("Latest id:", notification[0]._id);
         return {id:notification[0]._id};
     });
