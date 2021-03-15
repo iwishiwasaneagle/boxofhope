@@ -61,7 +61,9 @@ module.exports = function(app) {
     /**
     * This function comment is parsed by doctrine
     * @route DELETE /state/:statusId
+    * statusId is the automatically-generated unique identifier for each new status data entry. 
     * @group state - Operations about system states
+    * 
     * @param {String} keyword - ['uvc', 'door', 'mask']
     * @returns {object} 204 - Deleted
     * @returns {Error}  404 - Bad Request: Cannot register status.
@@ -85,7 +87,8 @@ module.exports = function(app) {
     
     /**
     * This function comment is parsed by doctrine
-    * @route GET /userHome/user-home
+    * @route GET user-status/:userHomeId
+    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
     * @group state - Operations about system states
     * @param {String} user_status - ['User Home', 'User Not Home']
     * @param {Date} status_time - Time at which user status is logged. 
@@ -95,7 +98,8 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /userHome/user-home
+    * @route PUT user-status/:userHomeId
+    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
     * @group state - Operations about system states
     * @param {String} user_status - ['User Home', 'User Not Home']
     * @param {Date} status_time - Time at which user status is logged. 
@@ -105,7 +109,8 @@ module.exports = function(app) {
     
     /**
     * This function comment is parsed by doctrine
-    * @route DELETE /userHome/user-home
+    * @route DELETE user-status/:userHomeId
+    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
     * @group state - Operations about system states
     * @param {String} user_status - ['User Home', 'User Not Home']
     * @param {Number} status_time - Time at which user status is logged. 
