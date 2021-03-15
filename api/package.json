@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "api-test": "nodemon server.js  && newman run BoxOfHopeAPI.postman_collection.json",
+    "newman": "newman run BoxOfHopeAPI.postman_collection.json",
+    "mongod": "mongod"
   },
   "repository": {
     "type": "git",
@@ -25,6 +28,7 @@
     "express": "^4.17.1",
     "express-swagger-generator": "^1.1.17",
     "mongoose": "^5.11.17",
+    "newman": "^5.2.2",
     "object-hash": "^2.1.1",
     "swagger-jsdoc": "^7.0.0-rc.2",
     "web-push": "^3.4.4"
