@@ -20,7 +20,7 @@ io::IO_Server::~IO_Server(void) {}
 void signalHandler(int signum) {
     std::cout << "\033[47;30;1mio_server\033[;0m\tInterrupt received ("
               << signum << "). Gracefully shutting down." << std::endl;
-    running = false;
+    IO_SERVER_RUNNING = false;
 }
 
 int io::IO_Server::run(void) {
@@ -33,7 +33,8 @@ int io::IO_Server::run(void) {
     userHomeRunnable.start();
     doorRunnable.start();
 
-    Register signalHandler to SIGINT and SIGTERM signal(SIGINT, signalHandler);
+    // Register signalHandler to SIGINT and SIGTERM 
+    signal(SIGINT, signalHandler);
     signal(SIGTERM, signalHandler);
 
     // Check for ctrl+c or other signals every 0.1s. If none and the last
@@ -41,7 +42,7 @@ int io::IO_Server::run(void) {
     std::time_t now_time;
     std::chrono::time_point<std::chrono::system_clock> now_timer;
     std::chrono::time_point<std::chrono::system_clock> lastHeartbeart;
-    while (running) {
+    while (IO_SERVER_RUNNING) {
         now_timer = std::chrono::system_clock::now();
         if (std::chrono::duration_cast<std::chrono::milliseconds>(
                 now_timer - lastHeartbeart)

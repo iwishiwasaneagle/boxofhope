@@ -23,8 +23,8 @@
 
 #include "wiringPi.h"
 
-#include "io_door.h"
 #include "io_generic_runnable.h"
+#include "io_door.h"
 #include "io_home.h"
 #include "io_nfc.h"
 #include "io_uvc.h"
@@ -57,5 +57,5 @@ class IO_Server {
     ~IO_Server(void);
 };
 } // namespace io
-inline volatile bool running = true;
+inline volatile bool IO_SERVER_RUNNING = true;
 #endif

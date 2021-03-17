@@ -8,6 +8,8 @@ project(
   DESCRIPTION "IO_server for Box of Hope"
   LANGUAGES CXX)
 
+set(CMAKE_CXX_STANDARD 17)
+
 # Config file
 set(GENERATED_HEADERS ${PROJECT_BINARY_DIR}/generated_headers)
 configure_file(config/mainConfig.h.in "${GENERATED_HEADERS}/mainConfig.h")
@@ -61,7 +63,6 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
   add_executable(io_server apps/app.cpp)
-  target_compile_features(io_server PRIVATE cxx_std_17)
 
   include_directories(${GENERATED_HEADERS})
 
