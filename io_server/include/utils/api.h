@@ -10,14 +10,13 @@
 
 #include <nlohmann/json.hpp>
 
-#define API_URL "jheraspi.local"
-#define API_PORT "3000"
-
-
 /**
  *  \brief [Nlohmann's JSON library](https://github.com/nlohmann/json/)
  */
 using json = nlohmann::json;
+
+inline std::string API_URL = "";
+inline std::string PROXY_URL = "";
 
 class API{
     private:
@@ -38,44 +37,38 @@ class API{
          * \brief Generic static function for ::API members to use for running HTTP requests.
          *
          * \param method The HTTP method to use (GET, POST, etc)
-         * \param url API URL
-         * \param port API port
          * \param endpoint API endpoint beginning with a '/'
          * \param body Request body as a ::json object
          * \param headers Request headers as a ::json object
          *
          * \return ::json object holding the request message 
          */
-        static json operation(std::string method, std::string url, std::string port, std::string endpoint, json body, json headers);
+        static json operation(std::string method, std::string endpoint, json body, json headers);
 
         /**
          * \brief Generic static function for ::API members to use for running HTTP requests.
          *
-         * Passes a empty header ::json object to ::API::operation(std::string, std::string, std::string, std::string, json, json).
+         * Passes a empty header ::json object to ::API::operation(std::string, std::string, json, json).
          *
          * \param method The HTTP method to use (GET, POST, etc)
-         * \param url API URL
-         * \param port API port
          * \param endpoint API endpoint beginning with a '/'
          * \param body Request body as a ::json object
          *
          * \return ::json object holding the request message 
          */
-        static json operation(std::string method, std::string url, std::string port, std::string endpoint, json body);
+        static json operation(std::string method, std::string endpoint, json body);
         
         /**
          * \brief Generic static function for ::API members to use for running HTTP requests.
          *
-         * Passes a empty ibody ::json object to ::API::operation(std::string, std::string, std::string, std::string, json).
+         * Passes a empty body ::json object to ::API::operation(std::string, std::string, json).
          *
          * \param method The HTTP method to use (GET, POST, etc)
-         * \param url API URL
-         * \param port API port
          * \param endpoint API endpoint beginning with a '/'
          *
          * \return ::json object holding the request message 
          */
-        static json operation(std::string method, std::string url, std::string port, std::string endpoint);
+        static json operation(std::string method, std::string endpoint);
         
         /**
          * \brief Template struct to allow a consistent API interface to be made. All states are single value, and therefore T can be bool, int, etc.
