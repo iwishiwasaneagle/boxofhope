@@ -11,18 +11,22 @@ exports.run = (userHomeState, req, res) => {
         if (typeof userHomeStatePrev[0] === "undefined" || userHomeStatePrev[0].user_status[0] === "User Not Home") { // No update
             return;
         }
-
-        State.find({}, 'mask_status').exec(function (err, maskState) {
-            if (err)
-                return;
-            if (typeof maskState[0] === "undefined")
-                return;
-            if (maskState[0].mask_status[0] === "Checked Out") { // Mask is out and about
+        console.log("userHomeRunnable.run : userHomeStatePrev[0].user_status[0] = ", userHomeStatePrev[0].user_status[0]);
+        State.find({"keyword":"mask"}, "state").sort({"createdAt":-1}).limit(1).exec(function (err, maskState) {
+            if (err){
+                console.log(err)
                 return;
             }
-            console.log("Sending notification!");
+            if (typeof maskState[0] === "undefined"){
+                return;
+            }
+            if (maskState[0].state === "off") { // Mask is out and about
+                return;
+            }
+            console.log("Start of notification sending process");
             try {
                 notificationRunnables.get_latest().then(sub => {
+                    if(typeof sub == "undefined") return;
                     console.log("Notification ID: ", sub.id);
                     notificationRunnables.send(sub.id);
                 }).catch(err => console.error(err));
@@ -30,6 +34,7 @@ exports.run = (userHomeState, req, res) => {
             } catch (err) {
                 console.error(err);
             }
+            console.log("End of notification sending process");
         });
     });
 };
