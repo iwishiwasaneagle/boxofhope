@@ -4,9 +4,11 @@ cmake_minimum_required(VERSION 3.11...3.19)
 # Project name and a few useful settings. Other commands can pick up the results
 project(
   IO_server 
-  VERSION 0.1.0
+  VERSION 0.9.0
   DESCRIPTION "IO_server for Box of Hope"
   LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
 
 # Config file
 set(GENERATED_HEADERS ${PROJECT_BINARY_DIR}/generated_headers)
@@ -28,6 +30,10 @@ message( STATUS "LibNFC: ${LIBNFC_INCLUDE_DIR}" )
 find_package( Boost REQUIRED COMPONENTS system thread unit_test_framework )
 include_directories( ${Boost_INCLUDE_DIR} )
 
+# Add cURL to the project
+find_package( CURL REQUIRED )
+include_directories( ${CURL_INCLUDE_DIR} )
+
 # Add nlohmann_json::nlohmann_json
 include(FetchContent)
 FetchContent_Declare(json
@@ -40,7 +46,7 @@ if(NOT json_POPULATED)
 endif()
 
 # List of libraries
-set(LIBRARIES_LIST libioserver ${Boost_LIBRARIES} ${WIRINGPI_LIBRARIES} ${LIBNFC_LIBRARIES} nlohmann_json::nlohmann_json)
+set(LIBRARIES_LIST libioserver ${Boost_LIBRARIES} ${WIRINGPI_LIBRARIES} ${LIBNFC_LIBRARIES} nlohmann_json::nlohmann_json ${CURL_LIBRARIES} )
 
 # The compiled library code is here
 add_subdirectory(src)
@@ -57,7 +63,6 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
   add_executable(io_server apps/app.cpp)
-  target_compile_features(io_server PRIVATE cxx_std_17)
 
   include_directories(${GENERATED_HEADERS})
 
