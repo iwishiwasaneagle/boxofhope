@@ -2,9 +2,9 @@
 
 // Controller for notifications 
 var mongoose = require('mongoose'),
-    webpush = require('web-push'),
     hash = require('object-hash'),
-    Notification = mongoose.model('Notification');
+    Notification = mongoose.model('Notification'),
+    notificationsRunners = require('../runners/notificationRunnable');
 
 
 exports.register_new_notification_data = function(req, res) {
@@ -23,7 +23,7 @@ exports.register_new_notification_data = function(req, res) {
                         res.status(400).send("Error: MongoDB status code " + err.code);
                 }
             }
-            console.log(notification)
+            console.log(notification);
             res.json(new_notification.toClient());
         }); 
         res.status(201);
@@ -35,7 +35,7 @@ exports.register_new_notification_data = function(req, res) {
 
 exports.read_notification_data = function(req, res) {
     Notification.findById(
-      req.params.id, 
+      req.params.id,
       function(err, notification) {
           if (err){
             res.status(404).send('Bad Request: Cannot read notification data.');
@@ -64,38 +64,9 @@ exports.delete_notification_data = function(req, res) {
      
 exports.send_notification = function(req,res){
     console.log("send_notification to _id="+req.params.id);
-    Notification.findById(req.params.id, function(err, notification){
-        if (err) {
-            res.status(404).send('Bad Request: Cannot send notification.');
-        }
-        // TODO CHANGE THESE DOWN THE LINE
-        webpush.setVapidDetails(
-            "mailto:jh.ewers@gmail.com",
-            "BN6BhZ2mBQ-oiR78XnNrizLWotzej3iL-TTaTn5egHMmBfqJpdrmbUiIjjy_PsHgacuh3i17Hpgx7LuWwQL9Dvg",
-            "A93a0xUMa4PeoXMZkA8b7iA4vmIkh9-I7AN85DH5G1o"
-        );
-        console.log("hi");
-        const pushSub = {endpoint:notification.endpoint,
-            keys:notification.keys            
-        };
-        console.log(pushSub);
-
-        webpush.sendNotification(pushSub, JSON.stringify({
-            url: "http://www.boxofhope.co.uk",
-            text: "This is a test notification!",
-            tag: "wow",
-            title: "Test test test"
-         })).then(
-            ()=>res.send("OK")
-        );
-        res.status(201);
-    })};
+    notificationsRunners.send(req.params.id).then((ret)=>res.status(200).send(ret)).catch((err)=>res.status(4040).send(err));
+};
 
 exports.get_latest_id = function(req,res){
-    Notification.find({}, '_id').sort({"createdAt":-1}).limit(1).exec(function(err, notification){
-        if (err) {
-            res.status(404).send('Bad Request: Cannot get latest ID.');
-        }
-
-        res.json({id:notification[0]._id});
-    })};
+    notificationsRunners.get_latest().then((ret)=>res.status(200).send(ret)).catch((err)=>res.status(404).send(err));
+};
