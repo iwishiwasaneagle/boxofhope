@@ -1,18 +1,8 @@
 #ifndef IO_UVC_H
 #define IO_UVC_H
 
-#include <iostream>
-
-#include "io_server/io_server.h"
-#include "utils/api.h"
-
-#include <boost/asio.hpp>
-#include <boost/function.hpp>
-#include <boost/bind/bind.hpp>
-#include <boost/thread.hpp>
-
 namespace io {
-class UVC_Runnable {
+class UVC_Runnable : public GenericRunnable {
   private:
     /**
      * \brief Total time for UVC to stay on

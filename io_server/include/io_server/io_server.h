@@ -7,17 +7,29 @@
 #define UVC_LED_PIN_WP 2
 
 #include <array>
+#include <chrono>
+#include <condition_variable>
 #include <cstdio> // popen, FILE, fgets, fputs, pclose
 #include <iostream>
-#include <string>
 #include <stdexcept>
+#include <string>
+#include <thread>
+#include <vector>
+
+#include <boost/asio.hpp>
+#include <boost/bind/bind.hpp>
+#include <boost/function.hpp>
+#include <boost/thread.hpp>
 
 #include "wiringPi.h"
 
 #include "io_door.h"
+#include "io_generic_runnable.h"
 #include "io_home.h"
 #include "io_nfc.h"
 #include "io_uvc.h"
+
+#include "utils/api.h"
 
 /**
  * Encloses the full life-cycle of the IO server.
@@ -26,23 +38,24 @@
  * same-named functions/class/etc. don't interact.
  */
 namespace io {
-  class IO_Server {
-    private:
-      /**
-       * Setup the wiringPi pins and correct dataflow as well as interrupts
-       * \return Exit code
-       */
-      int setup(void);
+class IO_Server {
+  private:
+    /**
+     * Setup the wiringPi pins and correct dataflow as well as interrupts
+     * \return Exit code
+     */
+    int setup(void);
 
-    public:
-      /** Handles the full life-cycle of the IO server.
-       *
-       * \return Exit code
-       */
-      int run(void);
+  public:
+    /** Handles the full life-cycle of the IO server.
+     *
+     * \return Exit code
+     */
+    int run(void);
 
-      IO_Server(void);
-      ~IO_Server(void);
-  };
+    IO_Server(void);
+    ~IO_Server(void);
+};
 } // namespace io
+inline volatile bool running = true;
 #endif
