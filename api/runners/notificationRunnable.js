@@ -3,6 +3,10 @@ var webpush = require('web-push');
 
 exports.get_latest = () => {
    return Notification.find({}, '_id').sort({"createdAt":-1}).limit(1).then(function(notification){
+        if (typeof notification[0] == "undefined"){
+            console.error("No subscriptions found!");
+            return;
+        }
         console.log("Latest id:", notification[0]._id);
         return {id:notification[0]._id};
     });
