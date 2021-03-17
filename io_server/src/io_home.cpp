@@ -16,14 +16,16 @@ bool io::IsUserHome_Runnable::isUserHome(std::string ip){
     int returnCode = pclose(f); //< returns 0 on success, 256 on error
 
     std::cout << "\033[1;44mIsUserHome_Runnable heartbeat\033[0m\tIP " << ip;
-    bool home = false;
+    bool home;
     if(returnCode==0){
+        home = true;
         std::cout << " \033[1;32mwas\033[0m found" << std::endl;
     }else{
+        home = true;
         std::cout << " \033[1;31mwasn't\033[0m found" << std::endl;
     }
 
-    //API::HomeState().update(home);
+    API::HomeState().update(home);
 
     return home;
 }
@@ -53,7 +55,7 @@ void io::IsUserHome_Runnable::runnable(const boost::system::error_code& err, boo
 
 void io::IsUserHome_Runnable::thread_runner(void){
     boost::asio::io_context io_context;
-    boost::function<void (void)> callback( boost::bind( &io::IsUserHome_Runnable::isUserHome, this, "192.168.0.42") );
+    boost::function<void (void)> callback( boost::bind( &io::IsUserHome_Runnable::isUserHome, this, HOME_DEVICE_IP) );
 
     boost::asio::steady_timer timer(io_context,this->interval);
     timer.async_wait( 
