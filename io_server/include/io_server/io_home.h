@@ -10,6 +10,8 @@
 
 #include "utils/api.h"
 
+inline std::string HOME_DEVICE_IP = "";
+
 namespace io{
     class IsUserHome_Runnable{
         private:
