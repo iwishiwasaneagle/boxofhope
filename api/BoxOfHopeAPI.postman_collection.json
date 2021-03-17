@@ -1046,6 +1046,202 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Register New Notification",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check POST status code \", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+							"});",
+							"",
+							"pm.globals.set(\"notifId\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"endpoint\":\"https://updates.push.services.mozilla.com/wpush/v2/gAAAAABgSPRjuRDZCGZ61wzghz9Z6lz8DNhGC4j6VSwwkNmwDoWYXv_Cet7zXsXv0KLQZb12bxOjFRPXZ-LhaXTKG2h1XU-i80jZdEJEemyT2NCJ02qFvJv88ztAltgE3cpSTMshdAf9frngaFiFK-7TMmYCc5rCsEA7RROYXiJgFLu8hHKL3Gk\",\"keys\":{\"auth\":\"LTA2mU0QQgxTb42KT3lUdQ\", \"p265dh\":\"BO-fIOT-U2CX9lCQ6xe_vZ4CWEejzbctGJxAWfj0M1NfjLRJTOx9KFE4o_xsmMMjC-SdJAUXo5YF-V9_jl-bqKU\"}}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/notification/register-new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"notification",
+						"register-new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Notification Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check Notification isn't empty\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.not.equal(null);",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/notification/id/{{notifId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"notification",
+						"id",
+						"{{notifId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send Notification To Id ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check POST status code \", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"endpoint\":\"https://updates.push.services.mozilla.com/wpush/v2/gAAAAABgSPRjuRDZCGZ61wzghz9Z6lz8DNhGC4j6VSwwkNmwDoWYXv_Cet7zXsXv0KLQZb12bxOjFRPXZ-LhaXTKG2h1XU-i80jZdEJEemyT2NCJ02qFvJv88ztAltgE3cpSTMshdAf9frngaFiFK-7TMmYCc5rCsEA7RROYXiJgFLu8hHKL3Gk\",\"keys\":{\"auth\":\"LTA2mU0QQgxTb42KT3lUdQ\", \"p265dh\":\"BO-fIOT-U2CX9lCQ6xe_vZ4CWEejzbctGJxAWfj0M1NfjLRJTOx9KFE4o_xsmMMjC-SdJAUXo5YF-V9_jl-bqKU\"}}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/notification/send/{{notifId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"notification",
+						"send",
+						"{{notifId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Most Recent Notification ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check GET doesn't return empty\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.not.equal(null);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/notification/latest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"notification",
+						"latest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Registered Notification Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204 - mask successfully deleted\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/notification/id/{{notifId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"notification",
+						"id",
+						"{{notifId}}"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
