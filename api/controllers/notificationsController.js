@@ -10,11 +10,12 @@ var mongoose = require('mongoose'),
 exports.register_new_notification_data = function(req, res) {
     const data = req.body;
     // Check for no body
+    data['_id'] = hash(data.endpoint);
     if(data && Object.keys(data).length > 0){
-        data['_id'] = hash(data.endpoint);
         var new_notification = new Notification(data);
         new_notification.save(function(err, notification) {
             if (err){
+              console.log(err);
                 switch(err.code){
                     case 11000:
                         res.status(400).send("Duplicate subscription with id: " + data._id);
@@ -64,7 +65,7 @@ exports.delete_notification_data = function(req, res) {
      
 exports.send_notification = function(req,res){
     console.log("send_notification to _id="+req.params.id);
-    notificationsRunners.send(req.params.id).then((ret)=>res.status(200).send(ret)).catch((err)=>res.status(4040).send(err));
+    notificationsRunners.send(req.params.id).then((ret)=>res.status(201).send(ret)).catch((err)=>res.status(404).send(err));
 };
 
 exports.get_latest_id = function(req,res){

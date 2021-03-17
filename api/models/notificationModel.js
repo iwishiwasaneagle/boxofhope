@@ -4,8 +4,7 @@ var Schema = mongoose.Schema;
 
 var NotificationSchema = new Schema ({
     _id: {
-        type:String,
-        required: true
+        type:String
     },
     endpoint:{
         type: String,
@@ -16,7 +15,7 @@ var NotificationSchema = new Schema ({
             type: String,
             required: true
         },
-        p256dh:{
+        p265dh:{
             type: String,
             required: true
         }
