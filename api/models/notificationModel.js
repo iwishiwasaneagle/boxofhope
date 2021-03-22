@@ -15,7 +15,7 @@ var NotificationSchema = new Schema ({
             type: String,
             required: true
         },
-        p265dh:{
+        p256dh:{
             type: String,
             required: true
         }
