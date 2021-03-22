@@ -20,10 +20,9 @@ class NFC_Runnable : public GenericRunnable {
     nfc_device *reader;   //< The NFC reader struct
     nfc_context *context; //< The LibNFC context struct
 
-    const uint8_t pollCount =
-        10; //< specifies the number of polling (0x01 – 0xFE: 1 up to 254
+    const uint8_t pollCount = 20; //< specifies the number of polling (0x01 – 0xFE: 1 up to 254
             //polling, 0xFF: Endless polling)
-    const uint8_t pollPeriod = 2; //< indicates the polling period in units of
+    const uint8_t pollPeriod = 5; //< indicates the polling period in units of
                                   //150 ms (0x01 – 0x0F: 150ms – 2.25s)
     const nfc_modulation nmModulations[5] = {
         {.nmt = NMT_ISO14443A, .nbr = NBR_106},
