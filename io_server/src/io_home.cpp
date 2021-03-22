@@ -24,12 +24,16 @@ bool io::IsUserHome_Runnable::isUserHome(std::string ip) {
         home = true;
         std::cout << " \033[1;32mwas\033[0m found" << std::endl;
     } else {
-        home = true;
+        home = false;
         std::cout << " \033[1;31mwasn't\033[0m found" << std::endl;
     }
-
-    API::HomeState().update(home);
-
+    
+    try{
+        API::HomeState().update(home);
+    } catch (const std::exception& e) {
+        std::cout << "\033[1;44mIsUserHome_Runnable heartbeat\033[0m\tA standard exception was caught, with message '"
+                  << e.what() << "'\n";
+    }
     return home;
 }
 
@@ -50,6 +54,7 @@ void io::IsUserHome_Runnable::runnable(const boost::system::error_code &err,
 
     // Run the callback
     callback();
+
 
     // Extend the timer -> this gives us the periodic nature of this thread.
     t->expires_at(t->expires_at() + interval);
