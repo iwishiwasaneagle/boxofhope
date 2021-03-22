@@ -3,15 +3,14 @@
 
 #include "wiringPi.h"
 
-namespace io{
+namespace io {
 
-    class LCD_Runnable{
-        private:
-            
-        public:
-            LCD_Runnable(void);
-            ~LCD_Runnable(void);
-    };
-}
+class LCD_Runnable {
+  private:
+  public:
+    LCD_Runnable(void);
+    ~LCD_Runnable(void);
+};
+} // namespace io
 
 #endif

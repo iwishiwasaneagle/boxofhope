@@ -4,121 +4,141 @@ module.exports = function(app) {
     var settings = require('../controllers/settingsController');
     var mask = require('../controllers/maskController');
     var notification = require('../controllers/notificationsController');
+    var userHome = require('../controllers/userHomeController');
 
     // API Routes with Swagger Documentation 
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/UVC
+    * @route POST /state/register-new
     * @group state - Operations about system states
-    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
-    * @param {Number} uvc_most_recent - Logs most recent use of UVC
-    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
-    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
-    * @param {String} user_status - ['User Home', 'User Not Home']
-    * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
+    * @param {String} keyword - ['uvc', 'door', 'mask']
+    * @param {String} state - ['on', 'off', 'open', 'close']
+    * @param {Date} createdAt - Logs data entry time. Default: Date.now
+    * @returns {object} 201 - Created
+    * @returns {Error}  404 - Bad Request: Cannot register status.
     */
-    app.route('/state/UVC')
-        .put(state.update_uvc_state);
+
+    app.route('/state/register-new')
+        .post(state.register_status);  
 
     /**
     * This function comment is parsed by doctrine
-    * @route GET /state/UVC/last
+    * @route GET /state/uvc/latest
     * @group state - Operations about system states
-    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
-    * @param {Number} uvc_most_recent - Logs most recent use of UVC
-    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
-    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
-    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {String} keyword - 'uvc'
     * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
+    * @returns {Error}  404 - Bad Request: Cannot register status.
     */
 
-    app.route('/state/UVC/last')
-        .get(state.read_uvc_last);
+    app.route('/state/uvc/latest')
+        .get((req,res)=>state.get_latest_status(req,res,'uvc'));
 
     /**
     * This function comment is parsed by doctrine
-    * @route GET /state/present-mask
+    * @route GET /state/door/latest
     * @group state - Operations about system states
-    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
-    * @param {Number} uvc_most_recent - Logs most recent use of UVC
-    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
-    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
-    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {String} keyword - 'door'
     * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
+    * @returns {Error}  404 - Bad Request: Cannot register status.
     */
+
+    app.route('/state/door/latest')
+        .get((res,req)=>state.get_latest_status(res,req,'door'));
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/present-mask
+    * @route GET /state/mask/latest
     * @group state - Operations about system states
-    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
-    * @param {Number} uvc_most_recent - Logs most recent use of UVC
-    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
-    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
-    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {String} keyword - 'mask'
     * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
+    * @returns {Error}  404 - Bad Request: Cannot register status.
     */
 
-    app.route('/state/present-mask')
-        .get(state.read_mask_present)
-        .put(state.update_mask_present);
+    app.route('/state/mask/latest')
+        .get((res,req)=>state.get_latest_status(res,req,'mask'));
 
     /**
     * This function comment is parsed by doctrine
-    * @route GET /state/door-switch
+    * @route DELETE /state/:statusId
+    * statusId is the automatically-generated unique identifier for each new status data entry. 
     * @group state - Operations about system states
-    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
-    * @param {Number} uvc_most_recent - Logs most recent use of UVC
-    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
-    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
-    * @param {String} user_status - ['User Home', 'User Not Home']
-    * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
+    * 
+    * @param {String} keyword - ['uvc', 'door', 'mask']
+    * @returns {object} 204 - Deleted
+    * @returns {Error}  404 - Bad Request: Cannot register status.
     */
+
+    app.route('/state/:statusId')
+        .delete(state.delete_status);
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT /state/door-switch
-    * @group state - Operations about system states
-    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
-    * @param {Number} uvc_most_recent - Logs most recent use of UVC
-    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
-    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
+    * @route POST /userHome/user-home
+    * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @returns {object} 200 - OK
+    * @param {Date} status_time - Time at which user status is logged. 
+    * @returns {object} 201 - Created 
     * @returns {Error}  default - Unexpected error
     */
-
-    app.route('/state/door-switch')
-        .get(state.read_switch_open_close)
-        .put(state.update_switch_open_close);
-
-    /**
-    * This function comment is parsed by doctrine
-    * @route PUT /state/user-home
-    * @group state - Operations about system states
-    * @param {String} uvc_status - ['On', 'Off']  Default: 'Off '
-    * @param {Number} uvc_most_recent - Logs most recent use of UVC
-    * @param {String} door_status - ['Open', 'Closed'] Default: 'Open' 
-    * @param {String} mask_status - ['Mask Present', 'No Mask Present']  Default: 'No Mask Present'
-    * @param {String} user_status - ['User Home', 'User Not Home']
-    * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
-    */
-
-    app.route('/state/user-home')
-        .put(state.update_user_home);
+    app.route('/userHome/user-status')
+        .post(userHome.set_user_home);  
     
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /user-status/:userHomeId
+    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
+    * @group userHome - Operations about user home status 
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Date} status_time - Time at which user status is logged. 
+    * @returns {object} 200 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route PUT /user-status/:userHomeId
+    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
+    * @group userHome - Operations about user home status 
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Date} status_time - Time at which user status is logged. 
+    * @returns {object} 200 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+    
+    /**
+    * This function comment is parsed by doctrine
+    * @route DELETE /user-status/:userHomeId
+    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
+    * @group userHome - Operations about user home status 
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Number} status_time - Time at which user status is logged. 
+    * @returns {object} 204 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+    app.route('/userHome/user-status/:userHomeId')
+        .get(userHome.read_user_home)
+        .put(userHome.update_user_home)
+        .delete(userHome.delete_user_home);
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route POST /settings/sterilisation-time
+    * @group settings - Operations about system settings
+    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. (Default 90 seconds.)
+    * @returns {object} 201 - Created 
+    * @returns {Error}  default - Unexpected error
+    */
+
+    app.route('/settings/sterilisation-time')
+        .post(settings.set_sterilisation_time);
+
     /**
     * This function comment is parsed by doctrine
     * @route GET /settings/sterilisation-time
     * @group settings - Operations about system settings
-    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. 
+    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. (Default 90 seconds.)
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
@@ -127,14 +147,24 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route PUT /settings/sterilisation-time
     * @group settings - Operations about system settings
-    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. 
+    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. (Default 90 seconds.)
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
 
-    app.route('/settings/sterilisation-time')
+    /**
+    * This function comment is parsed by doctrine
+    * @route DELETE /settings/sterilisation-time
+    * @group settings - Operations about system settings
+    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. (Default 90 seconds.)
+    * @returns {object} 204 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+    app.route('/settings/sterilisation-time/:settingsId')
         .get(settings.read_current_sterilisation_time)
-        .put(settings.update_sterilisation_time);
+        .put(settings.update_sterilisation_time)
+        .delete(settings.delete_sterilisation_time);
 
     /**
     * This function comment is parsed by doctrine

@@ -39,11 +39,14 @@
 
 ![Servers](https://github.com/iwishiwasaneagle/boxofhope/workflows/Servers/badge.svg)
 ![Docs](https://github.com/iwishiwasaneagle/boxofhope/workflows/Docs/badge.svg)
+
 </div>
 <br />
 
 <!-- TABLE OF CONTENTS -->
+
 ## Table of contents
+
 <ol>
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
@@ -59,23 +62,27 @@
     <li><a href="#contact">Contact</a></li>
 </ol>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
-Box of hope was created to solve the unique, and very annoying, scenario of  
+Box of hope was created to solve the unique, and very annoying, scenario of
 
 > Where's my mask? Oh I left it at home... again...
 
 As part of a university, the creators were tasked with creating a event driven codebase that interacts with a user and low level components on a Raspberry Pi.
 
-
-
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 There are 3 components to this project - `api`, `webapp`, and `io_server`.
+
+### `api`
+
+The RESTful API handles HTTP requests, allowing communication between the server and the client. Four schemas are contained within the API: `masks`, `states`, `settings` and `notifications`. This API requires no authentication.
+
+More documentation on the `api` can be found [here](./api).
 
 ### `io_server`
 
@@ -83,41 +90,21 @@ This is the C++ embedded program that actively runs on the Raspberry Pi. This sy
 
 More documentation about `io_server` can be found [here](./io_server)
 
-**To build `io_server`:**
 
-The `wiringPi` dependecy only runs on Raspberry Pi, therefore if you're building this on a non-RPi platform, please install [wiringPi-sim](https://github.com/iwishiwasaneagle/wiringPi-mock). Otherwise run `sudo apt-get install wiringPi`.
+### `webapp`
 
-```bash
-sudo apt-get install gcc cmake libboost-all-dev libnfc-dev # For ubuntu, use whatever package manager your system needs.
+The **self-hosted** webapp that handles the subscriptions with `PushSubscription` service workers.
 
-# io_server
-git clone https://github.com/iwishiwasaneagle/boxofhope
-cd io_server
-cmake -S . -B build
-cmake --build build
-```
-
-The `io_server` binary will be located in the automatically generated `build` folder.
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-```bash
-(boxofhope/io_server) $ ./build/io_server
-Welcome to io_server (v0.0.1)
-
-Usage:
-   -h,--help             Print this message
-   -t                    Run tests
-```
+More documentation about `webapp` can be found [here](./webapp)
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
 See the [open issues](https://github.com/iwishiwasaneagle/boxofhope/issues?q=is%3Aopen+is%3Aissue+label%3Afeature) for a list of proposed features (and known issues).
 
-
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -128,16 +115,14 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the GPL-3.0 License. See `LICENSE` for more information.
 
-
-
 <!-- CONTACT -->
+
 ## Contact
 
 Jan-Hendrik Ewers - [@jhewers](https://twitter.com/jhewers)

@@ -4,8 +4,7 @@ var Schema = mongoose.Schema;
 
 var NotificationSchema = new Schema ({
     _id: {
-        type:String,
-        required: true
+        type:String
     },
     endpoint:{
         type: String,

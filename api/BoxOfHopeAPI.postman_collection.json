@@ -1,0 +1,1247 @@
+{
+	"info": {
+		"_postman_id": "b65baf3d-f41b-47fc-a1a2-355a3c9456ab",
+		"name": "BoxOfHopeAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add New Mask",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request - new mask added to database\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"maskId\", pm.response.json()._id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "last_check_in",
+							"value": "2021-03-08T11:00:00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/mask/register-new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mask",
+						"register-new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attempt to Get Mask",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"GET function works\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.equal(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/mask/{{maskId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mask",
+						"{{maskId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Mask Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"PUT function works\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.last_check_in).to.equal('2021-02-20T11:00:00.000Z');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "last_check_in",
+							"value": "2021-02-20T11:00:00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/mask/{{maskId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mask",
+						"{{maskId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Number of Masks ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"GET function works\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(Object.keys(jsonData).length).to.equal(1);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/mask/mask-count",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mask",
+						"mask-count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Mask",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204 - mask successfully deleted\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/mask/{{maskId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mask",
+						"{{maskId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check All Masks are Deleted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"GET function works\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(Object.keys(jsonData).length).to.equal(0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/mask/mask-count",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mask",
+						"mask-count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Settings",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request - new settings added.\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"settingsId\", pm.response.json()._id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "sterilisation_time",
+							"value": "90",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/settings/sterilisation-time",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"settings",
+						"sterilisation-time"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Sterilisation Time Setting",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"GET function works\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.sterilisation_time).to.equal(90);",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/settings/sterilisation-time/{{settingsId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"settings",
+						"sterilisation-time",
+						"{{settingsId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Sterilisation Time Setting",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"PUT function works\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.sterilisation_time).to.equal(120);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "sterilisation_time",
+							"value": "120",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/settings/sterilisation-time/{{settingsId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"settings",
+						"sterilisation-time",
+						"{{settingsId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Settings",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204 - mask successfully deleted\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/settings/sterilisation-time/{{settingsId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"settings",
+						"sterilisation-time",
+						"{{settingsId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add New User_Home Entry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check POST request - new user home entry added to database\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"userHomeId\", pm.response.json()._id);\r",
+							"\r",
+							"pm.test(\"Value is in valid list\", () => {\r",
+							"  pm.expect(pm.response.json().user_status[0])\r",
+							"    .to.be.oneOf([\"User Home\",\"User Not Home\"]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "user_status",
+							"value": "User Home",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/userHome/user-status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userHome",
+						"user-status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attempt to Get User_Home Entry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check GET function works\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.equal(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/userHome/user-status/{{userHomeId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userHome",
+						"user-status",
+						"{{userHomeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User_Home Entry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"PUT function works\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.user_status[0]).to.equal('User Not Home');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "user_status",
+							"value": "User Not Home",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/userHome/user-status/{{userHomeId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userHome",
+						"user-status",
+						"{{userHomeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User_Home Entry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204 - User Home entry successfully deleted\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/userHome/user-status/{{userHomeId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userHome",
+						"user-status",
+						"{{userHomeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register Box Status - uvc",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check POST Return Status Code\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"statusId\", pm.response.json()._id);\r",
+							"\r",
+							"pm.test(\"Check keyword is ['uvc', 'door', 'mask']\", () => {\r",
+							"  pm.expect(pm.response.json().keyword)\r",
+							"    .to.be.oneOf([\"uvc\",\"door\",\"mask\"]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"keyword\": \"uvc\",\n    \"state\": \"on\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/state/register-new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"state",
+						"register-new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Most Recent Status - uvc",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check GET doesn't return empty\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.equal(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check keyword is 'uvc'\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].keyword).to.equal('uvc');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "keyword",
+							"value": "uvc",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/state/uvc/latest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"state",
+						"uvc",
+						"latest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Box Status - uvc",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check Status Deletion\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "keyword",
+							"value": "uvc",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "off",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/state/{{statusId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"state",
+						"{{statusId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register Box Status - door",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check POST Return Status Code\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"statusId\", pm.response.json()._id);\r",
+							"\r",
+							"pm.test(\"Check keyword is ['uvc', 'door', 'mask']\", () => {\r",
+							"  pm.expect(pm.response.json().keyword)\r",
+							"    .to.be.oneOf([\"uvc\",\"door\",\"mask\"]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"keyword\": \"door\",\n    \"state\": \"open\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/state/register-new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"state",
+						"register-new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Most Recent Status - door",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check GET doesn't return empty\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.equal(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check keyword is 'uvc'\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].keyword).to.equal('door');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "keyword",
+							"value": "door",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/state/door/latest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"state",
+						"door",
+						"latest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Box Status - door",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check Status Deletion\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "keyword",
+							"value": "door",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "state",
+							"value": "off",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/state/{{statusId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"state",
+						"{{statusId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register Box Status - mask",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check POST Return Status Code\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"statusId\", pm.response.json()._id);\r",
+							"\r",
+							"pm.test(\"Check keyword is ['uvc', 'door', 'mask']\", () => {\r",
+							"  pm.expect(pm.response.json().keyword)\r",
+							"    .to.be.oneOf([\"uvc\",\"door\",\"mask\"]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"keyword\": \"mask\",\n    \"state\": \"present\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/state/register-new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"state",
+						"register-new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Most Recent Status - mask",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check GET doesn't return empty\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.equal(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check keyword is 'mask'\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].keyword).to.equal('mask');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "keyword",
+							"value": "mask",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/state/mask/latest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"state",
+						"mask",
+						"latest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Box Status - mask",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check Status Deletion\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "keyword",
+							"value": "mask",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "off",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/state/{{statusId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"state",
+						"{{statusId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register New Notification",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check POST status code \", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+							"});",
+							"",
+							"pm.globals.set(\"notifId\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"endpoint\":\"https://updates.push.services.mozilla.com/wpush/v2/gAAAAABgSPRjuRDZCGZ61wzghz9Z6lz8DNhGC4j6VSwwkNmwDoWYXv_Cet7zXsXv0KLQZb12bxOjFRPXZ-LhaXTKG2h1XU-i80jZdEJEemyT2NCJ02qFvJv88ztAltgE3cpSTMshdAf9frngaFiFK-7TMmYCc5rCsEA7RROYXiJgFLu8hHKL3Gk\",\"keys\":{\"auth\":\"LTA2mU0QQgxTb42KT3lUdQ\", \"p256dh\":\"BO-fIOT-U2CX9lCQ6xe_vZ4CWEejzbctGJxAWfj0M1NfjLRJTOx9KFE4o_xsmMMjC-SdJAUXo5YF-V9_jl-bqKU\"}}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/notification/register-new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"notification",
+						"register-new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Notification Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check Notification isn't empty\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.not.equal(null);",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/notification/id/{{notifId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"notification",
+						"id",
+						"{{notifId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send Notification To Id ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check POST status code \", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"endpoint\":\"https://updates.push.services.mozilla.com/wpush/v2/gAAAAABgSPRjuRDZCGZ61wzghz9Z6lz8DNhGC4j6VSwwkNmwDoWYXv_Cet7zXsXv0KLQZb12bxOjFRPXZ-LhaXTKG2h1XU-i80jZdEJEemyT2NCJ02qFvJv88ztAltgE3cpSTMshdAf9frngaFiFK-7TMmYCc5rCsEA7RROYXiJgFLu8hHKL3Gk\",\"keys\":{\"auth\":\"LTA2mU0QQgxTb42KT3lUdQ\", \"p256dh\":\"BO-fIOT-U2CX9lCQ6xe_vZ4CWEejzbctGJxAWfj0M1NfjLRJTOx9KFE4o_xsmMMjC-SdJAUXo5YF-V9_jl-bqKU\"}}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/notification/send/{{notifId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"notification",
+						"send",
+						"{{notifId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Most Recent Notification ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check GET doesn't return empty\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.not.equal(null);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/notification/latest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"notification",
+						"latest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Registered Notification Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204 - mask successfully deleted\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/notification/id/{{notifId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"notification",
+						"id",
+						"{{notifId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
