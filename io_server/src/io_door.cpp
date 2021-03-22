@@ -58,7 +58,7 @@ void io::Door_Runnable::runnable(void) {
             tag = nfcRunnable.waitForTag();
             auto data = tag.nti.nai.abtUid;
             char tagStr[20];
-            sprintf(tagStr, "%02X", data);
+            sprintf(tagStr, "%02x", data);
 
             std::cout << "\033[0;45;30mio::Door_Runnable\033[0m\tTag found: "
                       << tagStr << std::endl;
