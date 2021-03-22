@@ -24,7 +24,7 @@ bool io::IsUserHome_Runnable::isUserHome(std::string ip) {
         home = true;
         std::cout << " \033[1;32mwas\033[0m found" << std::endl;
     } else {
-        home = true;
+        home = false;
         std::cout << " \033[1;31mwasn't\033[0m found" << std::endl;
     }
 
