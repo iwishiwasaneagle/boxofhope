@@ -14,6 +14,8 @@
 
 #include <nlohmann/json.hpp>
 
+#define API_DEBUG 0
+
 /**
  *  \brief [Nlohmann's JSON library](https://github.com/nlohmann/json/)
  */
