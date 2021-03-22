@@ -25,7 +25,7 @@ void signalHandler(int signum) {
 
 int io::IO_Server::run(void) {
     // Start is user home state system
-    io::IsUserHome_Runnable userHomeRunnable(5);
+    io::IsUserHome_Runnable userHomeRunnable(20);
     // Start door switch state system
     io::Door_Runnable doorRunnable;
 
