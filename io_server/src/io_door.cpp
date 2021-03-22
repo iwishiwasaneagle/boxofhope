@@ -38,7 +38,7 @@ io::Door_Runnable::~Door_Runnable(void) { this->stop(); }
 
 void io::Door_Runnable::runnable(void) {
     io::NFC_Runnable nfcRunnable;
-    io::UVC_Runnable uvcRunnable(10);
+    io::UVC_Runnable uvcRunnable(20);
     bool doorState;
     nfc_target tag;
     long lastSanitisation;
@@ -76,9 +76,9 @@ void io::Door_Runnable::runnable(void) {
 
             if((lastSanitisation=API::UVCState().get())>(24*60*60)){
                 std::cout
-                    << "\033[0;45;30mio::Door_Runnable\033[0m\tLast sanitsation at " 
-                    << std::asctime(std::localtime(&lastSanitisation)) 
-                    << " (long ago enough, starting process.)"
+                    << "\033[0;45;30mio::Door_Runnable\033[0m\tLast sanitsation " 
+                    << lastSanitisation 
+                    << "s ago (long enough, starting process.)"
                     << std::endl;
 
                 uvcRunnable.start();
@@ -88,13 +88,12 @@ void io::Door_Runnable::runnable(void) {
                 std::time_t result = std::time(nullptr);
             }else{
                 std::cout
-                    << "\033[0;45;30mio::Door_Runnable\033[0m\tLast sanitsation at " 
-                    << std::asctime(std::localtime(&lastSanitisation)) 
-                    << " (too recent, skipping.)"
+                    << "\033[0;45;30mio::Door_Runnable\033[0m\tLast sanitsation " 
+                    << lastSanitisation
+                    << "s ago (too recent, skipping.)"
                     << std::endl;
             }
         } catch (std::runtime_error err) {
-            std::cerr << err.what() << std::endl;
             std::cout
                 << "\033[0;45;30mio::Door_Runnable\033[0m\tNo tag found..."
                 << std::endl;
