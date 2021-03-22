@@ -30,9 +30,11 @@ json API::operation(std::string method, std::string endpoint, json body,
 
         if (!PROXY_URL.empty()) {
             res = curl_easy_setopt(curl, CURLOPT_PROXY, PROXY_URL.c_str());
-            std::cout << "\033[1;45mAPI Util\033[0m\tProxy set to " << PROXY_URL
-                      << " | Res = " << res << " | " << curl_easy_strerror(res)
-                      << std::endl;
+            if(API_DEBUG || res!=CURLE_OK){
+                std::cout << "\033[1;45mAPI Util\033[0m\tProxy set to " << PROXY_URL
+                          << " | Res = " << res << " | " << curl_easy_strerror(res)
+                          << std::endl;
+            }
         }
 
         // TODO Improve this. Currently very easy to break.
@@ -53,9 +55,11 @@ json API::operation(std::string method, std::string endpoint, json body,
         curl_easy_setopt(curl, CURLOPT_HEADERDATA, &headerBuffer);
 
         res = curl_easy_perform(curl);
-        std::cout << "\033[1;45mAPI Util\033[0m\tCall to " << path
-                  << " | Res = " << res << " | " << curl_easy_strerror(res)
-                  << std::endl;
+        if(API_DEBUG || res!=CURLE_OK){
+            std::cout << "\033[1;45mAPI Util\033[0m\tCall to " << path
+                      << " | Res = " << res << " | " << curl_easy_strerror(res)
+                      << std::endl;
+        }
         if (res != CURLE_OK) {
             return NULL;
         }
@@ -148,7 +152,7 @@ int API::UVCState::update(int sterilizationTime) {
     payload["state"] = "on";//std::to_string(sterilizationTime);
     payload["keyword"] = "uvc";
 
-    API::operation("PUT", "/state/register-new", payload);
+    API::operation("POST", "/state/register-new", payload);
     return sterilizationTime;
 }
 
@@ -162,21 +166,10 @@ int API::UVCState::get(void) {
 //    if (ss.fail()) {
 //        throw std::runtime_error{"failed to parse time string "+s};
 //    }  
-	
-	std::tm epoch_strt;
-    epoch_strt.tm_sec = 0;
-    epoch_strt.tm_min = 0;
-    epoch_strt.tm_hour = 0;
-    epoch_strt.tm_mday = 1;
-    epoch_strt.tm_mon = 0;
-    epoch_strt.tm_year = 70;
-    epoch_strt.tm_isdst = -1;
-
-    std::time_t basetime = std::mktime(&epoch_strt);
 
     std::time_t curtime = std::time(0);
 
-    long long nsecs = std::difftime(curtime, basetime);
+    long long nsecs = std::difftime(curtime, std::mktime(&t));
 	
 	return nsecs;
 }
