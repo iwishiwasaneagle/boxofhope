@@ -90,34 +90,12 @@ This is the C++ embedded program that actively runs on the Raspberry Pi. This sy
 
 More documentation about `io_server` can be found [here](./io_server)
 
-**To build `io_server`:**
 
-The `wiringPi` dependecy only runs on Raspberry Pi, therefore if you're building this on a non-RPi platform, please install [wiringPi-sim](https://github.com/iwishiwasaneagle/wiringPi-mock). Otherwise run `sudo apt-get install wiringPi`.
+### `webapp`
 
-```bash
-sudo apt-get install gcc cmake libboost-all-dev libnfc-dev # For ubuntu, use whatever package manager your system needs.
+The **self-hosted** webapp that handles the subscriptions with `PushSubscription` service workers.
 
-# io_server
-git clone https://github.com/iwishiwasaneagle/boxofhope
-cd io_server
-cmake -S . -B build
-cmake --build build
-```
-
-The `io_server` binary will be located in the automatically generated `build` folder.
-
-<!-- USAGE EXAMPLES -->
-
-## Usage
-
-```bash
-(boxofhope/io_server) $ ./build/io_server
-Welcome to io_server (v0.0.1)
-
-Usage:
-   -h,--help             Print this message
-   -t                    Run tests
-```
+More documentation about `webapp` can be found [here](./webapp)
 
 <!-- ROADMAP -->
 

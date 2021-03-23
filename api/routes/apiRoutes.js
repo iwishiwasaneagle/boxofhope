@@ -81,15 +81,14 @@ module.exports = function(app) {
     * @returns {object} 201 - Created 
     * @returns {Error}  default - Unexpected error
     */
-    
     app.route('/userHome/user-status')
         .post(userHome.set_user_home);  
     
     /**
     * This function comment is parsed by doctrine
-    * @route GET user-status/:userHomeId
+    * @route GET /user-status/:userHomeId
     * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
-    * @group state - Operations about system states
+    * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
     * @param {Date} status_time - Time at which user status is logged. 
     * @returns {object} 200 - OK
@@ -98,9 +97,9 @@ module.exports = function(app) {
 
     /**
     * This function comment is parsed by doctrine
-    * @route PUT user-status/:userHomeId
+    * @route PUT /user-status/:userHomeId
     * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
-    * @group state - Operations about system states
+    * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
     * @param {Date} status_time - Time at which user status is logged. 
     * @returns {object} 200 - OK
@@ -109,9 +108,9 @@ module.exports = function(app) {
     
     /**
     * This function comment is parsed by doctrine
-    * @route DELETE user-status/:userHomeId
+    * @route DELETE /user-status/:userHomeId
     * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
-    * @group state - Operations about system states
+    * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
     * @param {Number} status_time - Time at which user status is logged. 
     * @returns {object} 204 - OK

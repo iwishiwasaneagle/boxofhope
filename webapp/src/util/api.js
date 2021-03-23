@@ -1,4 +1,4 @@
-const api_url = "http://jheraspi.local:3000"
+const api_url = "http://"+(process.env.API_URL|| "jheraspi.local")+":"+(process.env.API_PORT|| 3001);
 
 let API = {
 

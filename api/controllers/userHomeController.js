@@ -2,13 +2,17 @@
 
 // Controller for userHome
 var mongoose = require('mongoose'),
-userHome = mongoose.model('UserHome');
+    userHomeRunners = require('../runners/userHomeRunnable'),
+    userHome = mongoose.model('UserHome');
 
 exports.set_user_home = function(req, res) {
     var new_user_home = new userHome(req.body);
+
+    userHomeRunners.run(new_user_home);
+
     new_user_home.save(function(err, userHome) {
         if (err) {
-          res.status(404).send('Bad Request: Cannot set userHome status.');
+            res.status(404).send('Bad Request: Cannot set userHome status.');
         }
         res.json(userHome);
     });
