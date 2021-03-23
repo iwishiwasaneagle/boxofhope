@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.11...3.19)
 # Project name and a few useful settings. Other commands can pick up the results
 project(
   IO_server 
-  VERSION 0.9.0
+  VERSION 1.1.0
   DESCRIPTION "IO_server for Box of Hope"
   LANGUAGES CXX)
 
