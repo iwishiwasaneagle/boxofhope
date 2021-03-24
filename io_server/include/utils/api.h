@@ -7,8 +7,14 @@
 #include <ostream>
 #include <stdexcept>
 #include <string>
+#include <sstream>
+#include <iomanip>
+#include <ctime>
+#include <cassert>
 
 #include <nlohmann/json.hpp>
+
+#define API_DEBUG 0
 
 /**
  *  \brief [Nlohmann's JSON library](https://github.com/nlohmann/json/)
@@ -87,15 +93,15 @@ class API {
      *
      */
     template <class T> struct State {
-        virtual json update(T state) {
+        virtual T update(T state) {
             throw std::runtime_error(
                 "static json update(bool state) is not implemeted yet.");
         };
-        virtual json set(T state) {
+        virtual T set(T state) {
             throw std::runtime_error(
                 "static json set(bool state) is not implemeted yet.");
         };
-        virtual json get(void) {
+        virtual T get(void) {
             throw std::runtime_error(
                 "static json get(bool state) is not implemeted yet.");
         };
@@ -103,7 +109,7 @@ class API {
 
   public:
     /**
-     * \brief Class to access the /state/user-home endpoint
+     * \brief Class to access the UserHome endpoint
      */
     class HomeState : public State<bool> {
       public:
@@ -112,26 +118,26 @@ class API {
          *
          * \param isUserHome Is user home?
          *
-         * \return ::json object with message data
+         * \return ::bool object with message data
          */
-        json update(bool isUserHome);
+        bool update(bool isUserHome);
         /**
          * \brief Set the initial state
          *
          * \param isUserHome Is user home?
          *
-         * \return ::json object with message data
+         * \return ::bool object with message data
          */
-        json set(bool isUserHome);
+        bool set(bool isUserHome);
         /**
          * \brief Get the state
          *
-         * \return ::json object with message data
+         * \return ::bool object with message data
          */
-        json get(void);
+        bool get(void);
     };
     /**
-     * \brief Class to access the /state/present-mask endpoint
+     * \brief Class to access the mask endpoint
      */
     class MaskState : public State<bool> {
       public:
@@ -140,26 +146,26 @@ class API {
          *
          * \param isMaskPresent Is mask present?
          *
-         * \return ::json object with message data
+         * \return ::bool object with message data
          */
-        json update(bool isMaskPresent);
+        bool update(bool isMaskPresent);
         /**
          * \brief Set the initial state
          *
          * \param isMaskPresent Is mask present?
          *
-         * \return ::json object with message data
+         * \return ::bool object with message data
          */
-        json set(bool isMaskPresent);
+        bool set(bool isMaskPresent);
         /**
          * \brief Get the state
          *
-         * \return ::json object with message data
+         * \return ::bool object with message data
          */
-        json get(void);
+        bool get(void);
     };
     /**
-     * \brief Class to access the /state/uvc endpoint
+     * \brief Class to access the uvc endpoint
      */
     class UVCState : public State<int> {
       public:
@@ -168,23 +174,52 @@ class API {
          *
          * \param sterilizationTime End time of sterilization.
          *
-         * \return ::json object with message data
+         * \return ::int object with message data
          */
-        json update(int sterilizationTime);
+        int update(int sterilizationTime);
         /**
          * \brief Set the initial state
          *
          * \param sterilizationtime End time of sterilization.
          *
-         * \return ::json object with message data
+         * \return ::int object with message data
          */
-        json set(int sterilizationTime);
+        int set(int sterilizationTime);
         /**
          * \brief Get the last sterilization time.
          *
-         * \return ::json object with message data
+         * \return ::int object with message data
          */
-        json get(void);
+        int get(void);
+    };
+    
+	/**
+     * \brief Class to access the Door endpoint
+     */
+    class DoorState : public State<bool> {
+      public:
+        /**
+         * \brief Update the state
+         *
+         * \param isDoorOpen Door state.
+         *
+         * \return ::int object with message data
+         */
+        bool update(bool isDoorOpen);
+        /**
+         * \brief Set the initial state
+         *
+         * \param isDoorOpen Door state.
+         *
+         * \return ::bool object with message data
+         */
+        bool set(bool isDoorOpen);
+        /**
+         * \brief Get the last door state.
+         *
+         * \return ::bool object with message data
+         */
+        bool get(void);
     };
 };
 #endif
