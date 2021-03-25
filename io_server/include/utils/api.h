@@ -4,6 +4,7 @@
 #include <curl/curl.h>
 #include <iostream>
 #include <istream>
+#include <sstream>
 #include <ostream>
 #include <stdexcept>
 #include <string>

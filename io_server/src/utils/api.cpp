@@ -39,10 +39,29 @@ json API::operation(std::string method, std::string endpoint, json body,
         std::string path = API_URL + endpoint;
         curl_easy_setopt(curl, CURLOPT_URL, path.c_str());
 
-        // TODO Add headers
-        struct curl_slist *headers = NULL;
-        headers = curl_slist_append(headers, "Content-Type: application/json");
-        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+        struct curl_slist *cHeaders = NULL;
+        std::stringstream tempHeader;
+        for ( auto& it : headers.items() ){
+            tempHeader << it.key() << ": ";
+            // nlohmann::json is really weird that the it.key() returns a std::string, 
+            // but it.value() returns a nlohmann::basic_json object. So in order to get the value of a string WITHOUT
+            // quotes, you have to cast it to a string. However if it's NOT a string (like an int for exampl), it'll throw the json::exception with 
+            // id = 302.
+            try{
+                std::string valStr = headers[it.key()];
+                tempHeader << valStr;
+            }catch(json::exception&  e ){
+                if (e.id == 302){
+                    tempHeader << it.value();
+                }else{
+                    throw e;
+                }
+            }
+            cHeaders = curl_slist_append(cHeaders, tempHeader.str().c_str());
+            tempHeader.str(""); // clear the std::stringstream
+        }
+        cHeaders = curl_slist_append(cHeaders, "Content-Type: application/json");
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, cHeaders);
 
         const std::string payload = body.dump();
         curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, payload.length());
