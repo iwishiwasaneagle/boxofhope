@@ -25,7 +25,6 @@ exports.send = (id) => {
             "A93a0xUMa4PeoXMZkA8b7iA4vmIkh9-I7AN85DH5G1o"
         );
 
-        console.log("hi");
         const pushSub = {endpoint:notification.endpoint,
             keys:notification.keys            
         };
@@ -33,9 +32,9 @@ exports.send = (id) => {
 
         webpush.sendNotification(pushSub, JSON.stringify({
             url: "http://www.boxofhope.co.uk",
-            text: "This is a test notification!",
-            tag: "wow",
-            title: "Test test test"
+            text: "You have left your mask at home!",
+            tag: "mask",
+            title: "Boxofhope: MASK"
          })).then(
             ()=>{return "OK"});
     });
