@@ -59,6 +59,7 @@ jobs:
           ./build/io_server -h
 
       - uses: codecov/codecov-action@v1
+        working-directory: io_server
 
       - name: Retrieve pid and check if it exited 
         run: |
