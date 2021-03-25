@@ -38,7 +38,9 @@
 <div align="center">
 
 ![Servers](https://github.com/iwishiwasaneagle/boxofhope/workflows/Servers/badge.svg)
+![API](https://github.com/iwishiwasaneagle/boxofhope/actions/workflows/api_ci.yml/badge.svg)
 ![Docs](https://github.com/iwishiwasaneagle/boxofhope/workflows/Docs/badge.svg)
+[![codecov](https://codecov.io/gh/iwishiwasaneagle/boxofhope/branch/main/graph/badge.svg?token=KQ8XKQ7CFM)](https://codecov.io/gh/iwishiwasaneagle/boxofhope)
 
 </div>
 <br />

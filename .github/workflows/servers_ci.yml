@@ -53,10 +53,13 @@ jobs:
       - name: Build and run io_server
         working-directory: io_server
         run: |
-          cmake -S . -B build -DMAKE_TESTING=1
+          cmake -S . -B build -DMAKE_TESTING=1 -DCOVERAGE=1
           cmake --build build -j $(nproc)
           cmake --build build --target check
           ./build/io_server -h
+
+      - uses: codecov/codecov-action@v1
+        working-directory: io_server
 
       - name: Retrieve pid and check if it exited 
         run: |
