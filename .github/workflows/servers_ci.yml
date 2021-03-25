@@ -24,6 +24,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
         
       - name: Install dependecies
         run: |
@@ -38,12 +40,31 @@ jobs:
           sudo ./install.sh
           sudo ldconfig # Im at my wits ends
 
+      - name: Install and run iwishiwasaneagle/API_mirror
+        run: |
+          git clone https://github.com/iwishiwasaneagle/API_mirror --branch main
+          cd API_mirror
+          npm install
+          npm start & 
+          echo "api_mirror_pid=$!" >> $GITHUB_ENV
+
+
       # Build and run tests
       - name: Build and run io_server
         working-directory: io_server
         run: |
           cmake -S . -B build -DMAKE_TESTING=1
-          cmake --build build
+          cmake --build build -j $(nproc)
           cmake --build build --target check
           ./build/io_server -h
+
+      - name: Retrieve pid and check if it exited 
+        run: |
+          if [ -z "$(ps aux | grep ${{ env.api_mirror_pid }} | grep -v grep)" ]
+          then
+            echo "No server running. Check logs for crashes.";
+            return 1;
+          else
+            kill -9 ${{ env.api_mirror_pid }}
+          fi
 
