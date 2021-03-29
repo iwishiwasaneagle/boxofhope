@@ -1,0 +1,6 @@
+
+.mask-item {
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}

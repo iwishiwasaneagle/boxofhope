@@ -16,7 +16,7 @@ function BottomBar(){
                      {link:"https://www.youtube.com/channel/UCG8txVUxQb3aCut7adeDU7A", src:youtube}
                     ]
 
-    return (<Navbar height="64px" bg="light" variant="light" sticky="bottom">
+    return (<Navbar height="64px" bg="light" variant="light" fixed="top">
     <Navbar.Brand href="#home"><img height="48px" src={icon}></img></Navbar.Brand>
     <Nav className="mr-auto">
       <Nav.Link href="#notification">Notification</Nav.Link>
