@@ -4,6 +4,12 @@ io::IO_Server::IO_Server(void) {
     std::cerr << "\033[47;30;1mio_server heartbeat\033[;0m\tStarting IO Server"
               << std::endl;
 
+    IO_SERVER_RUNNING = true;
+
+    // Register signalHandler to SIGINT and SIGTERM 
+    signal(SIGINT, io::IO_Server::signalHandler);
+    signal(SIGTERM, io::IO_Server::signalHandler);
+
     if (this->setup() > 0) {
         throw std::runtime_error(
             "io::setup_io() exited with a non-zero exit code.");
@@ -17,7 +23,7 @@ io::IO_Server::IO_Server(void) {
 
 io::IO_Server::~IO_Server(void) {}
 
-void signalHandler(int signum) {
+void io::IO_Server::signalHandler(int signum) {
     std::cout << "\033[47;30;1mio_server\033[;0m\tInterrupt received ("
               << signum << "). Gracefully shutting down." << std::endl;
     IO_SERVER_RUNNING = false;
@@ -32,10 +38,6 @@ int io::IO_Server::run(void) {
     // Start runnables
     userHomeRunnable.start();
     doorRunnable.start();
-
-    // Register signalHandler to SIGINT and SIGTERM 
-    signal(SIGINT, signalHandler);
-    signal(SIGTERM, signalHandler);
 
     // Check for ctrl+c or other signals every 0.1s. If none and the last
     // heartbeat was sent over 10s ago, send another one.
