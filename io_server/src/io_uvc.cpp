@@ -11,7 +11,7 @@ void io::UVC_Runnable::led(bool state) { digitalWrite(UVC_LED_PIN_WP, state); }
 
 void io::UVC_Runnable::runnable(void) {
 
-    std::cout << "\033[1;46;30mio::UVC_Runnable\033[0m\t Starting sanitization "
+    std::cout << "\033[1;46;30mio::UVC_Runnable\033[0m\tStarting sanitization "
                  "process"
               << std::endl;
 
@@ -58,7 +58,7 @@ void io::UVC_Runnable::runnable(void) {
         if (remaining_time_ms > 0)
             std::cout << "\033[1;46;30mio::UVC_Runnable\033[0m\t Pausing "
                          "sanitization process (door state:"
-                      << (door_state ? "open" : "closed") << ")" << std::endl;
+                      << (door_state ? "closed" : "open") << ")" << std::endl;
 
         // If the door is openend, and the sterilization time has not
         // been met the LED turns back on when the door closes.

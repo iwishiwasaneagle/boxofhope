@@ -38,14 +38,23 @@ io::Door_Runnable::~Door_Runnable(void) { this->stop(); }
 
 void io::Door_Runnable::runnable(void) {
     io::NFC_Runnable nfcRunnable;
-    io::UVC_Runnable uvcRunnable(10);
+    io::UVC_Runnable uvcRunnable(20);
     bool doorState;
     nfc_target tag;
+    long lastSanitisation;
     while (1) {
+
         // Create an interruption point for the thread. That is, when
         // thread.interrupt() is called this throws a boost::thread_interrupted
         // error which is caught by Door_Runnable::thread_runner.
         boost::this_thread::interruption_point();
+
+        while ((doorState = io::Door_Helper::door_state()) == 1) {
+            std::cout << "\033[0;45;30mio::Door_Runnable\033[0m\tDoor closed... "
+                         "waiting for it to be opened before starting sanitation and mask check. "
+                      << std::endl;
+            io::Door_Helper::blocking_wait_for_door(10000);
+        }
 
         while ((doorState = io::Door_Helper::door_state()) == 0) {
             std::cout << "\033[0;45;30mio::Door_Runnable\033[0m\tDoor open... "
@@ -53,7 +62,8 @@ void io::Door_Runnable::runnable(void) {
                       << std::endl;
             io::Door_Helper::blocking_wait_for_door(10000);
         }
-
+        
+        API::DoorState().update(doorState);
         try {
             tag = nfcRunnable.waitForTag();
             auto data = tag.nti.nai.abtUid;
@@ -62,13 +72,32 @@ void io::Door_Runnable::runnable(void) {
 
             std::cout << "\033[0;45;30mio::Door_Runnable\033[0m\tTag found: "
                       << tagStr << std::endl;
-            uvcRunnable.start();
-            uvcRunnable.attach();
+            API::MaskState().update(true);
+
+            if((lastSanitisation=API::UVCState().get())>(24*60*60)){
+                std::cout
+                    << "\033[0;45;30mio::Door_Runnable\033[0m\tLast sanitsation " 
+                    << lastSanitisation 
+                    << "s ago (long enough, starting process.)"
+                    << std::endl;
+
+                uvcRunnable.start();
+                uvcRunnable.attach();
+                API::UVCState().update(-1);
+
+                std::time_t result = std::time(nullptr);
+            }else{
+                std::cout
+                    << "\033[0;45;30mio::Door_Runnable\033[0m\tLast sanitsation " 
+                    << lastSanitisation
+                    << "s ago (too recent, skipping.)"
+                    << std::endl;
+            }
         } catch (std::runtime_error err) {
             std::cout
                 << "\033[0;45;30mio::Door_Runnable\033[0m\tNo tag found..."
                 << std::endl;
-            continue;
+            API::MaskState().update(false);
         }
     }
 }

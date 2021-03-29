@@ -30,19 +30,40 @@ json API::operation(std::string method, std::string endpoint, json body,
 
         if (!PROXY_URL.empty()) {
             res = curl_easy_setopt(curl, CURLOPT_PROXY, PROXY_URL.c_str());
-            std::cout << "\033[1;45mAPI Util\033[0m\tProxy set to " << PROXY_URL
-                      << " | Res = " << res << " | " << curl_easy_strerror(res)
-                      << std::endl;
+            if(API_DEBUG || res!=CURLE_OK){
+                std::cout << "\033[1;45mAPI Util\033[0m\tProxy set to " << PROXY_URL
+                          << " | Res = " << res << " | " << curl_easy_strerror(res)
+                          << std::endl;
+            }
         }
 
         // TODO Improve this. Currently very easy to break.
         std::string path = API_URL + endpoint;
         curl_easy_setopt(curl, CURLOPT_URL, path.c_str());
 
-        // TODO Add headers
-        struct curl_slist *headers = NULL;
-        headers = curl_slist_append(headers, "Content-Type: application/json");
-        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+        struct curl_slist *cHeaders = NULL;
+        std::stringstream tempHeader;
+        for ( auto& it : headers.items() ){
+            tempHeader << it.key() << ": ";
+            // nlohmann::json is really weird that the it.key() returns a std::string, 
+            // but it.value() returns a nlohmann::basic_json object. So in order to get the value of a string WITHOUT
+            // quotes, you have to cast it to a string. However if it's NOT a string (like an int for exampl), it'll throw the json::exception with 
+            // id = 302.
+            try{
+                std::string valStr = headers[it.key()];
+                tempHeader << valStr;
+            }catch(json::exception&  e ){
+                if (e.id == 302){
+                    tempHeader << it.value();
+                }else{
+                    throw e;
+                }
+            }
+            cHeaders = curl_slist_append(cHeaders, tempHeader.str().c_str());
+            tempHeader.str(""); // clear the std::stringstream
+        }
+        cHeaders = curl_slist_append(cHeaders, "Content-Type: application/json");
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, cHeaders);
 
         const std::string payload = body.dump();
         curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, payload.length());
@@ -53,9 +74,11 @@ json API::operation(std::string method, std::string endpoint, json body,
         curl_easy_setopt(curl, CURLOPT_HEADERDATA, &headerBuffer);
 
         res = curl_easy_perform(curl);
-        std::cout << "\033[1;45mAPI Util\033[0m\tCall to " << path
-                  << " | Res = " << res << " | " << curl_easy_strerror(res)
-                  << std::endl;
+        if(API_DEBUG || res!=CURLE_OK){
+            std::cout << "\033[1;45mAPI Util\033[0m\tCall to " << path
+                      << " | Res = " << res << " | " << curl_easy_strerror(res)
+                      << std::endl;
+        }
         if (res != CURLE_OK) {
             return NULL;
         }
@@ -67,18 +90,19 @@ json API::operation(std::string method, std::string endpoint, json body,
         // started cutting the reponse down???
     }
     curl_easy_cleanup(curl);
-    return json::parse(responseBuffer);
+    json jsonReturnValue = json::parse(responseBuffer);
+    return jsonReturnValue;
 }
 
 /*============*/
 /*=== Home ===*/
 /*============*/
 
-json API::HomeState::set(bool isUserHome) {
-    return API::HomeState::update(isUserHome);
+bool API::HomeState::set(bool isUserHome) {
+    return  API::HomeState::update(isUserHome);
 }
 
-json API::HomeState::update(bool isUserHome) {
+bool API::HomeState::update(bool isUserHome) {
     std::string state;
     switch (isUserHome) {
     case true:
@@ -91,56 +115,116 @@ json API::HomeState::update(bool isUserHome) {
     json payload;
     payload["user_status"] = state;
 
-    return API::operation("POST", "/userHome/user-status", payload);
+    API::operation("POST", "/userHome/user-status", payload);
+    return isUserHome;
 }
 
-json API::HomeState::get(void) {
-    return API::operation("GET", "/userHome/user-status");
+bool API::HomeState::get(void) {
+    throw std::runtime_error("Not implemented yet.");  
 }
 
 /*============*/
 /*=== Mask ===*/
 /*============*/
 
-json API::MaskState::set(bool isMaskPresent) {
+bool API::MaskState::set(bool isMaskPresent) {
     return API::MaskState::update(isMaskPresent);
 }
 
-json API::MaskState::update(bool isMaskPresent) {
+bool API::MaskState::update(bool isMaskPresent) {
     std::string state;
     switch (isMaskPresent) {
     case true:
-        state = "Mask Present";
+        state = "on";
         break;
     case false:
-        state = "No Mask Present";
+        state = "off";
         break;
     }
     json payload;
-    payload["mask_status"] = state;
+    payload["state"] = state;
+    payload["keyword"] = "mask";
 
-    return API::operation("PUT", "/state/present-mask", payload);
+    API::operation("POST", "/state/register-new", payload);
+    return isMaskPresent;
 }
 
-json API::MaskState::get(void) {
-    return API::operation("GET", "/state/present-mask");
+bool API::MaskState::get(void) {
+    json res = API::operation("GET", "/state/mask/latest");
+    if(res["state"]=="on"){
+            return true;
+    }else{
+            return false;
+    }
 }
 
 /*===========*/
 /*=== UVC ===*/
 /*===========*/
 
-json API::UVCState::set(int sterilizationTime) {
+int API::UVCState::set(int sterilizationTime) {
     return API::UVCState::update(sterilizationTime);
 }
 
-json API::UVCState::update(int sterilizationTime) {
+int API::UVCState::update(int sterilizationTime) {
     json payload;
-    payload["mask_status"] = std::to_string(sterilizationTime);
+    payload["state"] = "on";//std::to_string(sterilizationTime);
+    payload["keyword"] = "uvc";
 
-    return API::operation("PUT", "/state/UVC", payload);
+    API::operation("POST", "/state/register-new", payload);
+    return sterilizationTime;
 }
 
-json API::UVCState::get(void) {
-    return API::operation("GET", "/state/UVC/last");
+int API::UVCState::get(void) {
+    json res = API::operation("GET", "/state/uvc/latest");
+    std::string s = res[0]["createdAt"];
+    std::tm t{};
+    std::istringstream ss(s);
+
+    ss >> std::get_time(&t, "%Y-%m-%dT%TZ");
+//    if (ss.fail()) {
+//        throw std::runtime_error{"failed to parse time string "+s};
+//    }  
+
+    std::time_t curtime = std::time(0);
+
+    long long nsecs = std::difftime(curtime, std::mktime(&t));
+	
+	return nsecs;
 }
+
+
+/*============*/
+/*=== Door ===*/
+/*============*/
+
+bool API::DoorState::set(bool isDoorOpen) {
+	return API::DoorState::update(isDoorOpen);
+}
+
+bool API::DoorState::update(bool isDoorOpen) {
+	std::string state;
+	switch (isDoorOpen) {
+	case true:
+		state = "open";
+		break;
+	case false:
+		state = "close";
+		break;
+	}
+	json payload;
+	payload["state"] = state;
+	payload["keyword"] = "door";
+	API::operation("POST", "/state/register-new", payload);
+    return isDoorOpen;
+}
+
+bool API::DoorState::get(void) {
+	json res = API::operation("GET", "/state/door/latest");
+	if(res["state"]=="open"){
+		return true;
+    }else{
+		return false;
+	}
+}
+

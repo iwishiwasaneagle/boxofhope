@@ -38,7 +38,9 @@
 <div align="center">
 
 ![Servers](https://github.com/iwishiwasaneagle/boxofhope/workflows/Servers/badge.svg)
+![API](https://github.com/iwishiwasaneagle/boxofhope/actions/workflows/api_ci.yml/badge.svg)
 ![Docs](https://github.com/iwishiwasaneagle/boxofhope/workflows/Docs/badge.svg)
+[![codecov](https://codecov.io/gh/iwishiwasaneagle/boxofhope/branch/main/graph/badge.svg?token=KQ8XKQ7CFM)](https://codecov.io/gh/iwishiwasaneagle/boxofhope)
 
 </div>
 <br />
@@ -52,8 +54,8 @@
     <li><a href="#getting-started">Getting Started</a></li>
       <ul>
       <li><a href="#io_server">io_server</a</li>
-      <li><a href="#webapp">REACT Webapp</a</li>
-      <li><a href="#api">RESTful API</a</li>
+      <li><a href="#webapp">webapp</a</li>
+      <li><a href="#api">api</a</li>
       </ul>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
