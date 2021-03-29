@@ -1,9 +1,17 @@
 #ifndef IO_HOME_H
 #define IO_HOME_H
 
+/**
+ * \brief Global variable set by apps/app.cpp using the -U, --user flags 
+ */
 inline std::string HOME_DEVICE_IP = "";
 
 namespace io {
+
+/**
+ *  \brief Runnable class to check if a user with IP ::Home_DEVICE_IP is home
+ *  \test io_server/test/io_home.cpp
+ */
 class IsUserHome_Runnable : public GenericRunnable {
   private:
     /// Interval in seconds
