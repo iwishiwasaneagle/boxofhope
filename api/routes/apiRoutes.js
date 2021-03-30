@@ -21,6 +21,18 @@ module.exports = function(app) {
 
     app.route('/state/register-new')
         .post(state.register_status);      
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /state/uvc/all
+    * @group state - Operations about system states
+    * @param {String} keyword - 'uvc'
+    * @returns {object} 200 - OK
+    * @returns {Error}  404 - Bad Request: Cannot register status.
+    */
+
+    app.route('/state/uvc')
+    .get((req,res)=>state.get_status_since(req,res,'uvc'));
         
     /**
     * This function comment is parsed by doctrine
