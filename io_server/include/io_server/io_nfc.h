@@ -45,9 +45,12 @@ class NFC_Runnable : public GenericRunnable
      */
     static void doorIndicatorISR(void);
 
+    /// Thread group to hand the ::oneShot
+    boost::thread_group thread_group;
+
   public:
     /**
-     * \biref Constructor. Set up LibNFC.
+     * \brief Constructor. Set up LibNFC.
      * This constructor will block threaded functionality. Faster as it won't
      * set up threading related objects
      */
@@ -63,6 +66,10 @@ class NFC_Runnable : public GenericRunnable
      *
      **/
     std::string waitForTag(void);
+
+    void oneShot(void);
+
+    void attachOneShot(void);
 };
 
 } // namespace io

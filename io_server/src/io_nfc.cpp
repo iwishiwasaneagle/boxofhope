@@ -79,3 +79,17 @@ io::NFC_Runnable::waitForTag(void)
         return "";
     }
 }
+
+void
+io::NFC_Runnable::oneShot(void)
+{
+    boost::function<void(void)> runner(
+      boost::bind(&io::NFC_Runnable::waitForTag, this));
+    this->thread_group.create_thread(runner);
+}
+
+void
+io::NFC_Runnable::attachOneShot(void)
+{
+    this->thread_group.join_all();
+}

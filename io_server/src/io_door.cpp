@@ -81,6 +81,7 @@ io::Door_Runnable::runnable(void)
                  "waiting for it to be opened before starting sanitation and "
                  "mask check. "
               << std::endl;
+            nfcRunnable.oneShot();
             io::Door_Helper::blocking_wait_for_door(10000);
         }
 
@@ -88,8 +89,11 @@ io::Door_Runnable::runnable(void)
             std::cout << "\033[0;45;30mio::Door_Runnable\033[0m\tDoor open... "
                          "waiting for it to be shut. "
                       << std::endl;
+            nfcRunnable.oneShot();
             io::Door_Helper::blocking_wait_for_door(10000);
         }
+
+        nfcRunnable.attachOneShot();
 
         tag = nfcRunnable.waitForTag();
         if (!tag.empty()) {

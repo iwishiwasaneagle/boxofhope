@@ -25,8 +25,8 @@
 
 #include "wiringPi.h"
 
-#include "io_door.h"
 #include "io_generic_runnable.h"
+#include "io_door.h"
 #include "io_home.h"
 #include "io_nfc.h"
 #include "io_uvc.h"
