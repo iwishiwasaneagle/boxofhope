@@ -16,8 +16,19 @@ exports.register_status = function(req, res) {
     res.status(201);
 };
 
+exports.get_status_since = (req,res,keyword) => {
+    var cutoff = new Date();
+    cutoff.setDate(cutoff.getDate()-5);
+    return State.find({createdAt: {$lt: cutoff}},{"keyword": keyword}).sort({"createdAt":-1}).exec(function(err,status){
+        if (err) {
+            res.status(404).send('Bad Request: Cannot get status list.');
+        }
+        console.log(status);
+         res.json(status);
+     });
+ };
+
 exports.get_all_status = (req,res,keyword) => {
-    // TODO: Calculate limit based on how many days of data required. 
     return State.find({"keyword": keyword}).sort({"createdAt":-1}).exec(function(err,status){
         if (err) {
             res.status(404).send('Bad Request: Cannot get status list.');

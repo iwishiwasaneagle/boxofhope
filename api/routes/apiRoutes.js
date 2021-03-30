@@ -32,7 +32,7 @@ module.exports = function(app) {
     */
 
     app.route('/state/uvc/all')
-        .get((req,res)=>state.get_all_status(req,res,'door'));
+        .get((req,res)=>state.get_all_status(req,res,'uvc'));
 
     /**
     * This function comment is parsed by doctrine
@@ -44,7 +44,7 @@ module.exports = function(app) {
     */
 
      app.route('/state/door/all')
-     .get((req,res)=>state.get_all_status(req,res,'uvc'));    
+     .get((req,res)=>state.get_all_status(req,res,'door'));    
      
      /**
      * This function comment is parsed by doctrine
