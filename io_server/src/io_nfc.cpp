@@ -1,6 +1,7 @@
 #include "io_server/io_server.h"
 
-io::NFC_Runnable::NFC_Runnable(void) {
+io::NFC_Runnable::NFC_Runnable(void)
+{
     nfc_init(&(this->context)); // Set up LibNFC context
 
     /* LibNFC error checking whilst setting up env */
@@ -32,25 +33,31 @@ io::NFC_Runnable::NFC_Runnable(void) {
               << nfc_device_get_name(this->reader) << " opened" << std::endl;
 }
 
-io::NFC_Runnable::~NFC_Runnable(void) {
+io::NFC_Runnable::~NFC_Runnable(void)
+{
     nfc_close(this->reader); // Close reader (nfc_device)
     nfc_exit(this->context); // Close LibNFC context (nfc_context)
 }
 
-nfc_target io::NFC_Runnable::waitForTag(void) {
+std::string
+io::NFC_Runnable::waitForTag(void)
+{
     nfc_target tag;
     std::cout
-        << "\033[1;42;30mio::NFC_Runnable\033[0m\tDevice will poll during "
-        << (unsigned long)this->pollCount * this->szModulations *
-               this->pollPeriod * 150
-        << " ms (" << (unsigned long)this->pollCount << " pollings of "
-        << (unsigned long)this->pollPeriod * 150 << " ms for "
-        << this->szModulations << " modulations)" << std::endl;
+      << "\033[1;42;30mio::NFC_Runnable\033[0m\tDevice will poll during "
+      << (unsigned long)this->pollCount * this->szModulations *
+           this->pollPeriod * 150
+      << " ms (" << (unsigned long)this->pollCount << " pollings of "
+      << (unsigned long)this->pollPeriod * 150 << " ms for "
+      << this->szModulations << " modulations)" << std::endl;
 
     int res = 0;
-    if ((res = nfc_initiator_poll_target(this->reader, this->nmModulations,
-                                         this->szModulations, this->pollCount,
-                                         this->pollPeriod, &tag)) < 0) {
+    if ((res = nfc_initiator_poll_target(this->reader,
+                                         this->nmModulations,
+                                         this->szModulations,
+                                         this->pollCount,
+                                         this->pollPeriod,
+                                         &tag)) < 0) {
 
         nfc_perror(this->reader, "nfc_initiator_poll_target");
         nfc_close(this->reader);
@@ -60,15 +67,15 @@ nfc_target io::NFC_Runnable::waitForTag(void) {
 
     // Result if res not negative
     if (res > 0) {
-        char *tagStr;
-        str_nfc_target(&tagStr, &tag, true);
-        // std::cout << tagStr << std::endl;
 
-        // while (0 == nfc_initiator_target_is_present(this->reader, NULL)) {}
+        auto data = tag.nti.nai.abtUid;
+        char tagStr[20];
+        sprintf(tagStr, "%02x", data);
 
-        /// Return the single nfc_target (i.e. the tag)
-        return tag;
+        API::MaskState().update(true);
+        return tagStr;
     } else {
-        throw std::runtime_error("No target found");
+        API::MaskState().update(false);
+        return "";
     }
 }

@@ -25,8 +25,8 @@
 
 #include "wiringPi.h"
 
-#include "io_generic_runnable.h"
 #include "io_door.h"
+#include "io_generic_runnable.h"
 #include "io_home.h"
 #include "io_nfc.h"
 #include "io_uvc.h"
@@ -40,7 +40,8 @@
  * same-named functions/class/etc. don't interact.
  */
 namespace io {
-class IO_Server {
+class IO_Server
+{
   private:
     /**
      * Setup the wiringPi pins and correct dataflow as well as interrupts

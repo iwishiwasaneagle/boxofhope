@@ -1,17 +1,16 @@
 #ifndef UTILS_API_H
 #define UTILS_API_H
 
+#include <cassert>
+#include <ctime>
 #include <curl/curl.h>
+#include <iomanip>
 #include <iostream>
 #include <istream>
-#include <sstream>
 #include <ostream>
+#include <sstream>
 #include <stdexcept>
 #include <string>
-#include <sstream>
-#include <iomanip>
-#include <ctime>
-#include <cassert>
 
 #include <nlohmann/json.hpp>
 
@@ -25,7 +24,8 @@ using json = nlohmann::json;
 inline std::string API_URL = "";
 inline std::string PROXY_URL = "";
 
-class API {
+class API
+{
   private:
     /**
      * \brief Callback for cURL
@@ -42,8 +42,10 @@ class API {
      * differs from the amount passed to your callback function, it'll signal an
      * error condition to libcurl.
      */
-    static size_t cUrlWriteCallback(void *contents, size_t size, size_t nmemb,
-                                    void *userp);
+    static size_t cUrlWriteCallback(void* contents,
+                                    size_t size,
+                                    size_t nmemb,
+                                    void* userp);
 
     /**
      * \brief Generic static function for ::API members to use for running HTTP
@@ -56,7 +58,9 @@ class API {
      *
      * \return ::json object holding the request message
      */
-    static json operation(std::string method, std::string endpoint, json body,
+    static json operation(std::string method,
+                          std::string endpoint,
+                          json body,
                           json headers);
 
     /**
@@ -93,18 +97,23 @@ class API {
      * All states are single value, and therefore T can be bool, int, etc.
      *
      */
-    template <class T> struct State {
-        virtual T update(T state) {
+    template<class T>
+    struct State
+    {
+        virtual T update(T state)
+        {
             throw std::runtime_error(
-                "static json update(bool state) is not implemeted yet.");
+              "static json update(bool state) is not implemeted yet.");
         };
-        virtual T set(T state) {
+        virtual T set(T state)
+        {
             throw std::runtime_error(
-                "static json set(bool state) is not implemeted yet.");
+              "static json set(bool state) is not implemeted yet.");
         };
-        virtual T get(void) {
+        virtual T get(void)
+        {
             throw std::runtime_error(
-                "static json get(bool state) is not implemeted yet.");
+              "static json get(bool state) is not implemeted yet.");
         };
     };
 
@@ -112,7 +121,8 @@ class API {
     /**
      * \brief Class to access the UserHome endpoint
      */
-    class HomeState : public State<bool> {
+    class HomeState : public State<bool>
+    {
       public:
         /**
          * \brief Update the state
@@ -140,7 +150,8 @@ class API {
     /**
      * \brief Class to access the mask endpoint
      */
-    class MaskState : public State<bool> {
+    class MaskState : public State<bool>
+    {
       public:
         /**
          * \brief Update the state
@@ -168,7 +179,8 @@ class API {
     /**
      * \brief Class to access the uvc endpoint
      */
-    class UVCState : public State<int> {
+    class UVCState : public State<int>
+    {
       public:
         /**
          * \brief Update the state
@@ -193,11 +205,12 @@ class API {
          */
         int get(void);
     };
-    
-	/**
+
+    /**
      * \brief Class to access the Door endpoint
      */
-    class DoorState : public State<bool> {
+    class DoorState : public State<bool>
+    {
       public:
         /**
          * \brief Update the state

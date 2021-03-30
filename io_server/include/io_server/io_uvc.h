@@ -2,7 +2,8 @@
 #define IO_UVC_H
 
 namespace io {
-class UVC_Runnable : public GenericRunnable {
+class UVC_Runnable : public GenericRunnable
+{
   private:
     /**
      * \brief Total time for UVC to stay on
