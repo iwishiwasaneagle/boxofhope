@@ -64,10 +64,13 @@ io::NFC_Runnable::waitForTag(void)
         nfc_exit(this->context);
         exit(EXIT_FAILURE);
     }
+    
+    std::cout
+      << "\033[1;42;30mio::NFC_Runnable\033[0m\tFinished polling"
+      << std::endl;
 
     // Result if res not negative
     if (res > 0) {
-
         auto data = tag.nti.nai.abtUid;
         char tagStr[20];
         sprintf(tagStr, "%02x", data);
@@ -83,16 +86,16 @@ io::NFC_Runnable::waitForTag(void)
 void
 io::NFC_Runnable::oneShot(void)
 {
-    boost::mutex::scoped_lock lock(this->mutex, boost::try_to_lock); /// Try to lock mutex
-    if(lock){ /// If we aquire the lock, run the ::waitForTag. Else exit.
-        boost::function<void(void)> runner(
-          boost::bind(&io::NFC_Runnable::waitForTag, this));
-        this->thread_group.create_thread(runner);
+    std::cout << "Thred group size = " << this->thread.joinable() << std::endl;
+    if(!this->thread.joinable()){
+        boost::function<std::string(void)> runner(
+              boost::bind(&io::NFC_Runnable::waitForTag, this));
+        this->thread =boost::thread(runner);
     }
 }
 
 void
 io::NFC_Runnable::attachOneShot(void)
 {
-    this->thread_group.join_all();
+    this->thread.join();
 }

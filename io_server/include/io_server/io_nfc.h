@@ -45,8 +45,8 @@ class NFC_Runnable : public GenericRunnable
      */
     static void doorIndicatorISR(void);
 
-    /// Thread group to hand the ::oneShot
-    boost::thread_group thread_group;
+    /// Thread to hand the ::oneShot
+    boost::thread thread;
 
     /**
      * \brief Mutex to ensure the NFC thread isn't run without the previous instance finishing
