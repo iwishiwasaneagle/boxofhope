@@ -2,8 +2,10 @@
 #define IO_DOOR_H
 
 namespace io {
-class Door_Helper
-{
+/**
+ * \brief Generic helper class with static functions to ease development of door based functionality
+ * \test None
+ */
   public:
     /**
      * \brief Wait for the door button to generate a signal.
@@ -22,7 +24,11 @@ class Door_Helper
     static bool door_state(void);
 };
 
-class Door_Runnable : public GenericRunnable
+/**
+ * \brief Door runnable to update server with door state, and to trigger UVC
+ * \test None
+ */
+class Door_Runnable : public GenericRunnable 
 {
   private:
     /**

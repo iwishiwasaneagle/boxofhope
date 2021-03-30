@@ -12,7 +12,7 @@
 namespace io {
 
 /**
- *  NFC Runnable class that sets up LibNFC on construct, and safely
+ *  \brief NFC Runnable class that sets up LibNFC on construct, and safely
  *  destroys it on destruct.
  */
 class NFC_Runnable : public GenericRunnable
