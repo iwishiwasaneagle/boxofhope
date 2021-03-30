@@ -6,6 +6,8 @@ namespace io {
  * \brief Generic helper class with static functions to ease development of door based functionality
  * \test None
  */
+class Door_Helper
+{
   public:
     /**
      * \brief Wait for the door button to generate a signal.
