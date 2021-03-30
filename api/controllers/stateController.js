@@ -17,12 +17,9 @@ exports.register_status = function(req, res) {
 };
 
 exports.get_status_since = (req,res,keyword) => {
-    // const State = req.body;
     var days = req.params.countBack;
-    console.log(days)
-    //console.log(no_days) 
     var cutoff = new Date();
-    cutoff.setDate(cutoff.getDate()-7);
+    cutoff.setDate(cutoff.getDate()-days);
     return State.find({createdAt: {$gt: cutoff},"keyword": keyword}).sort({"createdAt":-1}).exec(function(err,status){
         if (err) {
             res.status(404).send('Bad Request: Cannot get status list.');

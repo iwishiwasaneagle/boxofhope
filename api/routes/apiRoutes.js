@@ -31,7 +31,7 @@ module.exports = function(app) {
     * @returns {Error}  404 - Bad Request: Cannot register status.
     */
 
-    app.route('/state/uvc/since/:countback')
+    app.route('/state/uvc/since/:countBack')
     .get((req,res)=>state.get_status_since(req,res,'uvc'));
 
     /**
@@ -43,7 +43,7 @@ module.exports = function(app) {
     * @returns {Error}  404 - Bad Request: Cannot register status.
     */
 
-    app.route('/state/door/since')
+    app.route('/state/door/since/:countBack')
     .get((req,res)=>state.get_status_since(req,res,'door'));
 
     /**
@@ -55,7 +55,7 @@ module.exports = function(app) {
     * @returns {Error}  404 - Bad Request: Cannot register status.
     */
 
-    app.route('/state/mask/since')
+    app.route('/state/mask/since/:countBack')
     .get((req,res)=>state.get_status_since(req,res,'mask'));
         
     /**
