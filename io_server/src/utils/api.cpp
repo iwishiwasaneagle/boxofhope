@@ -177,15 +177,17 @@ int API::UVCState::update(int sterilizationTime) {
 
 int API::UVCState::get(void) {
     json res = API::operation("GET", "/state/uvc/latest");
+    
+    if (res.empty()){
+        return INT_MAX;
+    }
+
     std::string s = res[0]["createdAt"];
     std::tm t{};
     std::istringstream ss(s);
 
     ss >> std::get_time(&t, "%Y-%m-%dT%TZ");
-//    if (ss.fail()) {
-//        throw std::runtime_error{"failed to parse time string "+s};
-//    }  
-
+    
     std::time_t curtime = std::time(0);
 
     long long nsecs = std::difftime(curtime, std::mktime(&t));
