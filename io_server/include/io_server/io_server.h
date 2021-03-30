@@ -3,6 +3,8 @@
 
 /// Physical pin (indexed by wiringPi ID) for door switch
 #define DOOR_SWITCH_PIN_WP 1
+/// Physical pin (indexed by wiringPi ID) for door state led indicator
+#define DOOR_SWITCH_LED_WP 3
 /// Physical pin (indexed by wiringPi ID) for UV led
 #define UVC_LED_PIN_WP 2
 
