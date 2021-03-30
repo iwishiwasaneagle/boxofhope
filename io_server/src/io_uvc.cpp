@@ -67,7 +67,7 @@ io::UVC_Runnable::runnable(void)
         boost::this_thread::interruption_point();
 
         if (remaining_time_ms > 0)
-            std::cout << "\033[1;46;30mio::UVC_Runnable\033[0m\t Pausing "
+            std::cout << "\033[1;46;30mio::UVC_Runnable\033[0m\tPausing "
                          "sanitization process (door state:"
                       << (door_state ? "closed" : "open") << ")" << std::endl;
 
