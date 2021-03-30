@@ -16,6 +16,17 @@ exports.register_status = function(req, res) {
     res.status(201);
 };
 
+exports.get_all_status = (req,res,keyword) => {
+    // TODO: Calculate limit based on how many days of data required. 
+    return State.find({"keyword": keyword}).sort({"createdAt":-1}).exec(function(err,status){
+        if (err) {
+            res.status(404).send('Bad Request: Cannot get status list.');
+        }
+        console.log(status);
+         res.json(status);
+     });
+ };
+
 exports.get_latest_status = (req,res,keyword) => {
     return State.find({"keyword": keyword}).sort({"createdAt":-1}).limit(1).exec(function(err,status){
         if (err) {
