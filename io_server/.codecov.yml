@@ -1,3 +1,9 @@
 ignore:
   - "CMakeLists"
   - "build"
+
+coverage:
+  status:
+    project:
+      default:
+        threshold: 30%
