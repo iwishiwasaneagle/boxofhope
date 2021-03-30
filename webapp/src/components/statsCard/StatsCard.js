@@ -21,7 +21,7 @@ export default class StatsCard extends React.Component {
     }
 
     componentDidMount() {
-        this.interval = setInterval(() => this.tick(), 1000);
+        this.interval = setInterval(() => this.tick(), 200);
         this.tick();
 
         const data = [];
@@ -58,7 +58,7 @@ export default class StatsCard extends React.Component {
                 const data = { x: Date.now(), y: res.last_trade_price || 0 }
                 this.myChart.data.datasets.forEach((dataset) => {
                     dataset.data.push(data);
-                    if (dataset.data.length > 10 * 60) {
+                    if (dataset.data.length > 50) {
                         dataset.data.shift();
                     }
                 });
