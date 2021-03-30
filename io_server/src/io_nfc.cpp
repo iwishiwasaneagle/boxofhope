@@ -83,9 +83,12 @@ io::NFC_Runnable::waitForTag(void)
 void
 io::NFC_Runnable::oneShot(void)
 {
-    boost::function<void(void)> runner(
-      boost::bind(&io::NFC_Runnable::waitForTag, this));
-    this->thread_group.create_thread(runner);
+    boost::mutex::scoped_lock lock(this->mutex, boost::try_to_lock);
+    if(!lock{
+        boost::function<void(void)> runner(
+          boost::bind(&io::NFC_Runnable::waitForTag, this));
+        this->thread_group.create_thread(runner);
+    }
 }
 
 void

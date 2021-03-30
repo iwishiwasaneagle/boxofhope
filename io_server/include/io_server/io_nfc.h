@@ -48,6 +48,11 @@ class NFC_Runnable : public GenericRunnable
     /// Thread group to hand the ::oneShot
     boost::thread_group thread_group;
 
+    /**
+     * \brief Mutex to ensure the NFC thread isn't run without the previous instance finishing
+     */
+    boost::mutex mutex;
+
   public:
     /**
      * \brief Constructor. Set up LibNFC.
