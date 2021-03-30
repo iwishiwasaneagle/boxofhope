@@ -39,6 +39,11 @@ class Door_Runnable : public GenericRunnable {
      */
     boost::thread_group thread_group;
 
+    /**
+     * \brief Static class to toggle door indicator led
+    */
+    static void doorIndicatorISR(void);
+
   public:
     /**
      * \brief Start the threaded Door_Runnable

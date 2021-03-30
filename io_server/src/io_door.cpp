@@ -29,9 +29,18 @@ bool io::Door_Helper::door_state(void) {
     return mean > 0.5;
 }
 
+void io::Door_Runnable::doorIndicatorISR(void){
+    digitalWrite(DOOR_SWITCH_LED_WP, !io::Door_Helper::door_state()); /// Remember: Door switch high = door closed, ergo high is off low is on
+}
+
 io::Door_Runnable::Door_Runnable(void) {
     wiringPiSetup();
-    pinMode(DOOR_SWITCH_PIN_WP, OUTPUT);
+    pinMode(DOOR_SWITCH_PIN_WP, INPUT);
+    pinMode(DOOR_SWITCH_LED_WP, OUTPUT);
+    
+    this->doorIndicatorISR();
+    wiringPiISR(DOOR_SWITCH_PIN_WP, INT_EDGE_BOTH, &this->doorIndicatorISR);
+
 }
 
 io::Door_Runnable::~Door_Runnable(void) { this->stop(); }
