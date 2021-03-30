@@ -24,16 +24,39 @@ module.exports = function(app) {
         
     /**
     * This function comment is parsed by doctrine
-    * @route GET /state/uvc
+    * @route GET /state/uvc/all
     * @group state - Operations about system states
     * @param {String} keyword - 'uvc'
     * @returns {object} 200 - OK
     * @returns {Error}  404 - Bad Request: Cannot register status.
     */
 
-    app.route('/state/uvc')
-        .get((req,res)=>state.get_all_status(req,res,'uvc'));
+    app.route('/state/uvc/all')
+        .get((req,res)=>state.get_all_status(req,res,'door'));
 
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /state/door/all
+    * @group state - Operations about system states
+    * @param {String} keyword - 'door'
+    * @returns {object} 200 - OK
+    * @returns {Error}  404 - Bad Request: Cannot register status.
+    */
+
+     app.route('/state/door/all')
+     .get((req,res)=>state.get_all_status(req,res,'uvc'));    
+     
+     /**
+     * This function comment is parsed by doctrine
+     * @route GET /state/mask/all
+     * @group state - Operations about system states
+     * @param {String} keyword - 'mask'
+     * @returns {object} 200 - OK
+     * @returns {Error}  404 - Bad Request: Cannot register status.
+     */
+ 
+     app.route('/state/mask/all')
+         .get((req,res)=>state.get_all_status(req,res,'mask'));
     /**
     * This function comment is parsed by doctrine
     * @route GET /state/uvc/latest
