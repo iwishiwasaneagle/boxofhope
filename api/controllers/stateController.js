@@ -18,8 +18,8 @@ exports.register_status = function(req, res) {
 
 exports.get_status_since = (req,res,keyword) => {
     // const State = req.body;
-    console.log(req.body)
-    const no_days = req.body.countBack;
+    var days = req.params.countBack;
+    console.log(days)
     //console.log(no_days) 
     var cutoff = new Date();
     cutoff.setDate(cutoff.getDate()-7);

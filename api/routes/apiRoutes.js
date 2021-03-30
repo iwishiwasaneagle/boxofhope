@@ -31,7 +31,7 @@ module.exports = function(app) {
     * @returns {Error}  404 - Bad Request: Cannot register status.
     */
 
-    app.route('/state/uvc/since')
+    app.route('/state/uvc/since/:countback')
     .get((req,res)=>state.get_status_since(req,res,'uvc'));
 
     /**
