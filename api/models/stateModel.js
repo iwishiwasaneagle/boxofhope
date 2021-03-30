@@ -15,6 +15,10 @@ var StateSchema = new Schema ({
         createdAt:{
             type: Date,
             default: Date.now
+        },
+        countBack:{
+            type: Number,
+            default: 7
         }
 });
 
