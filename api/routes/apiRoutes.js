@@ -301,7 +301,24 @@ module.exports = function(app) {
     app.route('/mask/:maskId')
         .get(mask.read_mask)
         .put(mask.update_mask)
-        .delete(mask.delete_mask);        
+        .delete(mask.delete_mask);     
+        
+        
+
+
+    app.route('/mask/latest')
+        .get((res,req)=>mask.get_latest_mask(res,req));
+
+    app.route('/mask/all')
+        .get((req,res)=>mask.get_all_status(req,res));
+
+    app.route('/mask/since/:countBack')
+        .get((req,res)=>state.get_status_since(req,res));
+
+
+
+
+
 
     /**
     * This function comment is parsed by doctrine
