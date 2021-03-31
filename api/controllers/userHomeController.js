@@ -50,3 +50,37 @@ exports.delete_user_home = function(req, res) {
     });
     res.status(204);
   };
+
+
+exports.get_userHome_since = (req,res) => {
+    var days = req.params.countBack;
+    var cutoff = new Date();
+    cutoff.setDate(cutoff.getDate()-days);
+    return userHome.find({createdAt: {$gt: cutoff}}).sort({"createdAt":-1}).exec(function(err,status){
+        if (err) {
+            res.status(404).send('Bad Request: Cannot get userHome list.');
+        }
+        console.log(status);
+         res.json(status);
+     });
+ };
+
+exports.get_all_userHome = (req,res) => {
+    return userHome.find().sort({"createdAt":-1}).exec(function(err,status){
+        if (err) {
+            res.status(404).send('Bad Request: Cannot get userHome list.');
+        }
+        console.log(status);
+         res.json(status);
+     });
+  };
+
+exports.get_latest_userHome = (req,res) => {
+      return userHome.findOne().sort({"createdAt":-1}).exec(function(err,status){
+          if (err) {
+              res.status(404).send('Bad Request: Cannot get userHome status.');
+          }
+          console.log(status);
+           res.json(status);
+       });
+   };

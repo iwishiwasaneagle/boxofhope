@@ -20,8 +20,79 @@ module.exports = function(app) {
     */
 
     app.route('/state/register-new')
-        .post(state.register_status);  
+        .post(state.register_status);      
 
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /state/uvc/all
+    * @group state - Operations about system states
+    * @param {String} keyword - 'uvc'
+    * @returns {object} 200 - OK
+    * @returns {Error}  404 - Bad Request: Cannot register status.
+    */
+
+    app.route('/state/uvc/since/:countBack')
+    .get((req,res)=>state.get_status_since(req,res,'uvc'));
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /state/door/all
+    * @group state - Operations about system states
+    * @param {String} keyword - 'door'
+    * @returns {object} 200 - OK
+    * @returns {Error}  404 - Bad Request: Cannot register status.
+    */
+
+    app.route('/state/door/since/:countBack')
+    .get((req,res)=>state.get_status_since(req,res,'door'));
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /state/mask/all
+    * @group state - Operations about system states
+    * @param {String} keyword - 'mask'
+    * @returns {object} 200 - OK
+    * @returns {Error}  404 - Bad Request: Cannot register status.
+    */
+
+    app.route('/state/mask/since/:countBack')
+    .get((req,res)=>state.get_status_since(req,res,'mask'));
+        
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /state/uvc/all
+    * @group state - Operations about system states
+    * @param {String} keyword - 'uvc'
+    * @returns {object} 200 - OK
+    * @returns {Error}  404 - Bad Request: Cannot register status.
+    */
+
+    app.route('/state/uvc/all')
+        .get((req,res)=>state.get_all_status(req,res,'uvc'));
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /state/door/all
+    * @group state - Operations about system states
+    * @param {String} keyword - 'door'
+    * @returns {object} 200 - OK
+    * @returns {Error}  404 - Bad Request: Cannot register status.
+    */
+
+     app.route('/state/door/all')
+     .get((req,res)=>state.get_all_status(req,res,'door'));    
+     
+     /**
+     * This function comment is parsed by doctrine
+     * @route GET /state/mask/all
+     * @group state - Operations about system states
+     * @param {String} keyword - 'mask'
+     * @returns {object} 200 - OK
+     * @returns {Error}  404 - Bad Request: Cannot register status.
+     */
+ 
+     app.route('/state/mask/all')
+         .get((req,res)=>state.get_all_status(req,res,'mask'));
     /**
     * This function comment is parsed by doctrine
     * @route GET /state/uvc/latest
@@ -63,7 +134,6 @@ module.exports = function(app) {
     * @route DELETE /state/:statusId
     * statusId is the automatically-generated unique identifier for each new status data entry. 
     * @group state - Operations about system states
-    * 
     * @param {String} keyword - ['uvc', 'door', 'mask']
     * @returns {object} 204 - Deleted
     * @returns {Error}  404 - Bad Request: Cannot register status.
@@ -77,7 +147,7 @@ module.exports = function(app) {
     * @route POST /userHome/user-home
     * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Date} status_time - Time at which user status is logged. 
+    * @param {Date} createdAt - Time at which user status is logged. 
     * @returns {object} 201 - Created 
     * @returns {Error}  default - Unexpected error
     */
@@ -90,7 +160,7 @@ module.exports = function(app) {
     * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
     * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Date} status_time - Time at which user status is logged. 
+    * @param {Date} createdAt - Time at which user status is logged. 
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
@@ -101,7 +171,7 @@ module.exports = function(app) {
     * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
     * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Date} status_time - Time at which user status is logged. 
+    * @param {Date} createdAt - Time at which user status is logged. 
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
@@ -112,7 +182,7 @@ module.exports = function(app) {
     * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
     * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Number} status_time - Time at which user status is logged. 
+    * @param {Number} createdAt - Time at which user status is logged (default: Now). 
     * @returns {object} 204 - OK
     * @returns {Error}  default - Unexpected error
     */
@@ -121,6 +191,49 @@ module.exports = function(app) {
         .get(userHome.read_user_home)
         .put(userHome.update_user_home)
         .delete(userHome.delete_user_home);
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /userHome/latest
+    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
+    * @group userHome - Operations about user home status 
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Number} createdAt - Time at which user status is logged (default: Now). 
+    * @returns {object} 200 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+    app.route('/userHome/latest')
+    .get((res,req)=>userHome.get_latest_userHome(res,req));
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /userHome/all
+    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
+    * @group userHome - Operations about user home status 
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Number} createdAt - Time at which user status is logged (default: Now). 
+    * @returns {object} 200 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+    app.route('/userHome/all')
+        .get((req,res)=>userHome.get_all_userHome(req,res));
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /userHome/:countBack
+    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
+    * @group userHome - Operations about user home status 
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Number} createdAt - Time at which user status is logged (default: Now). 
+    * @param {Number} countBack - Request finds data entries for the past X days, where countBack = x. 
+    * @returns {object} 200 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+    app.route('/userHome/since/:countBack')
+        .get((req,res)=>userHome.get_userHome_since(req,res));
 
     /**
     * This function comment is parsed by doctrine
@@ -230,7 +343,8 @@ module.exports = function(app) {
     app.route('/mask/:maskId')
         .get(mask.read_mask)
         .put(mask.update_mask)
-        .delete(mask.delete_mask);        
+        .delete(mask.delete_mask);     
+        
 
     /**
     * This function comment is parsed by doctrine
