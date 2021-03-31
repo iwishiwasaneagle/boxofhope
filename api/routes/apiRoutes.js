@@ -241,25 +241,12 @@ module.exports = function(app) {
 
 
     /**
-    * This function comment is parsed by doctrine
-    * @route GET /mask/mask-count
-    * @group mask - Operations about mask data 
-    * @param {Date} registered_date - Date of mask registration.
-    * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
-    * @param {Date} last_check_in - Most recent mask check-in date.
-    * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
-    */
-
-    app.route('/mask/mask-count')
-        .get(mask.read_mask_count);
-
-    /**
-    * This function comment is parsed by doctrine
+    * This request registers a new mask.
     * @route POST /mask/register-new
     * @group mask - Operations about mask data 
     * @param {Date} registered_date - Date of mask registration.
-    * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
+    * Default: Now. 
+    * @param {String} status - enum: ['Checked Out', 'In Box', 'Being Cleaned']
     * @param {Date} last_check_in - Most recent mask check-in date.
     * @returns {object} 201 - Created 
     * @returns {Error}  default - Unexpected error
@@ -270,34 +257,40 @@ module.exports = function(app) {
 
 
     /**
-    * This function comment is parsed by doctrine
+    * This request retrieves the total number of registered masks. 
+    * @route GET /mask/mask-count
+    * @group mask - Operations about mask data 
+    * @returns {object} 200 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+     app.route('/mask/mask-count')
+     .get(mask.read_mask_count);
+
+
+    /**
+    * This request returns the current data reated to a particular mask. 
     * @route GET /mask/:maskId
     * @group mask - Operations about mask data 
-    * @param {Date} registered_date - Date of mask registration.
-    * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
-    * @param {Date} last_check_in - Most recent mask check-in date.
+    * @param {String} maskId - Unique mask identifier.
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
 
     /**
-    * This function comment is parsed by doctrine
+    * This function updates the data related to a particular mask. 
     * @route PUT /mask/:maskId
     * @group mask - Operations about mask data 
-    * @param {Date} registered_date - Date of mask registration.
-    * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
-    * @param {Date} last_check_in - Most recent mask check-in date.
+    * @param {String} maskId - Unique mask identifier.
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
 
     /**
-    * This function comment is parsed by doctrine
+    * Primarily used for testing, this request deletes a data entry using its unique id.
     * @route DELETE /mask/:maskId
     * @group mask - Operations about mask data 
-    * @param {Date} registered_date - Date of mask registration.
-    * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
-    * @param {Date} last_check_in - Most recent mask check-in date.
+    * @param {String} maskId - Unique mask identifier.
     * @returns {object} 204 - No Content
     * @returns {Error}  default - Unexpected error
     */
