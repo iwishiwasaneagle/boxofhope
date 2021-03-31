@@ -12,7 +12,6 @@ services:
       - 3001:3001
     networks:
      - api-mongo
-     - webapp-api
     depends_on:
      - mongo
     build: api
@@ -26,8 +25,6 @@ services:
      - /usr/src/app/node_modules
     container_name: webapp
     restart: always
-    networks:
-     - webapp-api
     depends_on:
      - api 
     build: webapp
@@ -43,4 +40,3 @@ services:
 
 networks:
   api-mongo:
-  webapp-api:
