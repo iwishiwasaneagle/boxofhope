@@ -303,22 +303,51 @@ module.exports = function(app) {
         .put(mask.update_mask)
         .delete(mask.delete_mask);     
         
-        
-
+    /**
+    * This function comment is parsed by doctrine
+    * @route DELETE /mask/:maskId
+    * @group mask - Operations about mask data 
+    * @param {Date} registered_date - Date of mask registration.
+    * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
+    * @param {Date} last_check_in - Most recent mask check-in date.
+    * @returns {object} 204 - No Content
+    * @returns {Error}  default - Unexpected error
+    */
 
     app.route('/mask/latest')
         .get((res,req)=>mask.get_latest_mask(res,req));
+    
+    /** 
+     * TODO: FIX DOCS
+     */
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route DELETE /mask/all
+    * @group mask - Operations about mask data 
+    * @param {Date} registered_date - Date of mask registration.
+    * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
+    * @param {Date} last_check_in - Most recent mask check-in date.
+    * @returns {object} 204 - No Content
+    * @returns {Error}  default - Unexpected error
+    */
 
     app.route('/mask/all')
         .get((req,res)=>mask.get_all_status(req,res));
 
+    /**
+    * This function comment is parsed by doctrine
+    * @route DELETE /mask/:maskId
+    * @group mask - Operations about mask data 
+    * @param {Date} registered_date - Date of mask registration.
+    * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
+    * @param {Date} last_check_in - Most recent mask check-in date.
+    * @returns {object} 204 - No Content
+    * @returns {Error}  default - Unexpected error
+    */
+
     app.route('/mask/since/:countBack')
         .get((req,res)=>state.get_status_since(req,res));
-
-
-
-
-
 
     /**
     * This function comment is parsed by doctrine
