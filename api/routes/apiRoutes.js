@@ -319,7 +319,7 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route GET /notification/id/:id
     * @group notification - Operations about notification subscriptions
-    * @param id - Notification unique identifier.
+    * @param {string} id - Notification unique identifier.
     * @returns {object} 200 - OK
     * @returns {Error}  404 - id not found
     * @returns {Error}  default - Unexpected error
@@ -329,7 +329,7 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route DELETE /notification/id/:id
     * @group notification - Operations about notification subscriptions
-    * @param id - Notification unique identifier.
+    * @param {string} id - Notification unique identifier.
     * @returns {object} 204 - No Content
     * @returns {Error}  default - Unexpected error
     */
@@ -343,7 +343,7 @@ module.exports = function(app) {
     * This function comment is parsed by doctrine
     * @route POST /notification/send/:id
     * @group notification - Operations about notification subscriptions
-    * @param id - Notification unique identifier.
+    * @param {string} id - Notification unique identifier.
     * @returns {object} 200 - TODO
     * @returns {Error}  default - Unexpected error
     */
