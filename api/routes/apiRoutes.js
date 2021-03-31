@@ -183,7 +183,7 @@ module.exports = function(app) {
     * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
     * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Number} status_time - Time at which user status is logged. 
+    * @param {Number} status_time - Time at which user status is logged (default: Now). 
     * @returns {object} 204 - OK
     * @returns {Error}  default - Unexpected error
     */
@@ -192,6 +192,49 @@ module.exports = function(app) {
         .get(userHome.read_user_home)
         .put(userHome.update_user_home)
         .delete(userHome.delete_user_home);
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /userHome/latest
+    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
+    * @group userHome - Operations about user home status 
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Number} status_time - Time at which user status is logged (default: Now). 
+    * @returns {object} 200 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+    app.route('/userHome/latest')
+    .get((res,req)=>userHome.get_latest_userHome(res,req));
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /userHome/all
+    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
+    * @group userHome - Operations about user home status 
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Number} status_time - Time at which user status is logged (default: Now). 
+    * @returns {object} 200 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+    app.route('/userHome/all')
+        .get((req,res)=>userHome.get_all_userHome(req,res));
+
+    /**
+    * This function comment is parsed by doctrine
+    * @route GET /userHome/:countBack
+    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
+    * @group userHome - Operations about user home status 
+    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {Number} status_time - Time at which user status is logged (default: Now). 
+    * @param {Number} countBack - Request finds data entries for the past X days, where countBack = x. 
+    * @returns {object} 200 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+    app.route('/mask/since/:countBack')
+        .get((req,res)=>userHome.get_userHome_since(req,res));
 
     /**
     * This function comment is parsed by doctrine
@@ -303,51 +346,6 @@ module.exports = function(app) {
         .put(mask.update_mask)
         .delete(mask.delete_mask);     
         
-    /**
-    * This function comment is parsed by doctrine
-    * @route DELETE /mask/:maskId
-    * @group mask - Operations about mask data 
-    * @param {Date} registered_date - Date of mask registration.
-    * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
-    * @param {Date} last_check_in - Most recent mask check-in date.
-    * @returns {object} 204 - No Content
-    * @returns {Error}  default - Unexpected error
-    */
-
-    app.route('/mask/latest')
-        .get((res,req)=>mask.get_latest_mask(res,req));
-    
-    /** 
-     * TODO: FIX DOCS
-     */
-
-    /**
-    * This function comment is parsed by doctrine
-    * @route DELETE /mask/all
-    * @group mask - Operations about mask data 
-    * @param {Date} registered_date - Date of mask registration.
-    * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
-    * @param {Date} last_check_in - Most recent mask check-in date.
-    * @returns {object} 204 - No Content
-    * @returns {Error}  default - Unexpected error
-    */
-
-    app.route('/mask/all')
-        .get((req,res)=>mask.get_all_status(req,res));
-
-    /**
-    * This function comment is parsed by doctrine
-    * @route DELETE /mask/:maskId
-    * @group mask - Operations about mask data 
-    * @param {Date} registered_date - Date of mask registration.
-    * @param {String} status - ['Checked Out', 'In Box', 'Being Cleaned']
-    * @param {Date} last_check_in - Most recent mask check-in date.
-    * @returns {object} 204 - No Content
-    * @returns {Error}  default - Unexpected error
-    */
-
-    app.route('/mask/since/:countBack')
-        .get((req,res)=>state.get_status_since(req,res));
 
     /**
     * This function comment is parsed by doctrine
