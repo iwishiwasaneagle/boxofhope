@@ -101,7 +101,7 @@ const Footer = ({ t }) => {
                   src="linkedin.svg"
                 />
                 <SocialLink
-                  href="https://raw.githubusercontent.com/iwishiwasaneagle/boxofhope/main/images/instagram.svg"
+                  href="https://www.instagram.com/theboxofhope/"
                   src="instagram.svg"
                 />
               </S.FooterContainer>
