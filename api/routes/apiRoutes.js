@@ -12,7 +12,7 @@ module.exports = function(app) {
     * This request logs the current state of either: the uvc lights, the box door, or the presence of a mask.
     * @route POST /state/register-new
     * @group state - Operations about system states
-    * @param {state.model} body.required - State object that needs to be registered. 
+    * @param {stateModel} body.required - State object that needs to be registered. 
     * Example: 
     * {
     *    "keyword": "uvc",
@@ -100,47 +100,89 @@ module.exports = function(app) {
     app.route('/state/:statusId')
         .delete(state.delete_status);
 
+
     /**
-    * This function comment is parsed by doctrine
+    * This request registers a new userHome status.
     * @route POST /userHome/user-home
     * @group userHome - Operations about user home status 
-    * @param {String} user_status - ['User Home', 'User Not Home']
+    * @param {String} user_status - Describes whether the user is home or not. 
+    * enum: ['User Home', 'User Not Home']
     * @param {Date} createdAt - Time at which user status is logged. 
+    * Default: Now.
     * @returns {object} 201 - Created 
     * @returns {Error}  default - Unexpected error
     */
     app.route('/userHome/user-status')
         .post(userHome.set_user_home);  
     
+
     /**
-    * This function comment is parsed by doctrine
-    * @route GET /user-status/:userHomeId
-    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
+    * This request returns all data related to a state for a user specified number of days. 
+    * @route GET /userHome/:countBack
     * @group userHome - Operations about user home status 
-    * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Date} createdAt - Time at which user status is logged. 
+    * @param {number} countBack - The selected number of days for which data will be retrieved. 
+    * Example: 
+    * countBack = 7 returns the data on the specified state for the past week. 
+    * @returns {object} 200 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+     app.route('/userHome/since/:countBack')
+     .get((req,res)=>userHome.get_userHome_since(req,res));
+
+
+    /**
+    * This request returns all data related to userHome. 
+    * @route GET /userHome/all
+    * @group userHome - Operations about user home status 
+    * @returns {object} 200 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+    app.route('/userHome/all')
+        .get((req,res)=>userHome.get_all_userHome(req,res));
+
+
+    /**
+    * This request returns the latest data entry for userHome.
+    * @route GET /userHome/latest
+    * @group userHome - Operations about user home status 
+    * @returns {object} 200 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+     app.route('/userHome/latest')
+     .get((res,req)=>userHome.get_latest_userHome(res,req));
+
+
+    /**
+    * Primarily used for testing, this request retrieves a data entry using it's unique id.
+    * @route GET /user-status/:userHomeId
+    * @group userHome - Operations about user home status 
+    * @param {String} userHomeId - automatically-generated unique identifier for each new userHome data entry.
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
 
     /**
-    * This function comment is parsed by doctrine
-    * @route PUT /user-status/:userHomeId
-    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
+    * Primarily used for testing, this request updates a data entry using it's unique id.
+    * @route PUT /user-status/:userHomeId 
     * @group userHome - Operations about user home status 
-    * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Date} createdAt - Time at which user status is logged. 
+    * @param {String} userHomeId - automatically-generated unique identifier for each new userHome data entry.
+    * @param {userHomeModel} body.required - State object that needs to be updated. 
+    * Example: 
+    * {
+    *    "user-status": "User Home"
+    * }
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
     
     /**
-    * This function comment is parsed by doctrine
+    * Primarily used for testing, this request deletes a data entry using it's unique id.
     * @route DELETE /user-status/:userHomeId
-    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
     * @group userHome - Operations about user home status 
-    * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Number} createdAt - Time at which user status is logged (default: Now). 
+    * @param {String} userHomeId - automatically-generated unique identifier for each new userHome data entry.
     * @returns {object} 204 - OK
     * @returns {Error}  default - Unexpected error
     */
@@ -150,48 +192,6 @@ module.exports = function(app) {
         .put(userHome.update_user_home)
         .delete(userHome.delete_user_home);
 
-    /**
-    * This function comment is parsed by doctrine
-    * @route GET /userHome/latest
-    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
-    * @group userHome - Operations about user home status 
-    * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Number} createdAt - Time at which user status is logged (default: Now). 
-    * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
-    */
-
-    app.route('/userHome/latest')
-    .get((res,req)=>userHome.get_latest_userHome(res,req));
-
-    /**
-    * This function comment is parsed by doctrine
-    * @route GET /userHome/all
-    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
-    * @group userHome - Operations about user home status 
-    * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Number} createdAt - Time at which user status is logged (default: Now). 
-    * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
-    */
-
-    app.route('/userHome/all')
-        .get((req,res)=>userHome.get_all_userHome(req,res));
-
-    /**
-    * This function comment is parsed by doctrine
-    * @route GET /userHome/:countBack
-    * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
-    * @group userHome - Operations about user home status 
-    * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Number} createdAt - Time at which user status is logged (default: Now). 
-    * @param {Number} countBack - Request finds data entries for the past X days, where countBack = x. 
-    * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
-    */
-
-    app.route('/userHome/since/:countBack')
-        .get((req,res)=>userHome.get_userHome_since(req,res));
 
     /**
     * This function comment is parsed by doctrine
@@ -237,6 +237,7 @@ module.exports = function(app) {
         .put(settings.update_sterilisation_time)
         .delete(settings.delete_sterilisation_time);
 
+
     /**
     * This function comment is parsed by doctrine
     * @route GET /mask/mask-count
@@ -264,6 +265,7 @@ module.exports = function(app) {
 
     app.route('/mask/register-new')
         .post(mask.register_new_mask);
+
 
     /**
     * This function comment is parsed by doctrine
@@ -345,6 +347,7 @@ module.exports = function(app) {
         .get(notification.read_notification_data)
         .delete(notification.delete_notification_data);
     
+
     /**
     * This function comment is parsed by doctrine
     * @route POST /notification/send/:id
@@ -354,6 +357,7 @@ module.exports = function(app) {
     */
     app.route('/notification/send/:id')
         .post(notification.send_notification);
+
 
     /**
     * This function comment is parsed by doctrine
