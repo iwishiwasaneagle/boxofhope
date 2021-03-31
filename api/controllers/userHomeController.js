@@ -76,7 +76,7 @@ exports.get_all_userHome = (req,res) => {
   };
 
 exports.get_latest_UserHome = (req,res) => {
-      return State.findOne().sort({createdAt:-1}).exec(function(err,status){
+      return State.findOne().sort({"createdAt":-1}).exec(function(err,status){
           if (err) {
               res.status(404).send('Bad Request: Cannot get userHome status.');
           }

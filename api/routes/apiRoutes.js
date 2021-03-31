@@ -134,7 +134,6 @@ module.exports = function(app) {
     * @route DELETE /state/:statusId
     * statusId is the automatically-generated unique identifier for each new status data entry. 
     * @group state - Operations about system states
-    * 
     * @param {String} keyword - ['uvc', 'door', 'mask']
     * @returns {object} 204 - Deleted
     * @returns {Error}  404 - Bad Request: Cannot register status.
@@ -148,7 +147,7 @@ module.exports = function(app) {
     * @route POST /userHome/user-home
     * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Date} status_time - Time at which user status is logged. 
+    * @param {Date} createdAt - Time at which user status is logged. 
     * @returns {object} 201 - Created 
     * @returns {Error}  default - Unexpected error
     */
@@ -161,7 +160,7 @@ module.exports = function(app) {
     * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
     * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Date} status_time - Time at which user status is logged. 
+    * @param {Date} createdAt - Time at which user status is logged. 
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
@@ -172,7 +171,7 @@ module.exports = function(app) {
     * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
     * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Date} status_time - Time at which user status is logged. 
+    * @param {Date} createdAt - Time at which user status is logged. 
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
@@ -183,7 +182,7 @@ module.exports = function(app) {
     * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
     * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Number} status_time - Time at which user status is logged (default: Now). 
+    * @param {Number} createdAt - Time at which user status is logged (default: Now). 
     * @returns {object} 204 - OK
     * @returns {Error}  default - Unexpected error
     */
@@ -199,7 +198,7 @@ module.exports = function(app) {
     * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
     * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Number} status_time - Time at which user status is logged (default: Now). 
+    * @param {Number} createdAt - Time at which user status is logged (default: Now). 
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
@@ -213,7 +212,7 @@ module.exports = function(app) {
     * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
     * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Number} status_time - Time at which user status is logged (default: Now). 
+    * @param {Number} createdAt - Time at which user status is logged (default: Now). 
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
@@ -227,7 +226,7 @@ module.exports = function(app) {
     * userHomeId is the automatically-generated unique identifier for each new userHome data entry. 
     * @group userHome - Operations about user home status 
     * @param {String} user_status - ['User Home', 'User Not Home']
-    * @param {Number} status_time - Time at which user status is logged (default: Now). 
+    * @param {Number} createdAt - Time at which user status is logged (default: Now). 
     * @param {Number} countBack - Request finds data entries for the past X days, where countBack = x. 
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error

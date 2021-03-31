@@ -9,7 +9,7 @@ var userHomeSchema = new Schema ({
         enum: ['User Home', 'User Not Home']
       }]
     },
-    status_date: {
+    createdAt: {
       type: Date,
       default: Date.now
   },
