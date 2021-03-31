@@ -42,6 +42,7 @@ io::NFC_Runnable::~NFC_Runnable(void)
 std::string
 io::NFC_Runnable::waitForTag(void)
 {
+    this->oneShotRunning = true;
     nfc_target tag;
     std::cout
       << "\033[1;42;30mio::NFC_Runnable\033[0m\tDevice will poll during "
@@ -69,6 +70,7 @@ io::NFC_Runnable::waitForTag(void)
       << "\033[1;42;30mio::NFC_Runnable\033[0m\tFinished polling"
       << std::endl;
 
+    this->oneShotRunning = false;
     // Result if res not negative
     if (res > 0) {
         auto data = tag.nti.nai.abtUid;
@@ -86,11 +88,12 @@ io::NFC_Runnable::waitForTag(void)
 void
 io::NFC_Runnable::oneShot(void)
 {
-    std::cout << "Thred group size = " << this->thread.joinable() << std::endl;
-    if(!this->thread.joinable()){
+    if(!this->oneShotRunning){
         boost::function<std::string(void)> runner(
               boost::bind(&io::NFC_Runnable::waitForTag, this));
         this->thread =boost::thread(runner);
+    }else{
+        this->thread.join();
     }
 }
 

@@ -51,7 +51,7 @@ class NFC_Runnable : public GenericRunnable
     /**
      * \brief Mutex to ensure the NFC thread isn't run without the previous instance finishing
      */
-    boost::mutex mutex;
+    volatile bool oneShotRunning = false;
 
   public:
     /**
