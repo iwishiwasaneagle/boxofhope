@@ -21,21 +21,28 @@ export default class StatsCard extends React.Component {
     }
 
     componentDidMount() {
-        this.interval = setInterval(() => this.tick(), 200);
+        this.interval = setInterval(() => this.tick(), 10000);
         this.tick();
 
         const data = [];
         this.myChart = new Chart(this.chartRef.current, {
             type: 'line',
             data: {
-                datasets: [{ label: "BTC (USD)", data: data }]
+                datasets: [{ label: "Masks data", data: data, lineTension:0, borderColor:"red", fill:false}, { label: "Door data", data: data, lineTension:0, borderColor:"blue", fill:false}]
             },
             options: {
+                elements: {
+                    point:{
+                        radius: 0
+                    }
+                },
                 scales: {
                     xAxes: [{
                         type: 'time',
                         time: {
-                            unit: 'second'
+                            parser: 'YYYY-MM-DDTHH:mm:ss.SSSZ', //2021-03-30T10:41:47.756Z
+                            tooltipFormat: 'll HH:mm',
+                            unit: 'hour'
                         },
                         ticks: {
                             autoSkip: true,
@@ -52,14 +59,27 @@ export default class StatsCard extends React.Component {
     }
 
     componentDidUpdate() {
-        fetch("https://api.blockchain.com/v3/exchange/tickers/BTC-USD", { method: "GET" })
+        fetch("/state/mask/since/5", { method: "GET" })
             .then(res => res.json())
             .then(res => {
-                const data = { x: Date.now(), y: res.last_trade_price || 0 }
+                const data = res.map(state=>({x:state.createdAt, y:state.state=="on"}));
+                console.log(data);
                 this.myChart.data.datasets.forEach((dataset) => {
-                    dataset.data.push(data);
-                    if (dataset.data.length > 50) {
-                        dataset.data.shift();
+                    if(dataset.label=="Masks data"){
+                        dataset.data = data;
+                    }
+                });
+                this.myChart.update();
+            });
+        
+        fetch("/state/door/since/5", { method: "GET" })
+            .then(res => res.json())
+            .then(res => {
+                const data = res.map(state=>({x:state.createdAt, y:state.state=="close"}));
+                console.log(data);
+                this.myChart.data.datasets.forEach((dataset) => {
+                    if(dataset.label=="Door data"){
+                        dataset.data = data;
                     }
                 });
                 this.myChart.update();
