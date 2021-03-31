@@ -1,5 +1,3 @@
-const api_url = "http://"+(process.env.API_URL|| "jheraspi.local")+":"+(process.env.API_PORT|| 3001);
-
 let API = {
 
     subscription:{
@@ -11,7 +9,7 @@ let API = {
             };
 
             console.log("Subscribing id: ",subscription);
-            return fetch(api_url+'/notification/register-new', options).then(res=>res.json());
+            return fetch('/notification/register-new', options).then(res=>res.json());
         },
         delete: async function(subscription_id){
             const options = {
@@ -20,7 +18,7 @@ let API = {
             };
 
             console.log("Unsubscribing id: ",subscription_id);
-            return fetch(api_url+'/notification/id/'+subscription_id, options).then(res=>res.json());
+            return fetch('/notification/id/'+subscription_id, options).then(res=>res.json());
         }
     },
     mask:{
@@ -30,14 +28,14 @@ let API = {
                 headers: {'Content-Type':'application/json'},
             };
             
-            return fetch(api_url+'/mask/mask-count', options).then(res=>res.json());
+            return fetch('/mask/mask-count', options).then(res=>res.json());
         },
         delete: async function(id){
             const options = {
                 method: 'DELETE',
                 headers: {'Content-Type':'application/json'},
             };            
-            return fetch(api_url+'/mask/'+id, options).then(res=>res.json());
+            return fetch('/mask/'+id, options).then(res=>res.json());
         },
         update: async function(id, status){
             const options = {
@@ -45,7 +43,7 @@ let API = {
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify({"status":status})
             } 
-            return fetch(api_url+'/mask/'+id, options).then(res=>res.json());
+            return fetch('/mask/'+id, options).then(res=>res.json());
         }
     }
 };
