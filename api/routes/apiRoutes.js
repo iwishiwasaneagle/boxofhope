@@ -232,7 +232,7 @@ module.exports = function(app) {
     * @returns {Error}  default - Unexpected error
     */
 
-    app.route('/mask/since/:countBack')
+    app.route('/userHome/since/:countBack')
         .get((req,res)=>userHome.get_userHome_since(req,res));
 
     /**

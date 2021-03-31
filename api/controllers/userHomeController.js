@@ -56,7 +56,7 @@ exports.get_userHome_since = (req,res) => {
     var days = req.params.countBack;
     var cutoff = new Date();
     cutoff.setDate(cutoff.getDate()-days);
-    return State.find({createdAt: {$gt: cutoff}}).sort({"createdAt":-1}).exec(function(err,status){
+    return userHome.find({createdAt: {$gt: cutoff}}).sort({"createdAt":-1}).exec(function(err,status){
         if (err) {
             res.status(404).send('Bad Request: Cannot get userHome list.');
         }
@@ -66,7 +66,7 @@ exports.get_userHome_since = (req,res) => {
  };
 
 exports.get_all_userHome = (req,res) => {
-    return State.find().sort({"createdAt":-1}).exec(function(err,status){
+    return userHome.find().sort({"createdAt":-1}).exec(function(err,status){
         if (err) {
             res.status(404).send('Bad Request: Cannot get userHome list.');
         }
@@ -75,8 +75,8 @@ exports.get_all_userHome = (req,res) => {
      });
   };
 
-exports.get_latest_UserHome = (req,res) => {
-      return State.findOne().sort({"createdAt":-1}).exec(function(err,status){
+exports.get_latest_userHome = (req,res) => {
+      return userHome.findOne().sort({"createdAt":-1}).exec(function(err,status){
           if (err) {
               res.status(404).send('Bad Request: Cannot get userHome status.');
           }
