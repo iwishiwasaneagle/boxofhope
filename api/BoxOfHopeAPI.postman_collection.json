@@ -456,6 +456,61 @@
 			"response": []
 		},
 		{
+			"name": "Add 2nd New User_Home Entry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check POST request - new user home entry added to database\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"userHomeId_2\", pm.response.json()._id);\r",
+							"\r",
+							"pm.test(\"Value is in valid list\", () => {\r",
+							"  pm.expect(pm.response.json().user_status[0])\r",
+							"    .to.be.oneOf([\"User Home\",\"User Not Home\"]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "user_status",
+							"value": "User Home",
+							"type": "text"
+						},
+						{
+							"key": "createdAt",
+							"value": "2020-03-31T09:36:31.207Z",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/userHome/user-status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userHome",
+						"user-status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Attempt to Get User_Home Entry",
 			"event": [
 				{
@@ -489,6 +544,138 @@
 						"userHome",
 						"user-status",
 						"{{userHomeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Most Recent userHome Entry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check GET doesn't return empty\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.not.equal(null);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/userHome/latest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userHome",
+						"latest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All UserHome Entries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check Status Code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check GET doesn't return empty\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.not.equal(null);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/userHome/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userHome",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All UserHome Entries In Past (countBack) Days",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check Status Code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check GET doesn't return empty\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.not.equal(null);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/userHome/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userHome",
+						"all"
 					]
 				}
 			},
@@ -572,6 +759,40 @@
 						"userHome",
 						"user-status",
 						"{{userHomeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete 2nd User_Home Entry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204 - User Home entry successfully deleted\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/userHome/user-status/{{userHomeId_2}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userHome",
+						"user-status",
+						"{{userHomeId_2}}"
 					]
 				}
 			},
