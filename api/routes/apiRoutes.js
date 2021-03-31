@@ -156,7 +156,7 @@ module.exports = function(app) {
 
 
     /**
-    * Primarily used for testing, this request retrieves a data entry using it's unique id.
+    * Primarily used for testing, this request retrieves a data entry using its unique id.
     * @route GET /user-status/:userHomeId
     * @group userHome - Operations about user home status 
     * @param {String} userHomeId - automatically-generated unique identifier for each new userHome data entry.
@@ -165,7 +165,7 @@ module.exports = function(app) {
     */
 
     /**
-    * Primarily used for testing, this request updates a data entry using it's unique id.
+    * Primarily used for testing, this request updates a data entry using its unique id.
     * @route PUT /user-status/:userHomeId 
     * @group userHome - Operations about user home status 
     * @param {String} userHomeId - automatically-generated unique identifier for each new userHome data entry.
@@ -179,7 +179,7 @@ module.exports = function(app) {
     */
     
     /**
-    * Primarily used for testing, this request deletes a data entry using it's unique id.
+    * Primarily used for testing, this request deletes a data entry using its unique id.
     * @route DELETE /user-status/:userHomeId
     * @group userHome - Operations about user home status 
     * @param {String} userHomeId - automatically-generated unique identifier for each new userHome data entry.
@@ -194,10 +194,11 @@ module.exports = function(app) {
 
 
     /**
-    * This function comment is parsed by doctrine
+    * This request registers a new sterilisation setting.
     * @route POST /settings/sterilisation-time
     * @group settings - Operations about system settings
-    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. (Default 90 seconds.)
+    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. 
+    * Default 90 seconds.
     * @returns {object} 201 - Created 
     * @returns {Error}  default - Unexpected error
     */
@@ -206,28 +207,29 @@ module.exports = function(app) {
         .post(settings.set_sterilisation_time);
 
     /**
-    * This function comment is parsed by doctrine
-    * @route GET /settings/sterilisation-time
+    * This request retrieves a data entry using its unique id.
+    * @route GET /settings/sterilisation-time/:settingsId
     * @group settings - Operations about system settings
+    * @param {String} settingsId - automatically-generated unique identifier for each new settings data entry.
+    * @returns {object} 200 - OK
+    * @returns {Error}  default - Unexpected error
+    */
+
+    /**
+    * This request updates a data entry using its unique id.
+    * @route PUT /settings/sterilisation-time/:settingsId
+    * @group settings - Operations about system settings
+    * @param {String} settingsId - automatically-generated unique identifier for each new settings data entry.
     * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. (Default 90 seconds.)
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
 
     /**
-    * This function comment is parsed by doctrine
-    * @route PUT /settings/sterilisation-time
+    * Primarily used for testing, this request deletes a data entry using its unique id.
+    * @route DELETE /settings/sterilisation-time/:settingsId
     * @group settings - Operations about system settings
-    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. (Default 90 seconds.)
-    * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
-    */
-
-    /**
-    * This function comment is parsed by doctrine
-    * @route DELETE /settings/sterilisation-time
-    * @group settings - Operations about system settings
-    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. (Default 90 seconds.)
+    * @param {String} settingsId - automatically-generated unique identifier for each new settings data entry.
     * @returns {object} 204 - OK
     * @returns {Error}  default - Unexpected error
     */
