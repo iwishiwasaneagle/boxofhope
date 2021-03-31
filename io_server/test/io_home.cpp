@@ -5,9 +5,10 @@
 /**
  *  \brief Test the ::io::IsUserHome_Runnable non-threaded functionality
  */
-BOOST_AUTO_TEST_CASE(IsUserHome_Runnable_test_user_home){
+BOOST_AUTO_TEST_CASE(IsUserHome_Runnable_test_user_home)
+{
     io::IsUserHome_Runnable iuh_runnable(1);
-    
+
     std::string ip = "127.0.0.1";
     bool isUserHome = iuh_runnable.isUserHome(ip);
     BOOST_CHECK_EQUAL(isUserHome, true);
@@ -15,5 +16,4 @@ BOOST_AUTO_TEST_CASE(IsUserHome_Runnable_test_user_home){
     ip = "255.255.255.255";
     isUserHome = iuh_runnable.isUserHome(ip);
     BOOST_CHECK_EQUAL(isUserHome, false);
-
 }

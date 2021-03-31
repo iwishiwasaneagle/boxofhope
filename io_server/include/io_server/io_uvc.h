@@ -2,7 +2,12 @@
 #define IO_UVC_H
 
 namespace io {
-class UVC_Runnable : public GenericRunnable {
+/**
+ * \brief UVC runnable class to encapsulate all things Uvc -> updating server, pulling data, checking if needed to run
+ * \test None
+ */
+class UVC_Runnable : public GenericRunnable 
+{
   private:
     /**
      * \brief Total time for UVC to stay on

@@ -58,4 +58,4 @@ exports.delete_mask = function(req, res) {
     });
     res.status(204);
   };
-     
+

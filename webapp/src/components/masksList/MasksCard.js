@@ -38,6 +38,7 @@ function MasksCard() {
     return (<Card>
                 <Card.Title>Masks</Card.Title>
                 <Card.Body>
+                    {masks.length==0? "No masks registered!" : 
                     <Table>
                         <thead>
                             <tr>
@@ -75,7 +76,7 @@ function MasksCard() {
                                 </tr>
                             </tbody>
                         )}
-                    </Table>
+                    </Table>}
                 </Card.Body>
             </Card>);
 }

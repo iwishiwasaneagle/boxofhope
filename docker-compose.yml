@@ -1,0 +1,55 @@
+version: "3.3"
+
+# Run with the following on your RPi:
+#
+#   docker-compose up -d 
+#
+# This will create the mongodb, api, and webapps. However, the webapp 
+# won't work if this is not running on the machine you're accessing the 
+# webapp from. You then need to tunnel port 3000 to your own machine 
+# using ssh like:
+#
+#   ssh -L 3000:localhost:3000 [USERNAME]@[RPI IP]
+#
+
+services:
+  api:
+    volumes:
+     - ./api:/usr/src/app
+     - /usr/src/app/node_modules
+    container_name: api
+    restart: always
+    environment:
+     - PORT=3001
+     - MONGO_URL=mongo
+    ports:
+      - 3001:3001
+    networks:
+     - api-mongo
+    depends_on:
+     - mongo
+    build: api
+
+  webapp:
+    ports:
+     - 3000:3000
+    volumes:
+     - ./webapp:/usr/src/app
+     - /usr/src/app/node_modules
+    container_name: webapp
+    restart: always
+    depends_on:
+     - api 
+    build: webapp
+
+  mongo:
+    container_name: mongo
+    restart: always
+    image: ivanmarban/armhf-mongodb
+    volumes:
+     - ./data:/data/db
+    networks:
+     - api-mongo
+
+networks:
+  api-mongo:

@@ -1,15 +1,26 @@
 #include "io_server/io_server.h"
 
-io::UVC_Runnable::UVC_Runnable(unsigned int time_s) : time_s(time_s) {
+io::UVC_Runnable::UVC_Runnable(unsigned int time_s)
+  : time_s(time_s)
+{
     wiringPiSetup();
     pinMode(UVC_LED_PIN_WP, OUTPUT);
 }
 
-io::UVC_Runnable::~UVC_Runnable(void) { this->stop(); }
+io::UVC_Runnable::~UVC_Runnable(void)
+{
+    this->stop();
+}
 
-void io::UVC_Runnable::led(bool state) { digitalWrite(UVC_LED_PIN_WP, state); }
+void
+io::UVC_Runnable::led(bool state)
+{
+    digitalWrite(UVC_LED_PIN_WP, state);
+}
 
-void io::UVC_Runnable::runnable(void) {
+void
+io::UVC_Runnable::runnable(void)
+{
 
     std::cout << "\033[1;46;30mio::UVC_Runnable\033[0m\tStarting sanitization "
                  "process"
@@ -56,7 +67,7 @@ void io::UVC_Runnable::runnable(void) {
         boost::this_thread::interruption_point();
 
         if (remaining_time_ms > 0)
-            std::cout << "\033[1;46;30mio::UVC_Runnable\033[0m\t Pausing "
+            std::cout << "\033[1;46;30mio::UVC_Runnable\033[0m\tPausing "
                          "sanitization process (door state:"
                       << (door_state ? "closed" : "open") << ")" << std::endl;
 
@@ -69,24 +80,34 @@ void io::UVC_Runnable::runnable(void) {
               << (int)(millis() - t0) / 1000 << "s" << std::endl;
 }
 
-void io::UVC_Runnable::thread_runner(void) {
+void
+io::UVC_Runnable::thread_runner(void)
+{
     try {
         this->runnable();
-    } catch (boost::thread_interrupted &) { //< Catch the boost thread interrupt
+    } catch (boost::thread_interrupted&) { //< Catch the boost thread interrupt
         std::cout << "Interrupted thread " << boost::this_thread::get_id()
                   << std::endl;
     }
 }
 
-void io::UVC_Runnable::start(void) {
+void
+io::UVC_Runnable::start(void)
+{
     boost::function<void(void)> runner(
-        boost::bind(&io::UVC_Runnable::thread_runner, this));
+      boost::bind(&io::UVC_Runnable::thread_runner, this));
     this->thread_group.create_thread(runner);
 }
 
-void io::UVC_Runnable::stop(void) {
+void
+io::UVC_Runnable::stop(void)
+{
     digitalWrite(UVC_LED_PIN_WP, LOW);
     this->thread_group.interrupt_all();
 }
 
-void io::UVC_Runnable::attach(void) { this->thread_group.join_all(); }
+void
+io::UVC_Runnable::attach(void)
+{
+    this->thread_group.join_all();
+}

@@ -5,7 +5,8 @@
 
 namespace io {
 
-class LCD_Runnable {
+class LCD_Runnable
+{
   private:
   public:
     LCD_Runnable(void);
