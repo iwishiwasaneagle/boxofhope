@@ -6,15 +6,18 @@ module.exports = function(app) {
     var notification = require('../controllers/notificationsController');
     var userHome = require('../controllers/userHomeController');
 
-    // API Routes with Swagger Documentation 
+    // API Routes with Express Swagger Documentation 
 
     /**
-    * This function comment is parsed by doctrine
+    * This request logs the current state of either: the uvc lights, the box door, or the presence of a mask.
     * @route POST /state/register-new
     * @group state - Operations about system states
-    * @param {String} keyword - ['uvc', 'door', 'mask']
-    * @param {String} state - ['on', 'off', 'open', 'close']
-    * @param {Date} createdAt - Logs data entry time. Default: Date.now
+    * @param {state.model} body.required - State object that needs to be registered. 
+    * Example: 
+    * {
+    *    "keyword": "uvc",
+    *    "state": "on"
+    * }
     * @returns {object} 201 - Created
     * @returns {Error}  404 - Bad Request: Cannot register status.
     */
@@ -23,10 +26,14 @@ module.exports = function(app) {
         .post(state.register_status);      
 
     /**
-    * This function comment is parsed by doctrine
-    * @route GET /state/uvc/all
+    * This request returns all data related to a state for a user specified number of days. 
+    * @route GET /state/'keyword'/:countBack
     * @group state - Operations about system states
-    * @param {String} keyword - 'uvc'
+    * @param {string} keyword.required - State identifier. 
+    * enum: ['uvc', 'door', 'mask']
+    * @param {number} countBack - The selected number of days for which data will be retrieved. 
+    * Example: 
+    * countBack = 7 returns the data on the specified state for the past week.
     * @returns {object} 200 - OK
     * @returns {Error}  404 - Bad Request: Cannot register status.
     */
@@ -34,70 +41,38 @@ module.exports = function(app) {
     app.route('/state/uvc/since/:countBack')
     .get((req,res)=>state.get_status_since(req,res,'uvc'));
 
-    /**
-    * This function comment is parsed by doctrine
-    * @route GET /state/door/all
-    * @group state - Operations about system states
-    * @param {String} keyword - 'door'
-    * @returns {object} 200 - OK
-    * @returns {Error}  404 - Bad Request: Cannot register status.
-    */
-
     app.route('/state/door/since/:countBack')
     .get((req,res)=>state.get_status_since(req,res,'door'));
 
-    /**
-    * This function comment is parsed by doctrine
-    * @route GET /state/mask/all
-    * @group state - Operations about system states
-    * @param {String} keyword - 'mask'
-    * @returns {object} 200 - OK
-    * @returns {Error}  404 - Bad Request: Cannot register status.
-    */
-
     app.route('/state/mask/since/:countBack')
     .get((req,res)=>state.get_status_since(req,res,'mask'));
-        
+
+
     /**
-    * This function comment is parsed by doctrine
-    * @route GET /state/uvc/all
+    * This request returns all data related to a state. 
+    * @route GET /state/'keyword'/all
     * @group state - Operations about system states
-    * @param {String} keyword - 'uvc'
-    * @returns {object} 200 - OK
+    * @param {string} keyword.required - State identifier. 
+    * enum: ['uvc', 'door', 'mask']
+    * @returns {object} 200 - OK 
     * @returns {Error}  404 - Bad Request: Cannot register status.
     */
 
     app.route('/state/uvc/all')
         .get((req,res)=>state.get_all_status(req,res,'uvc'));
 
-    /**
-    * This function comment is parsed by doctrine
-    * @route GET /state/door/all
-    * @group state - Operations about system states
-    * @param {String} keyword - 'door'
-    * @returns {object} 200 - OK
-    * @returns {Error}  404 - Bad Request: Cannot register status.
-    */
-
      app.route('/state/door/all')
      .get((req,res)=>state.get_all_status(req,res,'door'));    
      
-     /**
-     * This function comment is parsed by doctrine
-     * @route GET /state/mask/all
-     * @group state - Operations about system states
-     * @param {String} keyword - 'mask'
-     * @returns {object} 200 - OK
-     * @returns {Error}  404 - Bad Request: Cannot register status.
-     */
- 
      app.route('/state/mask/all')
          .get((req,res)=>state.get_all_status(req,res,'mask'));
+
     /**
-    * This function comment is parsed by doctrine
-    * @route GET /state/uvc/latest
-    * @group state - Operations about system states
-    * @param {String} keyword - 'uvc'
+    * This request returns the latest data entry related to a state.
+    * @route GET /state/'keyword'/latest
+    * @group state - Operations about system states    
+    * @param {string} keyword.required - State identifier. 
+    * enum: ['uvc', 'door', 'mask']
     * @returns {object} 200 - OK
     * @returns {Error}  404 - Bad Request: Cannot register status.
     */
@@ -105,36 +80,19 @@ module.exports = function(app) {
     app.route('/state/uvc/latest')
         .get((req,res)=>state.get_latest_status(req,res,'uvc'));
 
-    /**
-    * This function comment is parsed by doctrine
-    * @route GET /state/door/latest
-    * @group state - Operations about system states
-    * @param {String} keyword - 'door'
-    * @returns {object} 200 - OK
-    * @returns {Error}  404 - Bad Request: Cannot register status.
-    */
-
     app.route('/state/door/latest')
         .get((res,req)=>state.get_latest_status(res,req,'door'));
-
-    /**
-    * This function comment is parsed by doctrine
-    * @route GET /state/mask/latest
-    * @group state - Operations about system states
-    * @param {String} keyword - 'mask'
-    * @returns {object} 200 - OK
-    * @returns {Error}  404 - Bad Request: Cannot register status.
-    */
 
     app.route('/state/mask/latest')
         .get((res,req)=>state.get_latest_status(res,req,'mask'));
 
+
     /**
-    * This function comment is parsed by doctrine
+    * Primarily used for testing, this request deletes a data entry using it's unique id.
     * @route DELETE /state/:statusId
-    * statusId is the automatically-generated unique identifier for each new status data entry. 
-    * @group state - Operations about system states
-    * @param {String} keyword - ['uvc', 'door', 'mask']
+    * @group state - Operations about system states   
+    * @param {string} keyword.required - State identifier. 
+    * enum: ['uvc', 'door', 'mask']
     * @returns {object} 204 - Deleted
     * @returns {Error}  404 - Bad Request: Cannot register status.
     */
