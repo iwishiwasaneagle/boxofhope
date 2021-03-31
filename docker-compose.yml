@@ -1,60 +1,46 @@
 version: "3.3"
 services:
-#  api:
-#    volumes:
-#     - ./api:/usr/src/app
-#     - /usr/src/app/node_modules
-#    container_name: api
-#    restart: always
-#    environment:
-#     - PORT=3001
-#    networks:
-#     - io_server-api
-#     - api-mongo
-#     - webapp-api
-#    depends_on:
-#     - mongo
-#    build: api
-#
-#  webapp:
-#    ports:
-#     - 3000:3000
-#    stdin_open: true
-#    volumes:
-#     - ./webapp:/usr/src/app
-#     - /usr/src/app/node_modules
-#    container_name: webapp
-#    restart: always
-#    networks:
-#     - webapp-api
-#    depends_on:
-#     - api 
-#    build: webapp
-#
-#  mongo:
-#    container_name: mongo
-#    restart: always
-#    image: ivanmarban/armhf-mongodb
-#    volumes:
-#     - ./data:/data/db
-#    networks:
-#     - api-mongo
-  
-  io_server:
-    container_name: io_server
+  api:
+    volumes:
+     - ./api:/usr/src/app
+     - /usr/src/app/node_modules
+    container_name: api
     restart: always
-    volumes: 
-      - ./io_server:/usr/src/app
-      - /sys:/sys
+    environment:
+     - PORT=3001
+    ports:
+      - 3001:3001
     networks:
-      - io_server-api
-    build: io_server
-    devices:
-      - "/dev/i2c-1:/dev/i2c-1"
-      - "/dev/gpiomem:/dev/gpiomem"
-    privileged: true
+     - api-mongo
+     - webapp-api
+    depends_on:
+     - mongo
+    build: api
+
+  webapp:
+    ports:
+     - 3000:3000
+    stdin_open: true
+    volumes:
+     - ./webapp:/usr/src/app
+     - /usr/src/app/node_modules
+    container_name: webapp
+    restart: always
+    networks:
+     - webapp-api
+    depends_on:
+     - api 
+    build: webapp
+
+  mongo:
+    container_name: mongo
+    restart: always
+    image: ivanmarban/armhf-mongodb
+    volumes:
+     - ./data:/data/db
+    networks:
+     - api-mongo
 
 networks:
-  io_server-api:
   api-mongo:
   webapp-api:
