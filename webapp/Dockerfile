@@ -9,6 +9,8 @@ RUN npm ci
 
 COPY . /usr/src/app
 
+RUN echo "0.0.0.0 jheraspi.local" >> /etc/hosts
+
 EXPOSE 3000
 
 CMD ["npm", "start"]
