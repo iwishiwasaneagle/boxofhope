@@ -7,12 +7,12 @@
 inline std::string HOME_DEVICE_IP = "";
 
 namespace io {
-
 /**
  *  \brief Runnable class to check if a user with IP ::Home_DEVICE_IP is home
  *  \test io_server/test/io_home.cpp
  */
-class IsUserHome_Runnable : public GenericRunnable {
+class IsUserHome_Runnable : public GenericRunnable 
+{
   private:
     /// Interval in seconds
     std::chrono::seconds interval;
@@ -26,8 +26,8 @@ class IsUserHome_Runnable : public GenericRunnable {
      * to IsUserHome_Runnable::isUserHome.
      * @param interval The interval in seconds
      */
-    static void runnable(const boost::system::error_code &,
-                         boost::asio::steady_timer *timer,
+    static void runnable(const boost::system::error_code&,
+                         boost::asio::steady_timer* timer,
                          boost::function<void(void)> callback,
                          std::chrono::seconds interval);
 

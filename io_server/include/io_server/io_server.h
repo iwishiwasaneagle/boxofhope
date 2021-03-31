@@ -3,6 +3,8 @@
 
 /// Physical pin (indexed by wiringPi ID) for door switch
 #define DOOR_SWITCH_PIN_WP 1
+/// Physical pin (indexed by wiringPi ID) for door state led indicator
+#define DOOR_SWITCH_LED_WP 3
 /// Physical pin (indexed by wiringPi ID) for UV led
 #define UVC_LED_PIN_WP 2
 
@@ -38,12 +40,12 @@
  * same-named functions/class/etc. don't interact.
  */
 namespace io {
-
 /**
  * \brief Main class for handling all IO operations. Embodies the core of the Box Of Hope runtime
  * \test io_server/test/io_server.cpp
  */
-class IO_Server {
+class IO_Server 
+{
   private:
     /**
      * Setup the wiringPi pins and correct dataflow as well as interrupts
