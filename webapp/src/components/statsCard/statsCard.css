@@ -1,6 +1,5 @@
-
-.mask-item {
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
+.wrapper {
+   width: 50vw;
+   min-width: 500px;
+   margin: 10 auto;
 }
