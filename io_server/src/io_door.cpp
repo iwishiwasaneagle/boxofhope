@@ -31,7 +31,7 @@ io::Door_Helper::door_state(void)
     float mean = float(count) / debounceAvgCount;
 
     bool doorState;
-    API::DoorState().update((doorState = mean > 0.5));
+    API::DoorState().update(!(doorState = mean > 0.5)); // High = closed
 
     return doorState;
 }
