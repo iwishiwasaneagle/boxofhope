@@ -1,6 +1,6 @@
 {
-  "title": "Box of Hope: Event driven COVID-19 safety",
-  "text": "Box Of Hope is a C++ event driven platform to protect you during the COVID-19 pandemic. BOH uses NFC and Bluetooth technology to ensure your mask usage is on point and employs sterilizing UV LEDs to clean your fabric mask. ",
+  "title": "Raspberry Pi COVID-19 Project",
+  "text": "Box Of Hope is a Raspberry Pi DIY hardware and software project, based on C++ event driven code to protect you during the COVID-19 pandemic. It uses NFC and Bluetooth technology to ensure your mask usage is on point and employs sterilizing UV LEDs to disinfect your fabric face mask.",
   "button": [
     {
       "title": "Explore"
