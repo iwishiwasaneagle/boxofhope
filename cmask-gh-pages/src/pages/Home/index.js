@@ -31,19 +31,19 @@ const Home = () => {
         button={MiddleBlockContent.button}
       />
       <ContentBlock
-        type="right"
+        type="left"
         title={MissionContent.title}
         content={MissionContent.text}
         icon="product-launch.svg"
         id="mission"
       />
       <ContentBlock
-        type="left"
-        title={AboutContent.title}
-        content={AboutContent.text}
-        section={AboutContent.section}
+        type="right"
+        title={TechContent.title}
+        content={TechContent.text}
+        section={TechContent.section}
         icon="graphs.svg"
-        id="about"
+        id="tech"
       />
       <ContentBlock
         type="left"
