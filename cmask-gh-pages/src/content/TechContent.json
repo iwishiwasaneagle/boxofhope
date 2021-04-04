@@ -1,0 +1,16 @@
+{
+  "title": "Light, Fast & Responsive",
+  "text": "Box of Hope is created with low-cost hardware in mind. By utilizing event driven paradigms it can run on any Raspberry Pi. As well as this, with the interface being written in JS and HTML, any device with Push Notifications enabled browsers can be used.",
+  "section": [
+    {
+      "title": "Why C/C++?",
+      "content": "Wide availability is one of out mission goals. Using C/C++ enables the code to be blazingly fast.",
+      "icon": "notes.svg"
+    },
+    {
+      "title": "Why Raspberry Pi?",
+      "content": "They're cheap to buy, easy to set up, and inexpensive to run due to their mobile CPUs.",
+      "icon": "notes.svg"
+    }
+  ]
+}
