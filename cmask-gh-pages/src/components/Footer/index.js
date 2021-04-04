@@ -62,7 +62,6 @@ const Footer = ({ t }) => {
                     id="select-lang"
                   >
                     <option value="en">English</option>
-                    <option value="es">Español</option>
                   </S.LangSelect>
                 </S.Select>
               </Col>
@@ -80,7 +79,7 @@ const Footer = ({ t }) => {
               <S.NavLink to="/">
                 <S.LogoContainer>
                   <SvgIcon
-                    src="logo.svg"
+                    src="Jan_Logo.svg"
                     aria-label="homepage"
                     width="101px"
                     height="64px"
