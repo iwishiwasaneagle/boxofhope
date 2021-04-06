@@ -8,7 +8,8 @@ export const Header = styled.header`
 
 export const LogoContainer = styled(Link)`
   display: flex;
-  height: 110px;
+  height: 100px;
+  width: 320px;
   padding-top: 1rem;
 `;
 
@@ -58,6 +59,9 @@ export const Burger = styled.div`
 `;
 
 export const NotHidden = styled.div`
+  display:flex;
+  align-items:center;
+
   @media only screen and (max-width: 768px) {
     display: none;
   }
