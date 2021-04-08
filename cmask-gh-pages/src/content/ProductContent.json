@@ -1,4 +1,4 @@
 {
-  "title": "That's about it!",
-  "text": "If you have any questions regarding the project, please get in contact with the team. We would love to get your thoughts on Box of Hope!"
+  "title": "The Product",
+  "text": "Box of Hope currently has all the core features implemented! If you forget your mask at home, you will get a notification; NFC scanning of the mask when it is placed in the box to identify the mask; UV-C disinfection of the mask each time it is placed into the box; and usage tracking with live status of the box available via a web app. Feel free to get in touch or fork the project on GitHub if you have any improvements in mind."
 }

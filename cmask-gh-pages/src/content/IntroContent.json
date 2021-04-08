@@ -4,10 +4,6 @@
   "button": [
     {
       "title": "Explore"
-    },
-    {
-      "title": "Learn More",
-      "color": "#fff"
     }
   ]
 }

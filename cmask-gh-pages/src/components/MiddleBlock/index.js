@@ -26,7 +26,7 @@ const MiddleBlock = ({ title, content, button, t }) => {
                 <Button
                   name="submit"
                   type="submit"
-                  onClick={() => scrollTo("mission")}
+                  onClick={() => window.open("https://choosealicense.com/licenses/gpl-3.0/")}
                 >
                   {t(button)}
                 </Button>
