@@ -28,7 +28,7 @@ export default class StatsCard extends React.Component {
         this.myChart = new Chart(this.chartRef.current, {
             type: 'line',
             data: {
-                datasets: [{ label: "Masks data", data: data, lineTension:0, borderColor:"red", fill:false}, { label: "Door data", data: data, lineTension:0, borderColor:"blue", fill:false}]
+                datasets: [{ label: "Masks data", data: data, lineTension:0, borderColor:"red", fill:false}, { label: "Door data", data: data, lineTension:0, borderColor:"blue", fill:false}, { label: "User Home data", data: data, lineTension:0, borderColor:"green", fill:false}]
             },
             options: {
                 elements: {
@@ -37,6 +37,11 @@ export default class StatsCard extends React.Component {
                     }
                 },
                 scales: {
+                    yAxes:[{
+                        ticks:{
+                            callback: (value, index, values) => value == 1 ? "True" : (value == 0 ? "False" : "")
+                        }
+                    }],
                     xAxes: [{
                         type: 'time',
                         time: {
@@ -59,11 +64,22 @@ export default class StatsCard extends React.Component {
     }
 
     componentDidUpdate() {
+        
+        fetch("/userHome/since/5", { method: "GET" })
+            .then(res => res.json())
+            .then(res => {
+                const data = res.map(state=>({x:state.createdAt, y:state.user_status[0]==="User Home"}));
+                this.myChart.data.datasets.forEach((dataset) => {
+                    if(dataset.label=="User Home data"){
+                        dataset.data = data;
+                    }
+                });
+                this.myChart.update();
+            });
         fetch("/state/mask/since/5", { method: "GET" })
             .then(res => res.json())
             .then(res => {
-                const data = res.map(state=>({x:state.createdAt, y:state.state=="on"}));
-                console.log(data);
+                const data = res.map(state=>({x:state.createdAt, y:state.state==="on"}));
                 this.myChart.data.datasets.forEach((dataset) => {
                     if(dataset.label=="Masks data"){
                         dataset.data = data;
@@ -75,8 +91,7 @@ export default class StatsCard extends React.Component {
         fetch("/state/door/since/5", { method: "GET" })
             .then(res => res.json())
             .then(res => {
-                const data = res.map(state=>({x:state.createdAt, y:state.state=="close"}));
-                console.log(data);
+                const data = res.map(state=>({x:state.createdAt, y:state.state==="close"}));
                 this.myChart.data.datasets.forEach((dataset) => {
                     if(dataset.label=="Door data"){
                         dataset.data = data;
@@ -91,7 +106,11 @@ export default class StatsCard extends React.Component {
         return (<Card>
             <Card.Title>Stats</Card.Title>
             <Card.Body>
-                <canvas id="statsChart" ref={this.chartRef} width="800" height="400"></canvas>
+                <Card.Text>
+                <div className="wrapper">
+                    <canvas id="statsChart" ref={this.chartRef}></canvas>
+                </div>
+                </Card.Text>
             </Card.Body>
         </Card>);
     }

@@ -16,11 +16,12 @@ function BottomBar(){
                      {link:"https://www.youtube.com/channel/UCG8txVUxQb3aCut7adeDU7A", src:youtube}
                     ]
 
-    return (<Navbar height="64px" bg="light" variant="light" fixed="top">
+    return (<Navbar height="64px" bg="light" variant="light" sticky="bottom">
     <Navbar.Brand href="#home"><img height="48px" src={icon}></img></Navbar.Brand>
     <Nav className="mr-auto">
       <Nav.Link href="#notification">Notification</Nav.Link>
       <Nav.Link href="#masks">Masks</Nav.Link>
+      <Nav.Link href="#status">Status</Nav.Link>
       <Nav.Link href="#stats">Stats</Nav.Link>
     </Nav>
     <Nav className="justify-content-end">

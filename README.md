@@ -72,7 +72,9 @@ Box of hope was created to solve the unique, and very annoying, scenario of
 
 > Where's my mask? Oh I left it at home... again...
 
-As part of a university, the creators were tasked with creating a event driven codebase that interacts with a user and low level components on a Raspberry Pi.
+As part of a university project, the creators were tasked with creating a event driven codebase that interacts with a user and low level components on a Raspberry Pi.
+
+A big part of this device is the user home state detection this is done by making the assumption that the user (being a techy person) will have this box a) at home and b) carries a mobile phone or some other **wifi** enabled technology on them. Ergo, the user is home if the portable device's IPv4 address is on the same network.
 
 <!-- GETTING STARTED -->
 
