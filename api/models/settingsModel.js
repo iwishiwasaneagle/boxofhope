@@ -6,7 +6,7 @@ var SettingsSchema = new Schema ({
     sterilisation_time: {
         type: Number,
         default: 90
-      } ,
+      },
       max_wears:{
           type: Number,
           default: 3
