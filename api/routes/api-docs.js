@@ -20,6 +20,12 @@
  * @typedef settingsModel
  * @property {integer} sterilisation_time - Length of time the UVC will operate to carry out sterilisation. 
  * Default: 90 seconds. 
+ * @property {} max_wears - The maximum number of wears before a notification will be sent to the user to wash the mask.
+ * Default: 3 wears.
+ * @property {} max_days_between_washes - Length of time since the last wash before a notification will be sent to the user to wash the mask.
+ * Default: 3 days.
+ * @property {} most_recent_wash - Stores the date and time of the mask's most recent wash. 
+ * Default: Date.now
  */
 
 
@@ -42,27 +48,4 @@
  * @property {string} keys - Contains the nested keys auth and p256dh.
  * @property {string} auth.required - auth key
  * @property {string} p256dh.required - p256dh key 
- */
-
-
-
-/**
- * * TO DO - REMOVE THIS - IT'S JUST AN EXAMPLE
- * This function comment is parsed by doctrine
- * sdfkjsldfkj
- * @route POST /users
- * @param {Point.model} point.body.required - the new point
- * @group foo - Operations about user
- * @param {string} email.query.required - username or email
- * @param {string} password.query.required - user's password.
- * @param {enum} status.query.required - Status values that need to be considered for filter - eg: available,pending
- * @operationId retrieveFooInfo
- * @produces application/json application/xml
- * @consumes application/json application/xml
- * @returns {Response.model} 200 - An array of user info
- * @returns {Product.model}  default - Unexpected error
- * @returns {Array.<Point>} Point - Some description for point
- * @headers {integer} 200.X-Rate-Limit - calls per hour allowed by the user
- * @headers {string} 200.X-Expires-After - 	date in UTC when token expires
- * @security JWT
  */
