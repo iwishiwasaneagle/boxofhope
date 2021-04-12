@@ -18,7 +18,7 @@ exports.register_status = function(req, res) {
             State.find({"keyword": "mask"}).exec(function(err, results) {
                 if (results.length % 3 == 0) {
                     //  notificationsRunners.send("7c78045e1dc1316b31c5268e95e24d1de066f332");
-                    notificationsRunners.send(notifId.id);
+                    notificationsRunners.send(notifId.id, "washMe");
                 }
             });
         }
