@@ -47,7 +47,7 @@ export default function usePushNotifications() {
       const existingSubscriptionId = Storage.getItem("sub_id");
       const existingSubscriptionPush = await getUserSubscription();
 
-      if(existingSubscriptionPush && existingSubscriptionId.length==null){
+      if(existingSubscriptionPush && existingSubscriptionId==null){
         unsubscribeUser();
       }
 
