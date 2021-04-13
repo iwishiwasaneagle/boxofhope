@@ -225,11 +225,10 @@ module.exports = function(app) {
 
     app.route('/settings/max-wears')
         .get((res,req)=>settings.get_latest_settings(res,req,'max-wears'));
-n
+
     app.route('/settings/max-days')
         .get((res,req)=>settings.get_latest_settings(res,req,'max-days'));
-
-
+        
 
     /**
     * Primarily used for testing, this request updates a data entry using its unique id.
