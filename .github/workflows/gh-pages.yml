@@ -24,7 +24,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install and build
-      working-directory: ./cmask-gh-pages/
+      working-directory: ./boxofhope-gh-pages/
       run: |
         npm ci 
         npm run build
@@ -32,7 +32,7 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./cmask-gh-pages/build
+        publish_dir: ./boxofhope-gh-pages/build
         destination_dir: ./
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
