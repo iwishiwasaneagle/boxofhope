@@ -4,13 +4,13 @@
 var mongoose = require('mongoose'),
   State = mongoose.model('State'),
   notificationsRunners = require('../runners/notificationRunnable'),
-  settings = require('../controllers/settingsController');
+  settingsRunners = require('../runners/settingsRunnable');
 
 exports.register_status = function(req, res) {
     var new_status = new State(req.body);
     console.log(JSON.stringify(new_status));
 
-    console.log(settings.read_current_settings());
+    console.log(settingsRunners.get_max_washes());
     console.log("*-------------------------*");
     new_status.save(async function(err, status) {
         if (err) {
