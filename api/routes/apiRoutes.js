@@ -198,7 +198,12 @@ module.exports = function(app) {
     * @route POST /settings/sterilisation-time
     * @group settings - Operations about system settings
     * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. 
-    * Default 90 seconds.
+    * Default 90 seconds. 
+    * @param {integer} max_wears - The maximum number of wears before a notification will be sent to the user to wash the mask.
+    * Default: 3 wears.
+    * @param {integer} max_days_between_washes - Length of time since the last wash before a notification will be sent to the user to wash the mask.
+    * Default: 3 days.
+    * @param {date} most_recent_wash - Stores the date and time of the mask's most recent wash. 
     * @returns {object} 201 - Created 
     * @returns {Error}  default - Unexpected error
     */
@@ -221,6 +226,11 @@ module.exports = function(app) {
     * @group settings - Operations about system settings
     * @param {String} settingsId - automatically-generated unique identifier for each new settings data entry.
     * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. (Default 90 seconds.)
+    * @param {integer} max_wears - The maximum number of wears before a notification will be sent to the user to wash the mask.
+    * Default: 3 wears.
+    * @param {integer} max_days_between_washes - Length of time since the last wash before a notification will be sent to the user to wash the mask.
+    * Default: 3 days.
+    * @param {date} most_recent_wash - Stores the date and time of the mask's most recent wash. 
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
