@@ -3,12 +3,15 @@
 // Controller for states
 var mongoose = require('mongoose'),
   State = mongoose.model('State'),
-  notificationsRunners = require('../runners/notificationRunnable');
-    
+  notificationsRunners = require('../runners/notificationRunnable'),
+  settings = require('../controllers/settingsController');
 
 exports.register_status = function(req, res) {
     var new_status = new State(req.body);
     console.log(JSON.stringify(new_status));
+
+    console.log(settings.read_current_settings());
+    console.log("*-------------------------*");
     new_status.save(async function(err, status) {
         if (err) {
           res.status(404).send('Bad Request: Cannot register status.');
