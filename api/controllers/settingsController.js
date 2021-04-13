@@ -8,7 +8,7 @@ exports.set_settings = function(req, res) {
     var new_settings = new Settings(req.body);
     new_settings.save(function(err, setting) {
         if (err) {
-          res.status(404).send('Bad Request: Cannot set sterilisation time.');
+          res.status(404).send('Bad Request: Cannot set-up box settings.');
         }
         res.json(setting);
     });
@@ -18,7 +18,7 @@ exports.set_settings = function(req, res) {
 exports.read_current_settings = function(req, res){
     Settings.findById(req.params.settingsId, function(err, setting) {
         if (err)
-            res.status(404).send('Bad Request: Cannot read current sterilisation time.');
+            res.status(404).send('Bad Request: Cannot read current box settings.');
         res.json(setting);
     });
     res.status(200);
@@ -27,7 +27,7 @@ exports.read_current_settings = function(req, res){
 exports.update_settings = function(req, res){
     Settings.findOneAndUpdate({_id: req.params.settingsId}, req.body, {new: true}, function(err, setting) {
         if (err)
-            res.status(404).send('Cannot update sterilisation time.');
+            res.status(404).send('Cannot update box settings.');
         res.json(setting);
     });
     res.status(200);
