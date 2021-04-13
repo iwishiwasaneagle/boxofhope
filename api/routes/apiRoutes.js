@@ -254,7 +254,6 @@ module.exports = function(app) {
     */
 
     app.route('/settings/:settingsId')
-        .get(settings.read_current_settings)
         .put(settings.update_settings)
         .delete(settings.delete_settings);
 

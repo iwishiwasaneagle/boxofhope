@@ -15,10 +15,10 @@ exports.set_settings = function(req, res) {
     res.status(201);
 };
 
-exports.get_latest_setting = (req,res,keyword) => {
+exports.get_latest_settings = (req,res,keyword) => {
   return Settings.find({"keyword": keyword}).sort({"createdAt":-1}).limit(1).exec(function(err,status){
       if (err) {
-          res.status(404).send('Bad Request: Cannot get latest status.');
+          res.status(404).send('Bad Request: Cannot get latest setting.');
       }
       console.log(status);
        res.json(status);

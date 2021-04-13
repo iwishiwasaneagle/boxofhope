@@ -4,14 +4,18 @@ var Schema = mongoose.Schema;
 
 var SettingsSchema = new Schema ({
     keyword:{
-        type: Number,
+        type: String,
         enum: ['sterilisation', 'max-wears', 'max-days'],
         required: true
     },
-      most_recent_wash:{
-          type: Date,
-          default: Date.now
-      }
+    value:{
+        type: Number,
+        required: true
+    },
+    created_at:{
+        type: Date,
+        default: Date.now
+    }
 });
 
 module.exports = mongoose.model('Settings', SettingsSchema);
