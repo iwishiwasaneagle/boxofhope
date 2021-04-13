@@ -4,8 +4,7 @@
 var mongoose = require('mongoose'),
   State = mongoose.model('State'),
   notificationsRunners = require('../runners/notificationRunnable'),
-  settingsRunners = require('../runners/settingsRunnable'),
-  settingsController = require('../controllers/settingsController');
+  settingsRunners = require('../runners/settingsRunnable');
 
 exports.register_status = function(req, res) {
     var new_status = new State(req.body);
