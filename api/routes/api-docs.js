@@ -20,11 +20,11 @@
  * @typedef settingsModel
  * @property {integer} sterilisation_time - Length of time the UVC will operate to carry out sterilisation. 
  * Default: 90 seconds. 
- * @property {} max_wears - The maximum number of wears before a notification will be sent to the user to wash the mask.
+ * @property {integer} max_wears - The maximum number of wears before a notification will be sent to the user to wash the mask.
  * Default: 3 wears.
- * @property {} max_days_between_washes - Length of time since the last wash before a notification will be sent to the user to wash the mask.
+ * @property {integer} max_days_between_washes - Length of time since the last wash before a notification will be sent to the user to wash the mask.
  * Default: 3 days.
- * @property {} most_recent_wash - Stores the date and time of the mask's most recent wash. 
+ * @property {date} most_recent_wash - Stores the date and time of the mask's most recent wash. 
  * Default: Date.now
  */
 
