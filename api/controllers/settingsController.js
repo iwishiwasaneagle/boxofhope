@@ -4,7 +4,7 @@
 var mongoose = require('mongoose'),
 Settings = mongoose.model('Settings');
 
-exports.set_sterilisation_time = function(req, res) {
+exports.set_settings = function(req, res) {
     var new_settings = new Settings(req.body);
     new_settings.save(function(err, setting) {
         if (err) {
@@ -15,7 +15,7 @@ exports.set_sterilisation_time = function(req, res) {
     res.status(201);
 };
 
-exports.read_current_sterilisation_time = function(req, res){
+exports.read_current_settings = function(req, res){
     Settings.findById(req.params.settingsId, function(err, setting) {
         if (err)
             res.status(404).send('Bad Request: Cannot read current sterilisation time.');
@@ -24,7 +24,7 @@ exports.read_current_sterilisation_time = function(req, res){
     res.status(200);
 };
  
-exports.update_sterilisation_time = function(req, res){
+exports.update_settings = function(req, res){
     Settings.findOneAndUpdate({_id: req.params.settingsId}, req.body, {new: true}, function(err, setting) {
         if (err)
             res.status(404).send('Cannot update sterilisation time.');
@@ -33,7 +33,7 @@ exports.update_sterilisation_time = function(req, res){
     res.status(200);
 };
 
-exports.delete_sterilisation_time = function(req, res) {
+exports.delete_settings = function(req, res) {
     Settings.remove({
       _id: req.params.settingsId
     }, function(err, setting) {

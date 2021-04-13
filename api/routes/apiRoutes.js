@@ -203,8 +203,8 @@ module.exports = function(app) {
     * @returns {Error}  default - Unexpected error
     */
 
-    app.route('/settings/sterilisation-time')
-        .post(settings.set_sterilisation_time);
+    app.route('/settings/set-up')
+        .post(settings.set_settings);
 
     /**
     * This request retrieves a data entry using its unique id.
@@ -234,10 +234,10 @@ module.exports = function(app) {
     * @returns {Error}  default - Unexpected error
     */
 
-    app.route('/settings/sterilisation-time/:settingsId')
-        .get(settings.read_current_sterilisation_time)
-        .put(settings.update_sterilisation_time)
-        .delete(settings.delete_sterilisation_time);
+    app.route('/settings/:settingsId')
+        .get(settings.read_current_settings)
+        .put(settings.update_settings)
+        .delete(settings.delete_settings);
 
 
     /**
