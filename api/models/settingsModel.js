@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var SettingsSchema = new Schema ({
     keyword:{
         type: Number,
-        enum: ['sterilisation', 'max_wears', 'max_days'],
+        enum: ['sterilisation', 'max-wears', 'max-days'],
         required: true
     },
       most_recent_wash:{

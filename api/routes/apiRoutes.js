@@ -208,8 +208,17 @@ module.exports = function(app) {
     * @returns {Error}  default - Unexpected error
     */
 
-    app.route('/settings/set-up')
+    app.route('/settings/register-new')
         .post(settings.set_settings);
+
+    app.route('/settings/sterilisation')
+        .get((req,res)=>settings.get_latest_settings(req,res,'sterilisation'));
+
+    app.route('/settings/max-wears')
+        .get((res,req)=>settings.get_latest_settings(res,req,'max-wears'));
+
+    app.route('/settings/max-days')
+        .get((res,req)=>settings.get_latest_settings(res,req,'max-days'));
 
     /**
     * This request retrieves a data entry using its unique id.
