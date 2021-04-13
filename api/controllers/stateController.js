@@ -8,7 +8,6 @@ var mongoose = require('mongoose'),
 
 exports.register_status = function(req, res) {
     var new_status = new State(req.body);
-    console.log("*-------------------------*");
     new_status.save(async function(err, status) {
         if (err) {
           res.status(404).send('Bad Request: Cannot register status.');

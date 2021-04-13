@@ -194,16 +194,15 @@ module.exports = function(app) {
 
 
     /**
-    * This request registers a new sterilisation setting.
-    * @route POST /settings/sterilisation-time
-    * @group settings - Operations about system settings
-    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. 
-    * Default 90 seconds. 
-    * @param {integer} max_wears - The maximum number of wears before a notification will be sent to the user to wash the mask.
-    * Default: 3 wears.
-    * @param {integer} max_days_between_washes - Length of time since the last wash before a notification will be sent to the user to wash the mask.
-    * Default: 3 days.
-    * @param {date} most_recent_wash - Stores the date and time of the mask's most recent wash. 
+    * This request registers a new setting.
+    * @route POST /settings/register-new
+    * @group settings - Operations about system settings 
+    * @param {SettingsModel} body.required - Settings object that needs to be registered. 
+    * Example: 
+    * {
+    *    "keyword": "max-wears",
+    *    "value": "2"
+    * }
     * @returns {object} 201 - Created 
     * @returns {Error}  default - Unexpected error
     */
@@ -211,42 +210,45 @@ module.exports = function(app) {
     app.route('/settings/register-new')
         .post(settings.set_settings);
 
+    /**
+    * This request returns the latest data entry related to a setting.
+    * @route GET /ssettings/'keyword'
+    * @group settings - Operations about system settings    
+    * @param {string} keyword.required - Setting identifier. 
+    * enum: ['sterilisation', 'max-wears', 'max-days']
+    * @returns {object} 200 - OK
+    * @returns {Error}  404 - Bad Request: Cannot register status.
+    */
+
     app.route('/settings/sterilisation')
         .get((req,res)=>settings.get_latest_settings(req,res,'sterilisation'));
 
     app.route('/settings/max-wears')
         .get((res,req)=>settings.get_latest_settings(res,req,'max-wears'));
-
+n
     app.route('/settings/max-days')
         .get((res,req)=>settings.get_latest_settings(res,req,'max-days'));
 
-    /**
-    * This request retrieves a data entry using its unique id.
-    * @route GET /settings/sterilisation-time/:settingsId
-    * @group settings - Operations about system settings
-    * @param {String} settingsId - automatically-generated unique identifier for each new settings data entry.
-    * @returns {object} 200 - OK
-    * @returns {Error}  default - Unexpected error
-    */
+
 
     /**
-    * This request updates a data entry using its unique id.
-    * @route PUT /settings/sterilisation-time/:settingsId
+    * Primarily used for testing, this request updates a data entry using its unique id.
+    * @route PUT /settings/:settingsId
     * @group settings - Operations about system settings
     * @param {String} settingsId - automatically-generated unique identifier for each new settings data entry.
-    * @param {Number} sterilisation_time - Length of time require to sterilise mask using UVC LEDs. (Default 90 seconds.)
-    * @param {integer} max_wears - The maximum number of wears before a notification will be sent to the user to wash the mask.
-    * Default: 3 wears.
-    * @param {integer} max_days_between_washes - Length of time since the last wash before a notification will be sent to the user to wash the mask.
-    * Default: 3 days.
-    * @param {date} most_recent_wash - Stores the date and time of the mask's most recent wash. 
+    * @param {SettingsModel} body.required - Settings object that needs to be registered. 
+    * Example: 
+    * {
+    *    "keyword": "max-wears",
+    *    "value": "2"
+    * }
     * @returns {object} 200 - OK
     * @returns {Error}  default - Unexpected error
     */
 
     /**
     * Primarily used for testing, this request deletes a data entry using its unique id.
-    * @route DELETE /settings/sterilisation-time/:settingsId
+    * @route DELETE /settings/:settingsId
     * @group settings - Operations about system settings
     * @param {String} settingsId - automatically-generated unique identifier for each new settings data entry.
     * @returns {object} 204 - OK
