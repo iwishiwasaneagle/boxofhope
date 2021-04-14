@@ -3,10 +3,19 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema; 
 
 var SettingsSchema = new Schema ({
-    sterilisation_time: {
+    keyword:{
+        type: String,
+        enum: ['sterilisation', 'max-wears', 'max-days'],
+        required: true
+    },
+    value:{
         type: Number,
-        default: 90
-      }
+        required: true
+    },
+    created_at:{
+        type: Date,
+        default: Date.now
+    }
 });
 
 module.exports = mongoose.model('Settings', SettingsSchema);

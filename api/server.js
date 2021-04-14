@@ -1,7 +1,7 @@
 var express = require('express'),
   cors = require('cors'),
   app = express(),
-  api_port = process.env.PORT || 3000, // API Port
+  api_port = process.env.PORT || 3001, // API Port
   mongo_url = process.env.MONGO_URL || "localhost", // MongoDB URL
   db = process.env.MONGO_DB || "BoxOfHopedb",
   mongoose = require('mongoose'),

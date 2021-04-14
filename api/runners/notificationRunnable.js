@@ -12,7 +12,7 @@ exports.get_latest = () => {
     });
 };
 
-exports.send = (id) => {
+exports.send = (id, notifType) => {
     return Notification.findById(id, function(err, notification){
         if (err) {
             console.error("Error: ",err);
@@ -30,11 +30,22 @@ exports.send = (id) => {
         };
         console.log(pushSub);
 
+        var text = "You have left your mask at home!";
+        var tag = "mask";
+        var title = "Boxofhope: MASK";
+
+        console.log("-----------");
+        console.log(notifType);
+
+        if (notifType == "washMe"){
+            text = "Please wash your mask!";
+        }
+
         webpush.sendNotification(pushSub, JSON.stringify({
             url: "http://www.boxofhope.co.uk",
-            text: "You have left your mask at home!",
-            tag: "mask",
-            title: "Boxofhope: MASK"
+            text: text,
+            tag: tag,
+            title: title
          })).then(
             ()=>{return "OK"});
     });
