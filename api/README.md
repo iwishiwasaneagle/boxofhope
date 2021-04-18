@@ -44,7 +44,7 @@ Go to [http://<app_host>:<app_port>/api-docs](http://localhost:3000/api-docs) af
 
 API testing has been carried out using Postman tests and can be found in `BoxOfHopeAPI.postman_collection.json`.
 
-Testing covers returned status codes, basic request functionality and request flow.
+Testing covers returned status codes, basic request functionality, response times and request flow.
 
 ## CI
 
