@@ -84,7 +84,7 @@ A big part of this device is the user home state detection this is done by makin
 
 ## About The Project
 <div align="center">
-  <img src="https://github.com/iwishiwasaneagle/boxofhope/blob/docs/images/Components.png?raw=true" alt="System Overview" height="300">
+  <img src="https://github.com/iwishiwasaneagle/boxofhope/blob/docs/images/Components.png?raw=true" alt="System Overview" height="400">
 </div>
 
 Box of Hope, as the name suggests, is a box to keep your face covering in while you are at home. 
