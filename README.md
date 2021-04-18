@@ -84,6 +84,8 @@ A big part of this device is the user home state detection this is done by makin
 
 ## About The Project
 
+<img src="https://raw.githubusercontent.com/iwishiwasaneagle/boxofhope/main/images/Components.png" alt="System Overview" height="300">
+
 Box of Hope, as the name suggests, is a box to keep your face covering in while you are at home. 
 
 It has disinfecting UV LEDs to remove any harmful bacteria and viruses which could have accumulated on your face mask while you were using it. These are activated each time a mask is returned into the box. 
@@ -147,11 +149,9 @@ Distributed under the GPL-3.0 License. See `LICENSE` for more information.
 
 ## Contact
 
-<ul>
-  <li>Jan-Hendrik Ewers - Lead Programmer: [@jhewers](https://twitter.com/jhewers) </li>
-  <li>Sarah Swinton - Database & APIs: [@SarahESwinton](https://twitter.com/SarahESwinton) </li>
-  <li>Martin Karel - Marketing & UX: [@13Darcer](https://twitter.com/13Darcer) </li>
-</ul>
+* Jan-Hendrik Ewers - Lead Programmer: [@jhewers](https://twitter.com/jhewers) 
+* Sarah Swinton - Database & APIs: [@SarahESwinton](https://twitter.com/SarahESwinton)
+* Martin Karel - Marketing & UX: [@13Darcer](https://twitter.com/13Darcer)
 
 Project Link: [https://github.com/iwishiwasaneagle/boxofhope](https://github.com/iwishiwasaneagle/boxofhope)
 
@@ -159,4 +159,4 @@ Project Link: [https://github.com/iwishiwasaneagle/boxofhope](https://github.com
 
 ## Acknowledgements
 
-We would like to thank Dr Bernd Porr, Dr Nicholas Bailey, and all teaching assistants for their support throughout the project. 
+We would like to thank Dr Bernd Porr, Dr Nicholas Bailey, and all University of Glasgow RTEP5 teaching assistants for their support throughout the project. 
