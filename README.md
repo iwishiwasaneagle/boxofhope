@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://boxofhope.co.uk/">
-    <img src="https://raw.githubusercontent.com/iwishiwasaneagle/boxofhope/main/images/logo.png" alt="Logo" height="160">
+    <img src="images/Gradient_Banner.png" alt="Logo" height="160">
   </a>
 
   <h2 align="center">Box Of Hope</h2>  
@@ -84,7 +84,7 @@ A big part of this device is the user home state detection this is done by makin
 
 ## About The Project
 <div align="center">
-  <img src="https://github.com/iwishiwasaneagle/boxofhope/blob/docs/images/Components.png?raw=true" alt="System Overview" height="400">
+  <img src="images/Components.png" alt="System Overview" height="400">
 </div>
 
 Box of Hope, as the name suggests, is a box to keep your face covering in while you are at home. 
