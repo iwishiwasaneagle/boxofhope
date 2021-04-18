@@ -148,9 +148,9 @@ Distributed under the GPL-3.0 License. See `LICENSE` for more information.
 ## Contact
 
 <ul>
-  <li>Jan-Hendrik Ewers - Lead Programmer: [@jhewers](https://twitter.com/jhewers)</li>
-  <li>Sarah Swinton - Database & APIs: [@SarahESwinton](https://twitter.com/SarahESwinton)</li>
-  <li>Martin Karel - Marketing & UX: [@13Darcer](https://twitter.com/13Darcer)</li>
+  <li>Jan-Hendrik Ewers - Lead Programmer: [@jhewers](https://twitter.com/jhewers) </li>
+  <li>Sarah Swinton - Database & APIs: [@SarahESwinton](https://twitter.com/SarahESwinton) </li>
+  <li>Martin Karel - Marketing & UX: [@13Darcer](https://twitter.com/13Darcer) </li>
 </ul>
 
 Project Link: [https://github.com/iwishiwasaneagle/boxofhope](https://github.com/iwishiwasaneagle/boxofhope)
