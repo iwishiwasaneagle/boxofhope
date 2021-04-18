@@ -50,6 +50,7 @@
 ## Table of contents
 
 <ol>
+    <li><a href="#project-motivation">Project Motivation</a></li>
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
       <ul>
@@ -64,23 +65,39 @@
     <li><a href="#contact">Contact</a></li>
 </ol>
 
+<!-- PROJECT MOTIVATION -->
+
+## Project Motivation
+
+NOTE: This project has been started during the COVID-19 pandemic.
+
+Considering the current government guidelines in the UK (and many other countries across the world) require people to wear reusable cloth face masks when in indoor shared spaces, they have become parts of our daily lives, but we still ocassionaly leave them behind or lose track when it's time to wash them. Hence, this project attempts to solve the annoying problem of:
+
+> Where's my mask? Oh I left it at home... again...
+
+Given this is a university project, the creators were tasked with creating a event driven codebase that interacts with a user and low level components on a Raspberry Pi.
+
+A big part of this device is the user home state detection this is done by making the assumption that the user (being a techy person) will have this box a) at home and b) carries a mobile phone or some other **WiFi** enabled technology on them. Ergo, the user is home if the portable device's IPv4 address is on the same network.
+
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
-Box of hope was created to solve the unique, and very annoying, scenario of
+Box of Hope, as the name suggests, is a box to keep your face covering in while you are at home. 
 
-> Where's my mask? Oh I left it at home... again...
+It has disinfecting UV LEDs to remove any harmful bacteria and viruses which could have accumulated on your face mask while you were using it. These are activated each time a mask is returned into the box. 
 
-As part of a university project, the creators were tasked with creating a event driven codebase that interacts with a user and low level components on a Raspberry Pi.
+To enable this, a switch needs to be installed by the door which senses whether the door is open or not. 
 
-A big part of this device is the user home state detection this is done by making the assumption that the user (being a techy person) will have this box a) at home and b) carries a mobile phone or some other **wifi** enabled technology on them. Ergo, the user is home if the portable device's IPv4 address is on the same network.
+On the inside, the Raspberry Pi is equipped with an NFC top hat to read the NFC tag on the face mask. This enables the system to keep track of usage even if you have multiple masks. 
+
+If your phone leaves your home's WiFi and a mask is still in the box, you will get a notification through a webapp, to remind to get your mask. The webapp also functions as the GUI for the system, showing real-time status of the key box parameters and hisotry over the last couple of hours. 
 
 <!-- GETTING STARTED -->
 
 ## Getting Started
 
-There are 3 components to this project - `api`, `webapp`, and `io_server`.
+There are 3 components to this project: `api`, `webapp`, and `io_server`.
 
 ### `api`
 
