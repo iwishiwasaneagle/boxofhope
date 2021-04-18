@@ -8,7 +8,8 @@
     "start": "nodemon server.js",
     "api-test": "nodemon server.js  && newman run BoxOfHopeAPI.postman_collection.json",
     "newman": "newman run BoxOfHopeAPI.postman_collection.json",
-    "mongod": "mongod"
+    "mongod": "mongod",
+    "report": "newman run BoxOfHopeAPI.postman_collection.json -r htmlextra"
   },
   "repository": {
     "type": "git",
