@@ -63,6 +63,7 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
 </ol>
 
 <!-- PROJECT MOTIVATION -->
@@ -146,10 +147,16 @@ Distributed under the GPL-3.0 License. See `LICENSE` for more information.
 
 ## Contact
 
-Jan-Hendrik Ewers - [@jhewers](https://twitter.com/jhewers)
-
-Sarah Swinton - [@SarahESwinton](https://twitter.com/SarahESwinton)
-
-Martin Karel - [@13Darcer](https://twitter.com/13Darcer)
+<ul>
+  <li>Jan-Hendrik Ewers - Lead Programmer: [@jhewers](https://twitter.com/jhewers)</li>
+  <li>Sarah Swinton - Database & APIs: [@SarahESwinton](https://twitter.com/SarahESwinton)</li>
+  <li>Martin Karel - Marketing & UX: [@13Darcer](https://twitter.com/13Darcer)</li>
+</ul>
 
 Project Link: [https://github.com/iwishiwasaneagle/boxofhope](https://github.com/iwishiwasaneagle/boxofhope)
+
+<!-- ACKNOWLEDGMENTS -->
+
+## Acknowledgements
+
+We would like to thank Dr Bernd Porr, Dr Nicholas Bailey, and all teaching assistants for their support throughout the project. 
