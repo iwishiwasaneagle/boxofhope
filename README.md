@@ -8,7 +8,7 @@
   <h2 align="center">Box Of Hope</h2>  
   
   <p align="center">
-    Event driven COVID-19 safety
+    Raspberry Pi COVID-19 DIY Project
     <br />
     <a href="https://boxofhope.co.uk/docs/index.html"><strong>Explore the docs »</strong></a>
     <br />
