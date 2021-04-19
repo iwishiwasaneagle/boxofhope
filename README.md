@@ -52,13 +52,6 @@
 <ol>
     <li><a href="#project-motivation">Project Motivation</a></li>
     <li><a href="#about-the-project">About The Project</a></li>
-    <li><a href="#getting-started">Getting Started</a></li>
-      <ul>
-      <li><a href="#io_server">io_server</a</li>
-      <li><a href="#webapp">webapp</a</li>
-      <li><a href="#api">api</a</li>
-      </ul>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -84,7 +77,7 @@ A big part of this device is the user home state detection this is done by makin
 
 ## About The Project
 <div align="center">
-  <img src="images/Components.png" alt="System Overview" height="400">
+  <img src="images/Components.png" alt="System Overview">
 </div>
 
 Box of Hope, as the name suggests, is a box to keep your face covering in while you are at home. 
@@ -97,30 +90,7 @@ On the inside, the Raspberry Pi is equipped with an NFC top hat to read the NFC 
 
 If your phone leaves your home's WiFi and a mask is still in the box, you will get a notification through a webapp, to remind to get your mask. The webapp also functions as the GUI for the system, showing real-time status of the key box parameters and hisotry over the last couple of hours. 
 
-<!-- GETTING STARTED -->
-
-## Getting Started
-
-There are 3 components to this project: `api`, `webapp`, and `io_server`.
-
-### `api`
-
-The RESTful API handles HTTP requests, allowing communication between the server and the client. Four schemas are contained within the API: `masks`, `states`, `settings` and `notifications`. This API requires no authentication.
-
-More documentation on the `api` can be found [here](./api).
-
-### `io_server`
-
-This is the C++ embedded program that actively runs on the Raspberry Pi. This system controls the door switch, NFC reader, etc.
-
-More documentation about `io_server` can be found [here](./io_server)
-
-
-### `webapp`
-
-The **self-hosted** webapp that handles the subscriptions with `PushSubscription` service workers.
-
-More documentation about `webapp` can be found [here](./webapp)
+There are 3 components to this project: `api`, `webapp`, and `io_server`. More details about each can be found on the [official Wiki](https://github.com/iwishiwasaneagle/boxofhope/wiki/System-Overview). 
 
 <!-- ROADMAP -->
 
