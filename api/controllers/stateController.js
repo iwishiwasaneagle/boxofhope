@@ -2,14 +2,24 @@
 
 // Controller for states
 var mongoose = require('mongoose'),
-  State = mongoose.model('State');
+  State = mongoose.model('State'),
+  notificationsRunners = require('../runners/notificationRunnable'),
+  settingsRunners = require('../runners/settingsRunnable');
 
 exports.register_status = function(req, res) {
     var new_status = new State(req.body);
-    console.log(JSON.stringify(new_status));
-    new_status.save(function(err, status) {
+    new_status.save(async function(err, status) {
         if (err) {
           res.status(404).send('Bad Request: Cannot register status.');
+        }
+        if (new_status.keyword == "mask") {
+            var wear_max = await settingsRunners.get_max_washes();
+            var notifId = await notificationsRunners.get_latest();
+            State.find({"keyword": "mask"}).exec(function(err, results) {
+                if (results.length % wear_max == 0) {
+                    notificationsRunners.send(notifId.id, "washMe");
+                }
+            });
         }
         res.json(status);
     });

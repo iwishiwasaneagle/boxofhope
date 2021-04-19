@@ -37,7 +37,7 @@ int
 io::IO_Server::run(void)
 {
     // Start is user home state system
-    io::IsUserHome_Runnable userHomeRunnable(20);
+    io::IsUserHome_Runnable userHomeRunnable(5);
     // Start door switch state system
     io::Door_Runnable doorRunnable;
 
