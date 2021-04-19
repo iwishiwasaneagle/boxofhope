@@ -44,7 +44,29 @@ Go to [http://<app_host>:<app_port>/api-docs](http://localhost:3000/api-docs) af
 
 API testing has been carried out using Postman tests and can be found in `BoxOfHopeAPI.postman_collection.json`.
 
-Testing covers returned status codes, basic request functionality and request flow.
+Testing covers returned status codes, basic request functionality, response times and request flow.
+
+API test reports can be generated using Newman's HTMLExtra Reporter. First, install Newman and the reporter:
+
+```bash
+npm install -S newman newman-reporter-htmlextra
+```
+
+Run the following command to run tests and generate reports:
+
+```bash
+npm run report
+```
+
+The first time you run this command, it creates a new folder, newman, at the root of the project, and adds a timestamped html file to the folder. Open the file in your browser to review the test report.
+
+The following image shows an example of the API test docs:
+
+![API Test Report Summary](images/API_Report_Summary.png)
+
+For each test, the following information is given in the report: request information, response information, request headers, request body, response headers, response body, and test outcome information.
+
+![API Test Information](images/Test_Information.png)
 
 ## CI
 

@@ -21,6 +21,10 @@
 							"pm.test(\"Check keyword is ['uvc', 'door', 'mask']\", () => {\r",
 							"  pm.expect(pm.response.json().keyword)\r",
 							"    .to.be.oneOf([\"uvc\",\"door\",\"mask\"]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -70,6 +74,10 @@
 							"pm.test(\"Check keyword is ['uvc', 'door', 'mask']\", () => {\r",
 							"  pm.expect(pm.response.json().keyword)\r",
 							"    .to.be.oneOf([\"uvc\",\"door\",\"mask\"]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -122,6 +130,10 @@
 							"pm.test(\"Check keyword is 'uvc'\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData[0].keyword).to.equal('uvc');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -184,6 +196,10 @@
 							"pm.test(\"Check the correct number of entries are returned\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(Object.keys(jsonData).length).to.equal(2);",
+							"});",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -233,6 +249,10 @@
 							"pm.test(\"Check the correct number of entries are returned\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(Object.keys(jsonData).length).to.equal(1);",
+							"});",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -270,6 +290,9 @@
 							"    pm.response.to.have.status(204);\r",
 							"});\r",
 							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
+							"});\r",
 							""
 						],
 						"type": "text/javascript"
@@ -320,7 +343,9 @@
 							"    pm.response.to.have.status(204);\r",
 							"});\r",
 							"\r",
-							""
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -375,6 +400,10 @@
 							"pm.test(\"Check keyword is ['uvc', 'door', 'mask']\", () => {\r",
 							"  pm.expect(pm.response.json().keyword)\r",
 							"    .to.be.oneOf([\"uvc\",\"door\",\"mask\"]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -424,6 +453,10 @@
 							"pm.test(\"Check keyword is ['uvc', 'door', 'mask']\", () => {\r",
 							"  pm.expect(pm.response.json().keyword)\r",
 							"    .to.be.oneOf([\"uvc\",\"door\",\"mask\"]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -476,6 +509,10 @@
 							"pm.test(\"Check keyword is 'door'\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData[0].keyword).to.equal('door');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -535,9 +572,9 @@
 							"    pm.expect(jsonData[0].keyword).to.equal('door');",
 							"});",
 							"",
-							"pm.test(\"Check the correct number of entries are returned\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(Object.keys(jsonData).length).to.equal(2);",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -584,9 +621,9 @@
 							"    pm.expect(jsonData[0].keyword).to.equal('door');",
 							"});",
 							"",
-							"pm.test(\"Check the correct number of entries are returned\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(Object.keys(jsonData).length).to.equal(1);",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -624,7 +661,9 @@
 							"    pm.response.to.have.status(204);\r",
 							"});\r",
 							"\r",
-							""
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -676,7 +715,9 @@
 							"    pm.response.to.have.status(204);\r",
 							"});\r",
 							"\r",
-							""
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -733,6 +774,10 @@
 							"pm.test(\"Check keyword is ['uvc', 'door', 'mask']\", () => {\r",
 							"  pm.expect(pm.response.json().keyword)\r",
 							"    .to.be.oneOf([\"uvc\",\"door\",\"mask\"]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -782,6 +827,10 @@
 							"pm.test(\"Check keyword is ['uvc', 'door', 'mask']\", () => {\r",
 							"  pm.expect(pm.response.json().keyword)\r",
 							"    .to.be.oneOf([\"uvc\",\"door\",\"mask\"]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -834,6 +883,10 @@
 							"pm.test(\"Check keyword is 'mask'\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData[0].keyword).to.equal('mask');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -893,9 +946,9 @@
 							"    pm.expect(jsonData[0].keyword).to.equal('mask');",
 							"});",
 							"",
-							"pm.test(\"Check the correct number of entries are returned\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(Object.keys(jsonData).length).to.equal(2);",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -942,9 +995,9 @@
 							"    pm.expect(jsonData[0].keyword).to.equal('mask');",
 							"});",
 							"",
-							"pm.test(\"Check the correct number of entries are returned\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(Object.keys(jsonData).length).to.equal(1);",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -982,6 +1035,9 @@
 							"    pm.response.to.have.status(204);\r",
 							"});\r",
 							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
+							"});\r",
 							""
 						],
 						"type": "text/javascript"
@@ -1034,7 +1090,9 @@
 							"    pm.response.to.have.status(204);\r",
 							"});\r",
 							"\r",
-							""
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -1091,6 +1149,10 @@
 							"pm.test(\"Value is in valid list\", () => {\r",
 							"  pm.expect(pm.response.json().user_status[0])\r",
 							"    .to.be.oneOf([\"User Home\",\"User Not Home\"]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1194,6 +1256,10 @@
 							"\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1235,6 +1301,9 @@
 							"    pm.expect(jsonData).to.not.equal(null);\r",
 							"});\r",
 							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
+							"});\r",
 							""
 						],
 						"type": "text/javascript"
@@ -1288,7 +1357,10 @@
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(jsonData).to.not.equal(null);",
 							"});",
-							""
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -1327,7 +1399,10 @@
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(jsonData).to.not.equal(null);",
 							"});",
-							""
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -1365,6 +1440,10 @@
 							"pm.test(\"PUT function works\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(jsonData.user_status[0]).to.equal('User Not Home');",
+							"});",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1409,6 +1488,10 @@
 						"exec": [
 							"pm.test(\"Status code is 204 - User Home entry successfully deleted\", function () {\r",
 							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1443,6 +1526,10 @@
 						"exec": [
 							"pm.test(\"Status code is 204 - User Home entry successfully deleted\", function () {\r",
 							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1484,6 +1571,10 @@
 							"pm.test(\"Check keyword is valid\", () => {",
 							"  pm.expect(pm.response.json().keyword)",
 							"    .to.be.oneOf([\"sterilisation\",\"max-wears\", \"max-days\"]);",
+							"});",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1539,6 +1630,10 @@
 							"pm.test(\"Check keyword is valid\", () => {",
 							"  pm.expect(pm.response.json().keyword)",
 							"    .to.be.oneOf([\"sterilisation\",\"max-wears\", \"max-days\"]);",
+							"});",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1594,6 +1689,10 @@
 							"pm.test(\"Check keyword is valid\", () => {",
 							"  pm.expect(pm.response.json().keyword)",
 							"    .to.be.oneOf([\"sterilisation\",\"max-wears\", \"max-days\"]);",
+							"});",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1657,6 +1756,10 @@
 							"pm.test(\"Check the correct number of entries are returned\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(Object.keys(jsonData).length).to.equal(1);",
+							"});",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1705,6 +1808,10 @@
 							"pm.test(\"Check the correct number of entries are returned\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(Object.keys(jsonData).length).to.equal(1);",
+							"});",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1753,6 +1860,10 @@
 							"pm.test(\"Check the correct number of entries are returned\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(Object.keys(jsonData).length).to.equal(1);",
+							"});",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1786,6 +1897,10 @@
 						"exec": [
 							"pm.test(\"Status code is 204 - User Home entry successfully deleted\", function () {\r",
 							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1819,6 +1934,10 @@
 						"exec": [
 							"pm.test(\"Status code is 204 - User Home entry successfully deleted\", function () {\r",
 							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1852,6 +1971,10 @@
 						"exec": [
 							"pm.test(\"Status code is 204 - User Home entry successfully deleted\", function () {\r",
 							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1887,7 +2010,11 @@
 							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
 							"});\r",
 							"\r",
-							"pm.globals.set(\"maskId\", pm.response.json()._id);"
+							"pm.globals.set(\"maskId\", pm.response.json()._id);\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -1935,6 +2062,10 @@
 							"\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1973,6 +2104,10 @@
 							"pm.test(\"PUT function works\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(jsonData.last_check_in).to.equal('2021-02-20T11:00:00.000Z');",
+							"});",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -2017,6 +2152,10 @@
 							"pm.test(\"GET function works\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(Object.keys(jsonData).length).to.equal(1);",
+							"});",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -2050,6 +2189,10 @@
 						"exec": [
 							"pm.test(\"Status code is 204 - mask successfully deleted\", function () {\r",
 							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {\r",
+							" pm.expect(pm.response.responseTime).to.be.below(50);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -2084,6 +2227,10 @@
 							"pm.test(\"GET function works\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(Object.keys(jsonData).length).to.equal(0);",
+							"});",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -2119,7 +2266,11 @@
 							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
 							"});",
 							"",
-							"pm.globals.set(\"notifId\", pm.response.json().id);"
+							"pm.globals.set(\"notifId\", pm.response.json().id);",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -2166,6 +2317,10 @@
 							"",
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -2202,6 +2357,9 @@
 							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
 							"});",
 							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
+							"});",
 							""
 						],
 						"type": "text/javascript"
@@ -2246,7 +2404,10 @@
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(jsonData).to.not.equal(null);",
 							"});",
-							""
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -2279,6 +2440,10 @@
 						"exec": [
 							"pm.test(\"Status code is 204 - mask successfully deleted\", function () {",
 							"    pm.response.to.have.status(204);",
+							"});",
+							"",
+							"pm.test(\"Response time: \"+pm.response.responseTime+\"ms.\", () => {",
+							" pm.expect(pm.response.responseTime).to.be.below(50);",
 							"});"
 						],
 						"type": "text/javascript"
