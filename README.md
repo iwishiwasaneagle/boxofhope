@@ -47,6 +47,9 @@
 </div>
 <br />
 
+<p align="center">
+<a href="https://www.tomshardware.com/uk/news/raspberry-pi-uv-mask-sanitizer">🤯 <strong>As featured on tomshardware.co.uk</strong> 🤯</a>
+<p align="center">
 <!-- TABLE OF CONTENTS -->
 
 ## Table of contents
