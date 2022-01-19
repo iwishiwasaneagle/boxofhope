@@ -1,0 +1,12 @@
+<map id="io::NFC_Runnable" name="io::NFC_Runnable">
+<area shape="rect" id="node1" title="NFC Runnable class that sets up LibNFC on construct, and safely destroys it on destruct." alt="" coords="482,189,618,340"/>
+<area shape="rect" id="node2" href="$structio_1_1GenericRunnable.html" title="Generic runnable for other runnables to extend." alt="" coords="5,5,143,112"/>
+<area shape="rect" id="node3" title=" " alt="" coords="167,20,237,97"/>
+<area shape="rect" id="node4" title=" " alt="" coords="262,20,355,97"/>
+<area shape="rect" id="node5" title=" " alt="" coords="380,20,477,97"/>
+<area shape="rect" id="node6" title=" " alt="" coords="502,20,598,97"/>
+<area shape="rect" id="node7" title=" " alt="" coords="623,20,768,97"/>
+<area shape="rect" id="node8" title=" " alt="" coords="793,20,883,97"/>
+<area shape="rect" id="node9" title=" " alt="" coords="910,20,969,97"/>
+<area shape="rect" id="node10" title=" " alt="" coords="993,20,1083,97"/>
+</map>

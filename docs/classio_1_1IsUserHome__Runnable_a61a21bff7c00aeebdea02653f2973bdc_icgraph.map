@@ -1,0 +1,8 @@
+<map id="io::IsUserHome_Runnable::runnable" name="io::IsUserHome_Runnable::runnable">
+<area shape="rect" id="node1" title="Responsible for the boost::asio::stead_timer extending it&#39;s run time, thus creating a periodic timer." alt="" coords="716,29,889,71"/>
+<area shape="rect" id="node2" href="$classio_1_1IsUserHome__Runnable.html#a74611bcf4c62a15de7eae787cb080c85" title="Registers the boost::asio::steady_timer, boost::asio::io_context, etc. as required...." alt="" coords="495,29,668,71"/>
+<area shape="rect" id="node3" href="$classio_1_1IsUserHome__Runnable.html#a1afc0152e90e89a45808ffc175bac894" title="Start the threaded periodic call to IsUserHome_Runnable::isUserHome." alt="" coords="273,29,447,71"/>
+<area shape="rect" id="node4" href="$classio_1_1IO__Server.html#a1e18efa4049b7e0dda522899c9f967b8" title=" " alt="" coords="104,11,225,38"/>
+<area shape="rect" id="node6" href="$app_8cpp.html#a0040b31a2648820e75882b52c2790efa" title=" " alt="" coords="139,62,190,89"/>
+<area shape="rect" id="node5" href="$app_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,37,56,63"/>
+</map>
