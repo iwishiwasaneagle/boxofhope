@@ -36,7 +36,7 @@ const Footer = ({ t }) => {
             <Row type="flex" justify="space-between">
               <Col lg={10} md={10} sm={12} xs={24}>
                 <S.Language>{t("Contact")}</S.Language>
-                <S.Large to="/">{t("Tell us everything")}</S.Large>
+                <S.Large to="/boxofhope/">{t("Tell us everything")}</S.Large>
                 <S.Para>
                   {t(
                     `Do you have any question regarding the project? Feel free to reach out.`
@@ -76,7 +76,7 @@ const Footer = ({ t }) => {
               align="middle"
               style={{ paddingTop: "3rem" }}
             >
-              <S.NavLink to="/">
+              <S.NavLink to="/boxofhope/">
                 <S.LogoContainer>
                   <SvgIcon
                     src="Black_Logo.svg"

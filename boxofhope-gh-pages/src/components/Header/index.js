@@ -56,7 +56,7 @@ const Header = ({ t }) => {
     <S.Header>
       <S.Container>
         <Row type="flex" justify="space-between" gutter={20}>
-          <S.LogoContainer to="/" aria-label="homepage">
+          <S.LogoContainer to="/boxofhope/" aria-label="homepage">
             <SvgIcon src="Logo_Banner.svg"/>
           </S.LogoContainer>
           <S.NotHidden>
