@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://boxofhope.co.uk/">
+  <a href="https://iwishiwasaneagle.github.io/boxofhope/">
     <img src="images/Gradient_Banner.png" alt="Logo" height="160">
   </a>
 
@@ -10,7 +10,7 @@
   <p align="center">
     Raspberry Pi COVID-19 DIY Project
     <br />
-    <a href="https://boxofhope.co.uk/docs/index.html"><strong>Explore the docs »</strong></a>
+    <a href="https://iwishiwasaneagle.github.io/boxofhope/docs/index.html"><strong>Explore the docs »</strong></a>
     <br />
     <a href="https://github.com/iwishiwasaneagle/boxofhope/wiki"><strong>Read the wiki »</strong></a>
     <br />
