@@ -1,3 +1,3 @@
 <map id="io::IsUserHome_Runnable::runnable" name="io::IsUserHome_Runnable::runnable">
-<area shape="rect" id="node1" title="Responsible for the boost::asio::stead_timer extending it&#39;s run time, thus creating a periodic timer." alt="" coords="5,29,179,71"/>
+<area shape="rect" id="node1" title="Responsible for the boost::asio::stead_timer extending it&#39;s run time, thus creating a periodic timer." alt="" coords="5,29,179,69"/>
 </map>

@@ -25,10 +25,7 @@
 var NAVTREE =
 [
   [ "Boxofhope", "index.html", [
-    [ "BoxOfHope io_server", "index.html", [
-      [ "Build", "index.html#autotoc_md8", null ],
-      [ "Run", "index.html#autotoc_md9", null ]
-    ] ],
+    [ "BoxOfHope io_server", "index.html", "index" ],
     [ "Architecture", "md_io_server_ARCHITECTURE.html", [
       [ "Bird's Eye View", "md_io_server_ARCHITECTURE.html#autotoc_md1", null ],
       [ "In-depth", "md_io_server_ARCHITECTURE.html#autotoc_md2", [
